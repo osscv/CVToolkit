@@ -1,4 +1,4 @@
-# CV Toolkit
+p# CV Toolkit
 
 **🌐 [English README](README.md)**
 
@@ -12,7 +12,7 @@
   [![Kotlin](https://img.shields.io/badge/Kotlin-2.3.20-blue.svg)](https://kotlinlang.org)
   [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-最新版-blue.svg)](https://developer.android.com/jetpack/compose)
 
-  [![下载 APK](https://img.shields.io/badge/下载-APK%20v5.0-brightgreen?style=for-the-badge&logo=android)](https://github.com/osscv/CVToolkit/raw/refs/heads/main/app/release/files/CVToolkit-V5-release.apk)
+  [![下载 APK](https://img.shields.io/badge/下载-APK%20v6.0-brightgreen?style=for-the-badge&logo=android)](https://github.com/osscv/CVToolkit/raw/refs/heads/main/app/release/files/CVToolkit-V6-release.apk)
 
   ---
 

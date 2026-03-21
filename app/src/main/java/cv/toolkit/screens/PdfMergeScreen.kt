@@ -6,12 +6,15 @@ import android.graphics.pdf.PdfDocument
 import android.graphics.pdf.PdfRenderer
 import android.net.Uri
 import android.provider.OpenableColumns
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -32,11 +35,18 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import cv.toolkit.R
 import cv.toolkit.ads.BannerAd
+import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.zIndex
+import kotlin.math.roundToInt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 private data class PdfFileInfo(
+    val id: Long,
     val uri: Uri,
     val name: String,
     val pageCount: Int,
@@ -51,29 +61,41 @@ fun PdfMergeScreen(navController: NavController) {
     val scope = rememberCoroutineScope()
 
     var pdfFiles by remember { mutableStateOf<List<PdfFileInfo>>(emptyList()) }
+    var nextId by remember { mutableLongStateOf(0L) }
+    var draggedItemId by remember { mutableStateOf<Long?>(null) }
+    var dragOffset by remember { mutableFloatStateOf(0f) }
+    val density = LocalDensity.current
+    val itemHeightPx = with(density) { 96.dp.toPx() }
     var isMerging by remember { mutableStateOf(false) }
     var mergeProgress by remember { mutableFloatStateOf(0f) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
     var successMessage by remember { mutableStateOf<String?>(null) }
     var pendingOutputUri by remember { mutableStateOf<Uri?>(null) }
+    var showPreview by remember { mutableStateOf(false) }
+    var previewPages by remember { mutableStateOf<List<Bitmap>>(emptyList()) }
+    var isGeneratingPreview by remember { mutableStateOf(false) }
 
     val pdfPicker = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.GetContent()
-    ) { uri ->
-        uri?.let {
+        contract = ActivityResultContracts.OpenMultipleDocuments()
+    ) { uris ->
+        if (uris.isNotEmpty()) {
             scope.launch {
                 try {
-                    val fileInfo = withContext(Dispatchers.IO) {
-                        getPdfFileInfo(context, it)
+                    val newFiles = withContext(Dispatchers.IO) {
+                        uris.mapNotNull { uri -> getPdfFileInfo(context, uri) }
                     }
-                    if (fileInfo != null) {
-                        pdfFiles = pdfFiles + fileInfo
+                    if (newFiles.isNotEmpty()) {
+                        val filesWithIds = newFiles.mapIndexed { i, file ->
+                            file.copy(id = nextId + i)
+                        }
+                        nextId += newFiles.size
+                        pdfFiles = pdfFiles + filesWithIds
                         errorMessage = null
                     } else {
-                        errorMessage = "Failed to read PDF file."
+                        errorMessage = "Failed to read PDF file(s)."
                     }
                 } catch (e: Exception) {
-                    errorMessage = "Error adding PDF: ${e.message}"
+                    errorMessage = "Error adding PDFs: ${e.message}"
                 }
             }
         }
@@ -109,12 +131,28 @@ fun PdfMergeScreen(navController: NavController) {
         }
     }
 
+    if (showPreview) {
+        BackHandler {
+            showPreview = false
+            previewPages = emptyList()
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.pdf_merge_title)) },
+                title = {
+                    Text(if (showPreview) "Preview" else stringResource(R.string.pdf_merge_title))
+                },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = {
+                        if (showPreview) {
+                            showPreview = false
+                            previewPages = emptyList()
+                        } else {
+                            navController.popBackStack()
+                        }
+                    }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.back))
                     }
                 },
@@ -131,6 +169,91 @@ fun PdfMergeScreen(navController: NavController) {
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
+            if (showPreview) {
+                // Preview content
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(horizontal = 16.dp)
+                ) {
+                    if (isGeneratingPreview) {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                CircularProgressIndicator()
+                                Spacer(Modifier.height(16.dp))
+                                Text(
+                                    "Generating preview...",
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
+                    } else if (previewPages.isNotEmpty()) {
+                        val pagerState = rememberPagerState(pageCount = { previewPages.size })
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "${previewPages.size} pages",
+                                style = MaterialTheme.typography.titleSmall,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                            Text(
+                                "Page ${pagerState.currentPage + 1} of ${previewPages.size}",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                        HorizontalPager(
+                            state = pagerState,
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxWidth()
+                        ) { page ->
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(horizontal = 4.dp)
+                                    .background(
+                                        MaterialTheme.colorScheme.surfaceVariant,
+                                        shape = MaterialTheme.shapes.medium
+                                    ),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    bitmap = previewPages[page].asImageBitmap(),
+                                    contentDescription = "Page ${page + 1}",
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentScale = ContentScale.Fit
+                                )
+                            }
+                        }
+                        Spacer(Modifier.height(12.dp))
+                        Button(
+                            onClick = {
+                                showPreview = false
+                                previewPages = emptyList()
+                                saveLauncher.launch("merged.pdf")
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.primary
+                            )
+                        ) {
+                            Icon(Icons.Filled.Save, null, modifier = Modifier.size(20.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text("Save Merged PDF")
+                        }
+                        Spacer(Modifier.height(8.dp))
+                    }
+                }
+            } else {
             LazyColumn(
                 modifier = Modifier
                     .weight(1f)
@@ -141,7 +264,7 @@ fun PdfMergeScreen(navController: NavController) {
                 // Add PDF button
                 item {
                     Button(
-                        onClick = { pdfPicker.launch("application/pdf") },
+                        onClick = { pdfPicker.launch(arrayOf("application/pdf")) },
                         modifier = Modifier.fillMaxWidth(),
                         enabled = !isMerging
                     ) {
@@ -342,33 +465,55 @@ fun PdfMergeScreen(navController: NavController) {
                 }
 
                 // PDF file list
-                itemsIndexed(pdfFiles, key = { index, item -> "${item.uri}_$index" }) { index, pdfFile ->
-                    PdfFileCard(
-                        pdfFile = pdfFile,
-                        index = index,
-                        totalCount = pdfFiles.size,
-                        enabled = !isMerging,
-                        onMoveUp = {
-                            if (index > 0) {
-                                val mutable = pdfFiles.toMutableList()
-                                val item = mutable.removeAt(index)
-                                mutable.add(index - 1, item)
-                                pdfFiles = mutable
+                itemsIndexed(pdfFiles, key = { _, item -> item.id }) { index, pdfFile ->
+                    val isDragged = pdfFile.id == draggedItemId
+                    Box(
+                        modifier = Modifier
+                            .zIndex(if (isDragged) 1f else 0f)
+                            .offset { IntOffset(0, if (isDragged) dragOffset.roundToInt() else 0) }
+                            .pointerInput(pdfFile.id) {
+                                detectDragGesturesAfterLongPress(
+                                    onDragStart = {
+                                        draggedItemId = pdfFile.id
+                                        dragOffset = 0f
+                                    },
+                                    onDrag = { change, dragAmount ->
+                                        change.consume()
+                                        dragOffset += dragAmount.y
+                                        val currentIndex = pdfFiles.indexOfFirst { it.id == draggedItemId }
+                                        if (currentIndex >= 0) {
+                                            if (dragOffset > itemHeightPx / 2 && currentIndex < pdfFiles.size - 1) {
+                                                val mutable = pdfFiles.toMutableList()
+                                                val moved = mutable.removeAt(currentIndex)
+                                                mutable.add(currentIndex + 1, moved)
+                                                pdfFiles = mutable
+                                                dragOffset -= itemHeightPx
+                                            } else if (dragOffset < -itemHeightPx / 2 && currentIndex > 0) {
+                                                val mutable = pdfFiles.toMutableList()
+                                                val moved = mutable.removeAt(currentIndex)
+                                                mutable.add(currentIndex - 1, moved)
+                                                pdfFiles = mutable
+                                                dragOffset += itemHeightPx
+                                            }
+                                        }
+                                    },
+                                    onDragEnd = { draggedItemId = null; dragOffset = 0f },
+                                    onDragCancel = { draggedItemId = null; dragOffset = 0f }
+                                )
                             }
-                        },
-                        onMoveDown = {
-                            if (index < pdfFiles.size - 1) {
-                                val mutable = pdfFiles.toMutableList()
-                                val item = mutable.removeAt(index)
-                                mutable.add(index + 1, item)
-                                pdfFiles = mutable
+                    ) {
+                        PdfFileCard(
+                            pdfFile = pdfFile,
+                            index = index,
+                            totalCount = pdfFiles.size,
+                            enabled = !isMerging,
+                            isDragged = isDragged,
+                            onRemove = {
+                                pdfFiles = pdfFiles.toMutableList().also { it.removeAt(index) }
+                                successMessage = null
                             }
-                        },
-                        onRemove = {
-                            pdfFiles = pdfFiles.toMutableList().also { it.removeAt(index) }
-                            successMessage = null
-                        }
-                    )
+                        )
+                    }
                 }
 
                 // Empty state
@@ -417,7 +562,21 @@ fun PdfMergeScreen(navController: NavController) {
                             onClick = {
                                 successMessage = null
                                 errorMessage = null
-                                saveLauncher.launch("merged.pdf")
+                                isGeneratingPreview = true
+                                showPreview = true
+                                scope.launch {
+                                    try {
+                                        val pages = withContext(Dispatchers.IO) {
+                                            generateMergePreview(context, pdfFiles)
+                                        }
+                                        previewPages = pages
+                                    } catch (e: Exception) {
+                                        errorMessage = "Preview error: ${e.message}"
+                                        showPreview = false
+                                    } finally {
+                                        isGeneratingPreview = false
+                                    }
+                                }
                             },
                             modifier = Modifier.fillMaxWidth(),
                             enabled = !isMerging,
@@ -432,6 +591,7 @@ fun PdfMergeScreen(navController: NavController) {
                     }
                 }
             }
+            } // end else
 
             BannerAd(modifier = Modifier.fillMaxWidth())
         }
@@ -444,13 +604,15 @@ private fun PdfFileCard(
     index: Int,
     totalCount: Int,
     enabled: Boolean,
-    onMoveUp: () -> Unit,
-    onMoveDown: () -> Unit,
+    isDragged: Boolean,
     onRemove: () -> Unit
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = if (isDragged) 8.dp else 0.dp
+        )
     ) {
         Row(
             modifier = Modifier
@@ -458,6 +620,17 @@ private fun PdfFileCard(
                 .padding(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            // Drag handle
+            Icon(
+                Icons.Filled.DragHandle,
+                "Long press to reorder",
+                modifier = Modifier.size(24.dp),
+                tint = if (isDragged) MaterialTheme.colorScheme.primary
+                       else MaterialTheme.colorScheme.onSurfaceVariant
+            )
+
+            Spacer(Modifier.width(8.dp))
+
             // Thumbnail
             Box(
                 modifier = Modifier
@@ -509,34 +682,6 @@ private fun PdfFileCard(
                 )
             }
 
-            // Reorder buttons
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                IconButton(
-                    onClick = onMoveUp,
-                    enabled = enabled && index > 0,
-                    modifier = Modifier.size(32.dp)
-                ) {
-                    Icon(
-                        Icons.Filled.KeyboardArrowUp,
-                        "Move up",
-                        modifier = Modifier.size(20.dp)
-                    )
-                }
-                IconButton(
-                    onClick = onMoveDown,
-                    enabled = enabled && index < totalCount - 1,
-                    modifier = Modifier.size(32.dp)
-                ) {
-                    Icon(
-                        Icons.Filled.KeyboardArrowDown,
-                        "Move down",
-                        modifier = Modifier.size(20.dp)
-                    )
-                }
-            }
-
             // Remove button
             IconButton(
                 onClick = onRemove,
@@ -552,6 +697,30 @@ private fun PdfFileCard(
             }
         }
     }
+}
+
+private fun generateMergePreview(
+    context: Context,
+    files: List<PdfFileInfo>
+): List<Bitmap> {
+    val result = mutableListOf<Bitmap>()
+    for (fileInfo in files) {
+        val pfd = context.contentResolver.openFileDescriptor(fileInfo.uri, "r") ?: continue
+        val renderer = PdfRenderer(pfd)
+        for (pageIndex in 0 until renderer.pageCount) {
+            val page = renderer.openPage(pageIndex)
+            val previewWidth = 600
+            val previewHeight = (previewWidth * page.height.toFloat() / page.width.toFloat()).toInt()
+            val bitmap = Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888)
+            bitmap.eraseColor(android.graphics.Color.WHITE)
+            page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
+            page.close()
+            result.add(bitmap)
+        }
+        renderer.close()
+        pfd.close()
+    }
+    return result
 }
 
 private fun getPdfFileInfo(context: Context, uri: Uri): PdfFileInfo? {
@@ -594,6 +763,7 @@ private fun getPdfFileInfo(context: Context, uri: Uri): PdfFileInfo? {
         pfd.close()
 
         PdfFileInfo(
+            id = 0L,
             uri = uri,
             name = name,
             pageCount = pageCount,

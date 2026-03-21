@@ -5,11 +5,14 @@ import android.graphics.*
 import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.provider.OpenableColumns
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
@@ -31,12 +34,19 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import cv.toolkit.R
 import cv.toolkit.ads.BannerAd
+import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.zIndex
+import kotlin.math.roundToInt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
 
 private data class ImageItem(
+    val id: Long,
     val uri: Uri,
     val name: String,
     val thumbnail: Bitmap?
@@ -75,6 +85,11 @@ fun ImageToPdfScreen(navController: NavController) {
     val snackbarHostState = remember { SnackbarHostState() }
 
     var images by remember { mutableStateOf(listOf<ImageItem>()) }
+    var nextImageId by remember { mutableLongStateOf(0L) }
+    var draggedItemId by remember { mutableStateOf<Long?>(null) }
+    var dragOffset by remember { mutableFloatStateOf(0f) }
+    val density = LocalDensity.current
+    val itemHeightPx = with(density) { 84.dp.toPx() }
     var pageSize by remember { mutableStateOf(PageSize.A4) }
     var customWidthPt by remember { mutableStateOf("595") }
     var customHeightPt by remember { mutableStateOf("842") }
@@ -84,8 +99,9 @@ fun ImageToPdfScreen(navController: NavController) {
     var quality by remember { mutableIntStateOf(85) }
     var isConverting by remember { mutableStateOf(false) }
     var conversionProgress by remember { mutableFloatStateOf(0f) }
-    var previewBitmap by remember { mutableStateOf<Bitmap?>(null) }
+    var previewBitmaps by remember { mutableStateOf<List<Bitmap>>(emptyList()) }
     var pageSizeMenuExpanded by remember { mutableStateOf(false) }
+    var showPreview by remember { mutableStateOf(false) }
 
     // Pending PDF bytes to be saved once the user picks a destination
     var pendingPdfBytes by remember { mutableStateOf<ByteArray?>(null) }
@@ -100,16 +116,14 @@ fun ImageToPdfScreen(navController: NavController) {
                     uris.mapNotNull { uri ->
                         val name = getDisplayName(context, uri)
                         val thumbnail = decodeThumbnail(context, uri, 256)
-                        if (thumbnail != null) ImageItem(uri, name, thumbnail) else null
+                        if (thumbnail != null) ImageItem(0L, uri, name, thumbnail) else null
                     }
                 }
-                images = images + newItems
-                // Generate preview of first page
-                if (images.isNotEmpty()) {
-                    previewBitmap = withContext(Dispatchers.IO) {
-                        generatePreview(context, images.first(), pageSize, customWidthPt, customHeightPt, orientation, marginPreset, fitMode)
-                    }
+                val itemsWithIds = newItems.mapIndexed { i, item ->
+                    item.copy(id = nextImageId + i)
                 }
+                nextImageId += newItems.size
+                images = images + itemsWithIds
             }
         }
     }
@@ -138,23 +152,39 @@ fun ImageToPdfScreen(navController: NavController) {
         }
     }
 
-    // Regenerate preview when settings change
+    // Regenerate previews when settings change
     LaunchedEffect(images, pageSize, customWidthPt, customHeightPt, orientation, marginPreset, fitMode) {
         if (images.isNotEmpty()) {
-            previewBitmap = withContext(Dispatchers.IO) {
-                generatePreview(context, images.first(), pageSize, customWidthPt, customHeightPt, orientation, marginPreset, fitMode)
+            previewBitmaps = withContext(Dispatchers.IO) {
+                images.mapNotNull { imageItem ->
+                    generatePreview(context, imageItem, pageSize, customWidthPt, customHeightPt, orientation, marginPreset, fitMode)
+                }
             }
         } else {
-            previewBitmap = null
+            previewBitmaps = emptyList()
+        }
+    }
+
+    if (showPreview) {
+        BackHandler {
+            showPreview = false
         }
     }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.image_to_pdf_title)) },
+                title = {
+                    Text(if (showPreview) "Preview" else stringResource(R.string.image_to_pdf_title))
+                },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = {
+                        if (showPreview) {
+                            showPreview = false
+                        } else {
+                            navController.popBackStack()
+                        }
+                    }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back")
                     }
                 },
@@ -167,6 +197,124 @@ fun ImageToPdfScreen(navController: NavController) {
         snackbarHost = { SnackbarHost(snackbarHostState) },
         containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
     ) { paddingValues ->
+        if (showPreview) {
+            // Full-screen preview
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(horizontal = 16.dp)
+            ) {
+                if (previewBitmaps.isNotEmpty()) {
+                    val pagerState = rememberPagerState(pageCount = { previewBitmaps.size })
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 12.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            "${previewBitmaps.size} pages",
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Text(
+                            "Page ${pagerState.currentPage + 1} of ${previewBitmaps.size}",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                    HorizontalPager(
+                        state = pagerState,
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxWidth()
+                    ) { page ->
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(horizontal = 4.dp)
+                                .background(
+                                    MaterialTheme.colorScheme.surfaceVariant,
+                                    shape = MaterialTheme.shapes.medium
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                bitmap = previewBitmaps[page].asImageBitmap(),
+                                contentDescription = "Page ${page + 1}",
+                                modifier = Modifier.fillMaxSize(),
+                                contentScale = ContentScale.Fit
+                            )
+                        }
+                    }
+
+                    Spacer(Modifier.height(12.dp))
+
+                    // Progress bar in preview
+                    if (isConverting) {
+                        LinearProgressIndicator(
+                            progress = { conversionProgress },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp)
+                        )
+                    }
+
+                    Button(
+                        onClick = {
+                            isConverting = true
+                            conversionProgress = 0f
+                            scope.launch {
+                                try {
+                                    val result = withContext(Dispatchers.IO) {
+                                        convertImagesToPdf(
+                                            context = context,
+                                            images = images,
+                                            pageSize = pageSize,
+                                            customWidthPt = customWidthPt,
+                                            customHeightPt = customHeightPt,
+                                            orientation = orientation,
+                                            marginPreset = marginPreset,
+                                            fitMode = fitMode,
+                                            quality = quality,
+                                            onProgress = { progress ->
+                                                conversionProgress = progress
+                                            }
+                                        )
+                                    }
+                                    pendingPdfBytes = result.first
+                                    pendingPageCount = result.second
+                                    showPreview = false
+                                    savePdfLauncher.launch("images.pdf")
+                                } catch (e: Exception) {
+                                    snackbarHostState.showSnackbar("Conversion failed: ${e.message}")
+                                } finally {
+                                    isConverting = false
+                                }
+                            }
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        enabled = !isConverting
+                    ) {
+                        if (isConverting) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(20.dp),
+                                strokeWidth = 2.dp,
+                                color = MaterialTheme.colorScheme.onPrimary
+                            )
+                        } else {
+                            Icon(Icons.Filled.Save, null, modifier = Modifier.size(20.dp))
+                        }
+                        Spacer(Modifier.width(8.dp))
+                        Text(if (isConverting) "Converting..." else "Export to PDF")
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    BannerAd(modifier = Modifier.fillMaxWidth())
+                }
+            }
+        } else {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -210,101 +358,118 @@ fun ImageToPdfScreen(navController: NavController) {
                     }
                 }
 
-                itemsIndexed(images, key = { index, item -> "${item.uri}_$index" }) { index, item ->
-                    Card(
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                itemsIndexed(images, key = { _, item -> item.id }) { index, item ->
+                    val isDragged = item.id == draggedItemId
+                    Box(
+                        modifier = Modifier
+                            .zIndex(if (isDragged) 1f else 0f)
+                            .offset { IntOffset(0, if (isDragged) dragOffset.roundToInt() else 0) }
+                            .pointerInput(item.id) {
+                                detectDragGesturesAfterLongPress(
+                                    onDragStart = {
+                                        draggedItemId = item.id
+                                        dragOffset = 0f
+                                    },
+                                    onDrag = { change, dragAmount ->
+                                        change.consume()
+                                        dragOffset += dragAmount.y
+                                        val currentIndex = images.indexOfFirst { it.id == draggedItemId }
+                                        if (currentIndex >= 0) {
+                                            if (dragOffset > itemHeightPx / 2 && currentIndex < images.size - 1) {
+                                                val mutable = images.toMutableList()
+                                                val moved = mutable.removeAt(currentIndex)
+                                                mutable.add(currentIndex + 1, moved)
+                                                images = mutable
+                                                dragOffset -= itemHeightPx
+                                            } else if (dragOffset < -itemHeightPx / 2 && currentIndex > 0) {
+                                                val mutable = images.toMutableList()
+                                                val moved = mutable.removeAt(currentIndex)
+                                                mutable.add(currentIndex - 1, moved)
+                                                images = mutable
+                                                dragOffset += itemHeightPx
+                                            }
+                                        }
+                                    },
+                                    onDragEnd = { draggedItemId = null; dragOffset = 0f },
+                                    onDragCancel = { draggedItemId = null; dragOffset = 0f }
+                                )
+                            }
                     ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp),
-                            verticalAlignment = Alignment.CenterVertically
+                        Card(
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                            elevation = CardDefaults.cardElevation(
+                                defaultElevation = if (isDragged) 8.dp else 0.dp
+                            )
                         ) {
-                            // Thumbnail
-                            item.thumbnail?.let { bmp ->
-                                Box(
-                                    modifier = Modifier
-                                        .size(56.dp)
-                                        .clip(MaterialTheme.shapes.small)
-                                        .background(MaterialTheme.colorScheme.surfaceVariant),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Image(
-                                        bitmap = bmp.asImageBitmap(),
-                                        contentDescription = item.name,
-                                        modifier = Modifier.fillMaxSize(),
-                                        contentScale = ContentScale.Crop
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                // Drag handle
+                                Icon(
+                                    Icons.Filled.DragHandle,
+                                    "Long press to reorder",
+                                    modifier = Modifier.size(24.dp),
+                                    tint = if (isDragged) MaterialTheme.colorScheme.primary
+                                           else MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+
+                                Spacer(Modifier.width(8.dp))
+
+                                // Thumbnail
+                                item.thumbnail?.let { bmp ->
+                                    Box(
+                                        modifier = Modifier
+                                            .size(56.dp)
+                                            .clip(MaterialTheme.shapes.small)
+                                            .background(MaterialTheme.colorScheme.surfaceVariant),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Image(
+                                            bitmap = bmp.asImageBitmap(),
+                                            contentDescription = item.name,
+                                            modifier = Modifier.fillMaxSize(),
+                                            contentScale = ContentScale.Crop
+                                        )
+                                    }
+                                }
+
+                                Spacer(Modifier.width(12.dp))
+
+                                // File name and index
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        item.name,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        fontWeight = FontWeight.Medium,
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
+                                    Text(
+                                        "Page ${index + 1}",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 }
-                            }
 
-                            Spacer(Modifier.width(12.dp))
-
-                            // File name and index
-                            Column(modifier = Modifier.weight(1f)) {
-                                Text(
-                                    item.name,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    fontWeight = FontWeight.Medium,
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis
-                                )
-                                Text(
-                                    "Page ${index + 1}",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-
-                            // Move up
-                            IconButton(
-                                onClick = {
-                                    if (index > 0) {
-                                        val mutable = images.toMutableList()
-                                        val temp = mutable[index]
-                                        mutable[index] = mutable[index - 1]
-                                        mutable[index - 1] = temp
-                                        images = mutable
-                                    }
-                                },
-                                enabled = index > 0 && !isConverting,
-                                modifier = Modifier.size(36.dp)
-                            ) {
-                                Icon(Icons.Filled.KeyboardArrowUp, "Move up", modifier = Modifier.size(20.dp))
-                            }
-
-                            // Move down
-                            IconButton(
-                                onClick = {
-                                    if (index < images.size - 1) {
-                                        val mutable = images.toMutableList()
-                                        val temp = mutable[index]
-                                        mutable[index] = mutable[index + 1]
-                                        mutable[index + 1] = temp
-                                        images = mutable
-                                    }
-                                },
-                                enabled = index < images.size - 1 && !isConverting,
-                                modifier = Modifier.size(36.dp)
-                            ) {
-                                Icon(Icons.Filled.KeyboardArrowDown, "Move down", modifier = Modifier.size(20.dp))
-                            }
-
-                            // Remove
-                            IconButton(
-                                onClick = {
-                                    images = images.toMutableList().also { it.removeAt(index) }
-                                },
-                                enabled = !isConverting,
-                                modifier = Modifier.size(36.dp)
-                            ) {
-                                Icon(
-                                    Icons.Filled.Close,
-                                    "Remove",
-                                    modifier = Modifier.size(20.dp),
-                                    tint = MaterialTheme.colorScheme.error
-                                )
+                                // Remove
+                                IconButton(
+                                    onClick = {
+                                        images = images.toMutableList().also { it.removeAt(index) }
+                                    },
+                                    enabled = !isConverting,
+                                    modifier = Modifier.size(36.dp)
+                                ) {
+                                    Icon(
+                                        Icons.Filled.Close,
+                                        "Remove",
+                                        modifier = Modifier.size(20.dp),
+                                        tint = MaterialTheme.colorScheme.error
+                                    )
+                                }
                             }
                         }
                     }
@@ -587,118 +752,107 @@ fun ImageToPdfScreen(navController: NavController) {
                     }
                 }
 
-                // Preview of first page
+                // Page previews
                 item {
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
-                            Text(
-                                "First Page Preview",
-                                style = MaterialTheme.typography.labelMedium,
-                                fontWeight = FontWeight.SemiBold
-                            )
-                            Spacer(Modifier.height(8.dp))
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(200.dp)
-                                    .clip(MaterialTheme.shapes.medium)
-                                    .background(MaterialTheme.colorScheme.surfaceVariant),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                previewBitmap?.let { bmp ->
-                                    Image(
-                                        bitmap = bmp.asImageBitmap(),
-                                        contentDescription = "First page preview",
-                                        modifier = Modifier.fillMaxSize(),
-                                        contentScale = ContentScale.Fit
+                            if (previewBitmaps.isNotEmpty()) {
+                                val pagerState = rememberPagerState(pageCount = { previewBitmaps.size })
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        "Page Preview",
+                                        style = MaterialTheme.typography.labelMedium,
+                                        fontWeight = FontWeight.SemiBold
                                     )
-                                } ?: CircularProgressIndicator(modifier = Modifier.size(24.dp))
-                            }
-                        }
-                    }
-                }
-
-                // Progress bar
-                if (isConverting) {
-                    item {
-                        Card(
-                            modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
-                        ) {
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(16.dp),
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-                                Text("Converting...", style = MaterialTheme.typography.bodyMedium)
-                                Spacer(Modifier.height(12.dp))
-                                LinearProgressIndicator(
-                                    progress = { conversionProgress },
-                                    modifier = Modifier.fillMaxWidth()
-                                )
+                                    Text(
+                                        "Page ${pagerState.currentPage + 1} of ${previewBitmaps.size}",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
                                 Spacer(Modifier.height(8.dp))
-                                Text(
-                                    "${(conversionProgress * 100).toInt()}%",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                        }
-                    }
-                }
-
-                // Convert button
-                item {
-                    Button(
-                        onClick = {
-                            isConverting = true
-                            conversionProgress = 0f
-                            scope.launch {
-                                try {
-                                    val result = withContext(Dispatchers.IO) {
-                                        convertImagesToPdf(
-                                            context = context,
-                                            images = images,
-                                            pageSize = pageSize,
-                                            customWidthPt = customWidthPt,
-                                            customHeightPt = customHeightPt,
-                                            orientation = orientation,
-                                            marginPreset = marginPreset,
-                                            fitMode = fitMode,
-                                            quality = quality,
-                                            onProgress = { progress ->
-                                                conversionProgress = progress
-                                            }
+                                HorizontalPager(
+                                    state = pagerState,
+                                    modifier = Modifier.fillMaxWidth()
+                                ) { page ->
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(280.dp)
+                                            .clip(MaterialTheme.shapes.medium)
+                                            .background(MaterialTheme.colorScheme.surfaceVariant),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Image(
+                                            bitmap = previewBitmaps[page].asImageBitmap(),
+                                            contentDescription = "Page ${page + 1} preview",
+                                            modifier = Modifier.fillMaxSize(),
+                                            contentScale = ContentScale.Fit
                                         )
                                     }
-                                    pendingPdfBytes = result.first
-                                    pendingPageCount = result.second
-                                    savePdfLauncher.launch("images.pdf")
-                                } catch (e: Exception) {
-                                    snackbarHostState.showSnackbar("Conversion failed: ${e.message}")
-                                } finally {
-                                    isConverting = false
+                                }
+                                // Page indicator dots
+                                if (previewBitmaps.size > 1) {
+                                    Spacer(Modifier.height(8.dp))
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.Center
+                                    ) {
+                                        repeat(previewBitmaps.size) { index ->
+                                            Box(
+                                                modifier = Modifier
+                                                    .padding(horizontal = 3.dp)
+                                                    .size(if (index == pagerState.currentPage) 8.dp else 6.dp)
+                                                    .background(
+                                                        color = if (index == pagerState.currentPage)
+                                                            MaterialTheme.colorScheme.primary
+                                                        else
+                                                            MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f),
+                                                        shape = MaterialTheme.shapes.small
+                                                    )
+                                            )
+                                        }
+                                    }
+                                }
+                            } else {
+                                Text(
+                                    "Page Preview",
+                                    style = MaterialTheme.typography.labelMedium,
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                                Spacer(Modifier.height(8.dp))
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(280.dp)
+                                        .clip(MaterialTheme.shapes.medium)
+                                        .background(MaterialTheme.colorScheme.surfaceVariant),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    CircularProgressIndicator(modifier = Modifier.size(24.dp))
                                 }
                             }
-                        },
+                        }
+                    }
+                }
+
+                // Preview & Convert button
+                item {
+                    Button(
+                        onClick = { showPreview = true },
                         modifier = Modifier.fillMaxWidth(),
                         enabled = images.isNotEmpty() && !isConverting
                     ) {
-                        if (isConverting) {
-                            CircularProgressIndicator(
-                                modifier = Modifier.size(20.dp),
-                                strokeWidth = 2.dp,
-                                color = MaterialTheme.colorScheme.onPrimary
-                            )
-                        } else {
-                            Icon(Icons.Filled.PictureAsPdf, null, modifier = Modifier.size(20.dp))
-                        }
+                        Icon(Icons.Filled.PictureAsPdf, null, modifier = Modifier.size(20.dp))
                         Spacer(Modifier.width(8.dp))
-                        Text(if (isConverting) "Converting..." else "Convert to PDF")
+                        Text("Preview & Convert to PDF")
                     }
                 }
             }
@@ -735,6 +889,7 @@ fun ImageToPdfScreen(navController: NavController) {
                 BannerAd(modifier = Modifier.fillMaxWidth())
             }
         }
+        } // end else
     }
 }
 

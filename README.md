@@ -12,7 +12,7 @@
   [![Kotlin](https://img.shields.io/badge/Kotlin-2.3.20-blue.svg)](https://kotlinlang.org)
   [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-Latest-blue.svg)](https://developer.android.com/jetpack/compose)
 
-  [![Download APK](https://img.shields.io/badge/Download-APK%20v5.0-brightgreen?style=for-the-badge&logo=android)](https://github.com/osscv/CVToolkit/raw/refs/heads/main/app/release/files/CVToolkit-V5-release.apk)
+  [![Download APK](https://img.shields.io/badge/Download-APK%20v6.0-brightgreen?style=for-the-badge&logo=android)](https://github.com/osscv/CVToolkit/raw/refs/heads/main/app/release/files/CVToolkit-V6-release.apk)
 
   ---
 
@@ -138,8 +138,8 @@ Everything you need for network diagnostics, development, PDF management, code e
 
 **📄 PDF & Documents (5 tools):**
 - **PDF Viewer** - View and navigate PDF documents
-- **PDF Merge** - Combine multiple PDF files into one
-- **Image to PDF** - Convert images to PDF documents
+- **PDF Merge** - Combine multiple PDF files into one with multi-select import, drag-to-reorder, and full page preview before saving
+- **Image to PDF** - Convert images to PDF with multi-select import, drag-to-reorder, page size/orientation/margin/fit settings, and full page preview before export
 - **Compress PDF** - Reduce PDF file size
 - **Slides to PDF** - Convert presentation slides (PPT) to PDF
 
@@ -241,6 +241,18 @@ CV Toolkit supports 18 languages:
 ---
 
 ## 🆕 What's New - Latest Updates
+
+### V6.0 - PDF & Document Tools Enhanced 📄
+
+**PDF Merge Improvements:**
+- Multi-select PDF import - select multiple PDFs at once instead of adding one by one
+- Drag-to-reorder - long press and drag to rearrange PDF order
+- Full page preview - swipe through all pages before saving the merged PDF
+
+**Image to PDF Improvements:**
+- Drag-to-reorder - long press and drag to rearrange image order
+- Full page preview - swipe through all pages with settings applied before exporting
+- Preview shows all pages (not just the first) with page counter and swipe navigation
 
 ### Real-time CDN Monitoring Revolution 🚀
 The CDN & Cloud Latency Test has been completely redesigned with professional-grade features:
