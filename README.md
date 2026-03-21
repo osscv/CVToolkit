@@ -1,8 +1,10 @@
 # CV Toolkit
 
+**🌐 [中文版 README](README_CN.md)**
+
 <div align="center">
   <img src="app/src/main/res/drawable/logo.png" alt="CV Toolkit Logo" width="200"/>
-  
+
   **A Comprehensive Network Diagnostics & Utility Toolkit for Android**
   
   [![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://www.android.com/)
@@ -22,7 +24,7 @@
 
 ## 📱 About
 
-**CV Toolkit** is a professional-grade, all-in-one Android application designed for network diagnostics, cloud infrastructure monitoring, system information, and a comprehensive suite of developer utilities. Built with modern Android technologies (Kotlin 2.3 + Jetpack Compose), it delivers **60+ powerful tools across 73 screens** in one beautifully designed app.
+**CV Toolkit** is a professional-grade, all-in-one Android application designed for network diagnostics, cloud infrastructure monitoring, system information, and a comprehensive suite of developer utilities. Built with modern Android technologies (Kotlin 2.3 + Jetpack Compose), it delivers **65+ powerful tools across 75 screens** in one beautifully designed app.
 
 **Perfect for:**
 - 👨‍💻 **Network Administrators** - Comprehensive network diagnostics and monitoring
@@ -55,7 +57,7 @@ The crown jewel of CV Toolkit - a professional-grade network monitoring tool fea
 - **Edge location detection** for Cloudflare, CloudFront, and Alibaba Cloud
 - **Background service** support for uninterrupted monitoring
 
-### 📱 **60+ Professional Tools**
+### 📱 **65+ Professional Tools**
 Everything you need for network diagnostics, development, PDF management, code editing, and system analysis in one app.
 
 ### 🔒 **Privacy-First Design**
@@ -68,7 +70,7 @@ Everything you need for network diagnostics, development, PDF management, code e
 
 ## ✨ Key Features
 
-### 🌐 Network Tools (15 Tools)
+### 🌐 Network Tools (16 Tools)
 
 - **Speed Test** - Comprehensive internet speed testing with download/upload speeds, ping latency, jitter measurement, and historical tracking. Foreground service support for uninterrupted testing
 - **Ping Test** - ICMP ping testing with packet count configuration, timeout settings, and detailed statistics (min/max/avg/packet loss)
@@ -84,6 +86,7 @@ Everything you need for network diagnostics, development, PDF management, code e
 - **HTTP Headers Viewer** - Inspect HTTP response headers
 - **Custom Request Builder** - Build and send custom HTTP/CURL requests with headers and body
 - **WiFi Analyzer** - Analyze WiFi signal strength, channels, and network details
+- **DNS Benchmark** - Compare response times across 10 popular DNS providers (Google, Cloudflare, Quad9, OpenDNS, AdGuard, etc.) with bar chart visualization, sorting by speed/name/reliability, configurable query count, and detailed min/max/avg statistics
 - **CDN & Cloud Latency Test** - **Real-time monitoring with live graphs** - Test latency to 311+ regions across 14 major providers with continuous ping, multi-region tracking, detailed statistics (min/max/avg/jitter/packet loss), automatic edge detection, and color-coded line charts:
   - AWS (Amazon Web Services)
   - GCP (Google Cloud Platform)
@@ -116,6 +119,7 @@ Everything you need for network diagnostics, development, PDF management, code e
 - **Caesar Cipher** - Encrypt/decrypt with Caesar cipher, ROT13, ROT47
 - **Morse Code Converter** - Convert text to Morse code and back
 - **Password Generator** - Generate strong, secure passwords
+- **Password Strength Checker** - Analyze password entropy, character composition, crack time estimation, detect common patterns/sequences, and provide detailed security checks with visual strength meter
 - **File Hash Calculator** - Calculate MD5, SHA, CRC32 hashes for files with metadata
 
 **QR Codes & Barcodes:**
@@ -604,7 +608,7 @@ Feel free to open an issue on GitHub for:
 
 ## 📊 Statistics
 
-- **60+ Professional Tools** organized into 3 categories across **73 screens**
+- **65+ Professional Tools** organized into 3 categories across **75 screens**
 - **311+ Global Test Regions** across 14 cloud/CDN providers
 - **Real-time Monitoring** with live graphs and continuous ping
 - **Advanced Analytics** - Min/Max/Avg/Jitter/Packet Loss tracking
