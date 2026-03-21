@@ -20,6 +20,8 @@
     <string name="network_scan_desc">Qu\u00E9t thi\u1EBFt b\u1ECB tr\u00EAn m\u1EA1ng</string>
     <string name="dns_lookup_title">Tra c\u1EE9u DNS</string>
     <string name="dns_lookup_desc">B\u1EA3n ghi A, AAAA, CNAME</string>
+    <string name="dns_benchmark_title">Kiểm chuẩn DNS</string>
+    <string name="dns_benchmark_desc">So sánh tốc độ nhà cung cấp DNS</string>
     <string name="ping_test_title">Ki\u1EC3m tra Ping</string>
     <string name="ping_test_desc">Ki\u1EC3m tra k\u1EBFt n\u1ED1i m\u00E1y ch\u1EE7</string>
     <string name="port_scan_title">Qu\u00E9t c\u1ED5ng</string>
@@ -56,6 +58,8 @@
     <string name="jwt_decoder_desc">Gi\u1EA3i m\u00E3 token JWT</string>
     <string name="password_generator_title">T\u1EA1o m\u1EADt kh\u1EA9u</string>
     <string name="password_generator_desc">T\u1EA1o m\u1EADt kh\u1EA9u an to\u00E0n</string>
+    <string name="password_strength_checker_title">Kiểm tra mật khẩu</string>
+    <string name="password_strength_checker_desc">Phân tích độ mạnh mật khẩu</string>
     <string name="world_time_title">Gi\u1EDD th\u1EBF gi\u1EDBi</string>
     <string name="world_time_desc">M\u00FAi gi\u1EDD to\u00E0n c\u1EA7u</string>
     <string name="whois_lookup_title">Tra c\u1EE9u Whois</string>

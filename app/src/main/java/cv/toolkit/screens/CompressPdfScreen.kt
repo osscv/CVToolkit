@@ -439,7 +439,7 @@ fun CompressPdfScreen(navController: NavController) {
                                         )
                                     }
                                     Icon(
-                                        Icons.Filled.ArrowForward,
+                                        Icons.AutoMirrored.Filled.ArrowForward,
                                         null,
                                         modifier = Modifier
                                             .size(24.dp)

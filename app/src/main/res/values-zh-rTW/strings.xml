@@ -20,6 +20,8 @@
     <string name="network_scan_desc">掃描網路裝置</string>
     <string name="dns_lookup_title">DNS 查詢</string>
     <string name="dns_lookup_desc">A、AAAA、CNAME 記錄</string>
+    <string name="dns_benchmark_title">DNS 基準測試</string>
+    <string name="dns_benchmark_desc">比較 DNS 提供商速度</string>
     <string name="ping_test_title">Ping 測試</string>
     <string name="ping_test_desc">測試主機連線</string>
     <string name="port_scan_title">連接埠掃描</string>
@@ -56,6 +58,8 @@
     <string name="jwt_decoder_desc">解碼 JWT 權杖</string>
     <string name="password_generator_title">密碼產生器</string>
     <string name="password_generator_desc">產生安全密碼</string>
+    <string name="password_strength_checker_title">密碼檢查器</string>
+    <string name="password_strength_checker_desc">分析密碼強度</string>
     <string name="world_time_title">世界時間</string>
     <string name="world_time_desc">全球時區</string>
     <string name="whois_lookup_title">Whois 查詢</string>

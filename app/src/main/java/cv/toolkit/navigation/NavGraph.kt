@@ -71,6 +71,8 @@ sealed class Screen(val route: String) {
     object TextEditor : Screen("text_editor")
     object MarkdownEditor : Screen("markdown_editor")
     object SlidesToPdf : Screen("slides_to_pdf")
+    object PasswordStrengthChecker : Screen("password_strength_checker")
+    object DnsBenchmark : Screen("dns_benchmark")
 }
 
 @Composable
@@ -333,6 +335,14 @@ fun NavGraph(navController: NavHostController) {
 
         composable(Screen.SlidesToPdf.route) {
             SlidesToPdfScreen(navController = navController)
+        }
+
+        composable(Screen.PasswordStrengthChecker.route) {
+            PasswordStrengthCheckerScreen(navController = navController)
+        }
+
+        composable(Screen.DnsBenchmark.route) {
+            DnsBenchmarkScreen(navController = navController)
         }
     }
 }

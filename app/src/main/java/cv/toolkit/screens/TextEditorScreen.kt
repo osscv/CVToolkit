@@ -360,7 +360,7 @@ fun TextEditorScreen(navController: NavController) {
                             DropdownMenuItem(
                                 text = { Text("New") },
                                 onClick = { showOverflowMenu = false; newFile() },
-                                leadingIcon = { Icon(Icons.Filled.NoteAdd, null) }
+                                leadingIcon = { Icon(Icons.AutoMirrored.Filled.NoteAdd, null) }
                             )
                             DropdownMenuItem(
                                 text = { Text("Open") },
@@ -407,7 +407,7 @@ fun TextEditorScreen(navController: NavController) {
                                     showOverflowMenu = false
                                     wordWrap = !wordWrap
                                 },
-                                leadingIcon = { Icon(Icons.Filled.WrapText, null) }
+                                leadingIcon = { Icon(Icons.AutoMirrored.Filled.WrapText, null) }
                             )
                             // Text size submenu
                             DropdownMenuItem(

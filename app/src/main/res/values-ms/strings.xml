@@ -20,6 +20,8 @@
     <string name="network_scan_desc">Imbas Peranti dalam Rangkaian</string>
     <string name="dns_lookup_title">Carian DNS</string>
     <string name="dns_lookup_desc">Rekod A, AAAA, CNAME</string>
+    <string name="dns_benchmark_title">Penanda Aras DNS</string>
+    <string name="dns_benchmark_desc">Bandingkan Kelajuan Pembekal DNS</string>
     <string name="ping_test_title">Ujian Ping</string>
     <string name="ping_test_desc">Uji Ketersambungan Hos</string>
     <string name="port_scan_title">Imbasan Port</string>
@@ -56,6 +58,8 @@
     <string name="jwt_decoder_desc">Dekod Token JWT</string>
     <string name="password_generator_title">Penjana Kata Laluan</string>
     <string name="password_generator_desc">Jana Kata Laluan Selamat</string>
+    <string name="password_strength_checker_title">Penyemak Kata Laluan</string>
+    <string name="password_strength_checker_desc">Analisis Kekuatan Kata Laluan</string>
     <string name="world_time_title">Waktu Dunia</string>
     <string name="world_time_desc">Zon Waktu Global</string>
     <string name="whois_lookup_title">Carian Whois</string>

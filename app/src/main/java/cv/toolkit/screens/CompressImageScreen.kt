@@ -42,7 +42,7 @@ import kotlin.math.roundToInt
 
 // ── Data models ──────────────────────────────────────────────────────────────
 
-private enum class OutputFormat(val label: String, val extension: String, val mimeType: String) {
+private enum class ImageOutputFormat(val label: String, val extension: String, val mimeType: String) {
     JPEG("JPEG", "jpg", "image/jpeg"),
     PNG("PNG", "png", "image/png"),
     WEBP("WebP", "webp", "image/webp")
@@ -114,7 +114,7 @@ fun CompressImageScreen(navController: NavController) {
     var batchProgress by remember { mutableFloatStateOf(0f) }
 
     // Compression settings
-    var outputFormat by remember { mutableStateOf(OutputFormat.JPEG) }
+    var outputFormat by remember { mutableStateOf(ImageOutputFormat.JPEG) }
     var quality by remember { mutableIntStateOf(80) }
     var resizeMode by remember { mutableStateOf(ResizeMode.ORIGINAL) }
     var resizePercentage by remember { mutableIntStateOf(50) }
@@ -302,7 +302,7 @@ fun CompressImageScreen(navController: NavController) {
                 if (originalImage != null) {
                     FormatSelector(outputFormat) { outputFormat = it }
 
-                    if (outputFormat != OutputFormat.PNG) {
+                    if (outputFormat != ImageOutputFormat.PNG) {
                         QualitySlider(quality) { quality = it }
                     }
 
@@ -432,7 +432,7 @@ fun CompressImageScreen(navController: NavController) {
                     // Settings for batch
                     FormatSelector(outputFormat) { outputFormat = it }
 
-                    if (outputFormat != OutputFormat.PNG) {
+                    if (outputFormat != ImageOutputFormat.PNG) {
                         QualitySlider(quality) { quality = it }
                     }
 
@@ -586,6 +586,7 @@ fun CompressImageScreen(navController: NavController) {
 
                         // Save all button (saves one by one via SAF)
                         var currentBatchSaveIndex by remember { mutableIntStateOf(-1) }
+                        var pendingNextSave by remember { mutableIntStateOf(-1) }
 
                         val batchSaveLauncher = rememberLauncherForActivityResult(
                             contract = ActivityResultContracts.CreateDocument(outputFormat.mimeType)
@@ -601,18 +602,26 @@ fun CompressImageScreen(navController: NavController) {
                                                 }
                                             }
                                             snackbarHostState.showSnackbar("Saved image ${idx + 1} of ${batchResults.size}")
-                                            // Trigger next save
+                                            // Trigger next save via state change
                                             val nextIdx = idx + 1
                                             if (nextIdx < batchResults.size) {
                                                 currentBatchSaveIndex = nextIdx
-                                                val name = batchImages[nextIdx].name.substringBeforeLast(".")
-                                                batchSaveLauncher.launch("${name}_compressed.${outputFormat.extension}")
+                                                pendingNextSave = nextIdx
                                             }
                                         } catch (e: Exception) {
                                             snackbarHostState.showSnackbar("Failed to save: ${e.message}")
                                         }
                                     }
                                 }
+                            }
+                        }
+
+                        // Launch next save when pendingNextSave changes
+                        LaunchedEffect(pendingNextSave) {
+                            if (pendingNextSave >= 0 && pendingNextSave < batchResults.size) {
+                                val name = batchImages[pendingNextSave].name.substringBeforeLast(".")
+                                batchSaveLauncher.launch("${name}_compressed.${outputFormat.extension}")
+                                pendingNextSave = -1
                             }
                         }
 
@@ -708,7 +717,7 @@ private fun OriginalImageInfoCard(img: CompressImageInfo) {
 }
 
 @Composable
-private fun FormatSelector(selected: OutputFormat, onSelect: (OutputFormat) -> Unit) {
+private fun FormatSelector(selected: ImageOutputFormat, onSelect: (ImageOutputFormat) -> Unit) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
@@ -724,7 +733,7 @@ private fun FormatSelector(selected: OutputFormat, onSelect: (OutputFormat) -> U
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                OutputFormat.entries.forEach { format ->
+                ImageOutputFormat.entries.forEach { format ->
                     FilterChip(
                         selected = selected == format,
                         onClick = { onSelect(format) },
@@ -966,7 +975,7 @@ private fun CompressedResultCard(original: CompressImageInfo, result: Compressed
                     )
                 }
                 Icon(
-                    Icons.Filled.ArrowForward,
+                    Icons.AutoMirrored.Filled.ArrowForward,
                     null,
                     modifier = Modifier
                         .size(24.dp)
@@ -1008,7 +1017,7 @@ private fun CompressedResultCard(original: CompressImageInfo, result: Compressed
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
-                        if (isSmaller) Icons.Filled.TrendingDown else Icons.Filled.TrendingUp,
+                        if (isSmaller) Icons.AutoMirrored.Filled.TrendingDown else Icons.AutoMirrored.Filled.TrendingUp,
                         null,
                         modifier = Modifier.size(20.dp),
                         tint = if (isSmaller) Color(0xFF2E7D32) else Color(0xFFC62828)
@@ -1257,7 +1266,7 @@ private fun loadImageInfo(context: Context, uri: Uri): CompressImageInfo {
 
 private fun compressBitmap(
     original: Bitmap,
-    format: OutputFormat,
+    format: ImageOutputFormat,
     quality: Int,
     resizeMode: ResizeMode,
     percentage: Int,
@@ -1302,9 +1311,9 @@ private fun compressBitmap(
 
     // Compress
     val compressFormat = when (format) {
-        OutputFormat.JPEG -> Bitmap.CompressFormat.JPEG
-        OutputFormat.PNG -> Bitmap.CompressFormat.PNG
-        OutputFormat.WEBP -> {
+        ImageOutputFormat.JPEG -> Bitmap.CompressFormat.JPEG
+        ImageOutputFormat.PNG -> Bitmap.CompressFormat.PNG
+        ImageOutputFormat.WEBP -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Bitmap.CompressFormat.WEBP_LOSSY
             } else {

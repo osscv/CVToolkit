@@ -20,6 +20,8 @@
     <string name="network_scan_desc">扫描网络设备</string>
     <string name="dns_lookup_title">DNS 查询</string>
     <string name="dns_lookup_desc">A、AAAA、CNAME 记录</string>
+    <string name="dns_benchmark_title">DNS 基准测试</string>
+    <string name="dns_benchmark_desc">比较 DNS 提供商速度</string>
     <string name="ping_test_title">Ping 测试</string>
     <string name="ping_test_desc">测试主机连通性</string>
     <string name="port_scan_title">端口扫描</string>
@@ -56,6 +58,8 @@
     <string name="jwt_decoder_desc">解码 JWT 令牌</string>
     <string name="password_generator_title">密码生成器</string>
     <string name="password_generator_desc">生成安全密码</string>
+    <string name="password_strength_checker_title">密码检查器</string>
+    <string name="password_strength_checker_desc">分析密码强度</string>
     <string name="world_time_title">世界时间</string>
     <string name="world_time_desc">全球时区</string>
     <string name="whois_lookup_title">Whois 查询</string>

@@ -44,7 +44,7 @@ enum class ConversionMode {
     BASE64_TO_IMAGE
 }
 
-enum class OutputFormat {
+enum class Base64OutputFormat {
     PLAIN,
     DATA_URI
 }
@@ -62,7 +62,7 @@ data class ImageInfo(
 @Composable
 fun ImageBase64Screen(navController: NavController) {
     var conversionMode by remember { mutableStateOf(ConversionMode.IMAGE_TO_BASE64) }
-    var outputFormat by remember { mutableStateOf(OutputFormat.DATA_URI) }
+    var outputFormat by remember { mutableStateOf(Base64OutputFormat.DATA_URI) }
     var selectedImage by remember { mutableStateOf<ImageInfo?>(null) }
     var base64Output by remember { mutableStateOf("") }
     var base64Input by remember { mutableStateOf("") }
@@ -207,7 +207,7 @@ fun ImageBase64Screen(navController: NavController) {
                         base64Output = base64Output,
                         outputFormat = outputFormat,
                         isProcessing = isProcessing,
-                        onOutputFormatChange = { newFormat ->
+                        onBase64OutputFormatChange = { newFormat ->
                             outputFormat = newFormat
                             // Re-encode if image is already selected
                             selectedImage?.let { img ->
@@ -273,9 +273,9 @@ fun ImageBase64Screen(navController: NavController) {
 private fun ImageToBase64Content(
     selectedImage: ImageInfo?,
     base64Output: String,
-    outputFormat: OutputFormat,
+    outputFormat: Base64OutputFormat,
     isProcessing: Boolean,
-    onOutputFormatChange: (OutputFormat) -> Unit,
+    onBase64OutputFormatChange: (Base64OutputFormat) -> Unit,
     onSelectImage: () -> Unit,
     onCopy: () -> Unit,
     onClear: () -> Unit
@@ -288,13 +288,13 @@ private fun ImageToBase64Content(
     ) {
         Text("Output:", style = MaterialTheme.typography.labelMedium)
         FilterChip(
-            selected = outputFormat == OutputFormat.DATA_URI,
-            onClick = { onOutputFormatChange(OutputFormat.DATA_URI) },
+            selected = outputFormat == Base64OutputFormat.DATA_URI,
+            onClick = { onBase64OutputFormatChange(Base64OutputFormat.DATA_URI) },
             label = { Text("Data URI") }
         )
         FilterChip(
-            selected = outputFormat == OutputFormat.PLAIN,
-            onClick = { onOutputFormatChange(OutputFormat.PLAIN) },
+            selected = outputFormat == Base64OutputFormat.PLAIN,
+            onClick = { onBase64OutputFormatChange(Base64OutputFormat.PLAIN) },
             label = { Text("Plain") }
         )
     }
@@ -733,7 +733,7 @@ private fun Base64ToImageContent(
 private fun processImageToBase64(
     contentResolver: ContentResolver,
     uri: Uri,
-    outputFormat: OutputFormat
+    outputFormat: Base64OutputFormat
 ): Pair<ImageInfo, String> {
     var name = "Unknown"
     var size = 0L
@@ -769,14 +769,14 @@ private fun processImageToBase64(
 
     val base64String = Base64.encodeToString(bytes, Base64.NO_WRAP)
     val output = when (outputFormat) {
-        OutputFormat.PLAIN -> base64String
-        OutputFormat.DATA_URI -> "data:${mimeType ?: "image/png"};base64,$base64String"
+        Base64OutputFormat.PLAIN -> base64String
+        Base64OutputFormat.DATA_URI -> "data:${mimeType ?: "image/png"};base64,$base64String"
     }
 
     return Pair(imageInfo, output)
 }
 
-private fun encodeBitmapToBase64(bitmap: Bitmap, mimeType: String?, outputFormat: OutputFormat): String {
+private fun encodeBitmapToBase64(bitmap: Bitmap, mimeType: String?, outputFormat: Base64OutputFormat): String {
     val outputStream = ByteArrayOutputStream()
     val format = when {
         mimeType?.contains("png") == true -> Bitmap.CompressFormat.PNG
@@ -788,8 +788,8 @@ private fun encodeBitmapToBase64(bitmap: Bitmap, mimeType: String?, outputFormat
     val base64String = Base64.encodeToString(bytes, Base64.NO_WRAP)
 
     return when (outputFormat) {
-        OutputFormat.PLAIN -> base64String
-        OutputFormat.DATA_URI -> "data:${mimeType ?: "image/png"};base64,$base64String"
+        Base64OutputFormat.PLAIN -> base64String
+        Base64OutputFormat.DATA_URI -> "data:${mimeType ?: "image/png"};base64,$base64String"
     }
 }
 

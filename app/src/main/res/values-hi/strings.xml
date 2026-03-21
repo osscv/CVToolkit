@@ -20,6 +20,8 @@
     <string name="network_scan_desc">नेटवर्क पर डिवाइस स्कैन करें</string>
     <string name="dns_lookup_title">DNS खोज</string>
     <string name="dns_lookup_desc">A, AAAA, CNAME रिकॉर्ड</string>
+    <string name="dns_benchmark_title">DNS बेंचमार्क</string>
+    <string name="dns_benchmark_desc">DNS प्रदाता गति की तुलना</string>
     <string name="ping_test_title">पिंग परीक्षण</string>
     <string name="ping_test_desc">होस्ट कनेक्टिविटी परीक्षण</string>
     <string name="port_scan_title">पोर्ट स्कैनिंग</string>
@@ -56,6 +58,8 @@
     <string name="jwt_decoder_desc">JWT टोकन डिकोड करें</string>
     <string name="password_generator_title">पासवर्ड जनरेटर</string>
     <string name="password_generator_desc">सुरक्षित पासवर्ड बनाएँ</string>
+    <string name="password_strength_checker_title">पासवर्ड चेकर</string>
+    <string name="password_strength_checker_desc">पासवर्ड की मजबूती का विश्लेषण</string>
     <string name="world_time_title">विश्व समय</string>
     <string name="world_time_desc">वैश्विक समय क्षेत्र</string>
     <string name="whois_lookup_title">Whois खोज</string>

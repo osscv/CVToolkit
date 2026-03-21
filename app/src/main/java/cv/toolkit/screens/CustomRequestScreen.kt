@@ -750,7 +750,7 @@ fun CustomRequestScreen(navController: NavController) {
                                 ) {
                                     items(result.responseHeaders.entries.toList()) { (key, values) ->
                                         ResponseHeaderItem(
-                                            headerName = key ?: "null",
+                                            headerName = key,
                                             headerValues = values
                                         )
                                     }

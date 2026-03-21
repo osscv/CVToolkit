@@ -20,6 +20,8 @@
     <string name="network_scan_desc">ネットワーク上のデバイスをスキャン</string>
     <string name="dns_lookup_title">DNS 検索</string>
     <string name="dns_lookup_desc">A、AAAA、CNAME レコード</string>
+    <string name="dns_benchmark_title">DNSベンチマーク</string>
+    <string name="dns_benchmark_desc">DNSプロバイダー速度比較</string>
     <string name="ping_test_title">Ping テスト</string>
     <string name="ping_test_desc">ホスト接続テスト</string>
     <string name="port_scan_title">ポートスキャン</string>
@@ -56,6 +58,8 @@
     <string name="jwt_decoder_desc">JWT トークンをデコード</string>
     <string name="password_generator_title">パスワード生成器</string>
     <string name="password_generator_desc">安全なパスワードを生成</string>
+    <string name="password_strength_checker_title">パスワードチェッカー</string>
+    <string name="password_strength_checker_desc">パスワード強度を分析</string>
     <string name="world_time_title">世界時計</string>
     <string name="world_time_desc">世界のタイムゾーン</string>
     <string name="whois_lookup_title">Whois 検索</string>

@@ -424,7 +424,7 @@ fun PdfMergeScreen(navController: NavController) {
                                 containerColor = MaterialTheme.colorScheme.primary
                             )
                         ) {
-                            Icon(Icons.Filled.MergeType, null, modifier = Modifier.size(20.dp))
+                            Icon(Icons.AutoMirrored.Filled.MergeType, null, modifier = Modifier.size(20.dp))
                             Spacer(Modifier.width(8.dp))
                             Text("Merge ${pdfFiles.size} PDFs")
                         }

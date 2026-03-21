@@ -948,12 +948,12 @@ fun CdnLatencyTestScreen(navController: NavController) {
             val measurements = mutableListOf<Long>()
             repeat(3) {
                 socket = Socket()
-                socket?.soTimeout = 5000
+                socket.soTimeout = 5000
                 val time = measureTimeMillis {
-                    socket?.connect(socketAddress, 5000)
+                    socket.connect(socketAddress, 5000)
                 }
                 measurements.add(time)
-                socket?.close()
+                socket.close()
             }
 
             // Use the minimum latency (most accurate, removes outliers)

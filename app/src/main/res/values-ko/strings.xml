@@ -20,6 +20,8 @@
     <string name="network_scan_desc">네트워크 기기 스캔</string>
     <string name="dns_lookup_title">DNS 조회</string>
     <string name="dns_lookup_desc">A, AAAA, CNAME 레코드</string>
+    <string name="dns_benchmark_title">DNS 벤치마크</string>
+    <string name="dns_benchmark_desc">DNS 제공자 속도 비교</string>
     <string name="ping_test_title">핑 테스트</string>
     <string name="ping_test_desc">호스트 연결 테스트</string>
     <string name="port_scan_title">포트 스캔</string>
@@ -56,6 +58,8 @@
     <string name="jwt_decoder_desc">JWT 토큰 디코딩</string>
     <string name="password_generator_title">비밀번호 생성기</string>
     <string name="password_generator_desc">안전한 비밀번호 생성</string>
+    <string name="password_strength_checker_title">비밀번호 검사기</string>
+    <string name="password_strength_checker_desc">비밀번호 강도 분석</string>
     <string name="world_time_title">세계 시간</string>
     <string name="world_time_desc">전 세계 시간대</string>
     <string name="whois_lookup_title">Whois 조회</string>

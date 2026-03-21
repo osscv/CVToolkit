@@ -20,6 +20,8 @@
     <string name="network_scan_desc">สแกนอุปกรณ์ในเครือข่าย</string>
     <string name="dns_lookup_title">ค้นหา DNS</string>
     <string name="dns_lookup_desc">ระเบียน A, AAAA, CNAME</string>
+    <string name="dns_benchmark_title">ทดสอบ DNS</string>
+    <string name="dns_benchmark_desc">เปรียบเทียบความเร็ว DNS</string>
     <string name="ping_test_title">ทดสอบ Ping</string>
     <string name="ping_test_desc">ทดสอบการเชื่อมต่อโฮสต์</string>
     <string name="port_scan_title">สแกนพอร์ต</string>
@@ -56,6 +58,8 @@
     <string name="jwt_decoder_desc">ถอดรหัสโทเค็น JWT</string>
     <string name="password_generator_title">ตัวสร้างรหัสผ่าน</string>
     <string name="password_generator_desc">สร้างรหัสผ่านที่ปลอดภัย</string>
+    <string name="password_strength_checker_title">ตรวจสอบรหัสผ่าน</string>
+    <string name="password_strength_checker_desc">วิเคราะห์ความแข็งแกร่งของรหัสผ่าน</string>
     <string name="world_time_title">เวลาโลก</string>
     <string name="world_time_desc">เขตเวลาทั่วโลก</string>
     <string name="whois_lookup_title">ค้นหา Whois</string>

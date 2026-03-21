@@ -42,7 +42,7 @@ import cv.toolkit.ads.BannerAd
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-private enum class ViewMode { SPLIT, CODE, PREVIEW }
+enum class SvgViewMode { SPLIT, CODE, PREVIEW }
 
 private val defaultSvgTemplate = """
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
@@ -117,7 +117,7 @@ private val svgElements = listOf(
 fun SvgViewerScreen(navController: NavController) {
     var svgCode by remember { mutableStateOf(defaultSvgTemplate) }
     var debouncedSvgCode by remember { mutableStateOf(defaultSvgTemplate) }
-    var viewMode by remember { mutableStateOf(ViewMode.SPLIT) }
+    var viewMode by remember { mutableStateOf(SvgViewMode.SPLIT) }
     var showTemplateDialog by remember { mutableStateOf(false) }
     var showAttributeEditor by remember { mutableStateOf(false) }
     var svgRenderError by remember { mutableStateOf(false) }
@@ -261,7 +261,7 @@ fun SvgViewerScreen(navController: NavController) {
                                 svgCode = formatSvgCode(svgCode)
                                 showMenu = false
                             },
-                            leadingIcon = { Icon(Icons.Filled.FormatAlignLeft, null) }
+                            leadingIcon = { Icon(Icons.AutoMirrored.Filled.FormatAlignLeft, null) }
                         )
                         DropdownMenuItem(
                             text = { Text("Templates") },
@@ -318,8 +318,8 @@ fun SvgViewerScreen(navController: NavController) {
             ) {
                 SingleChoiceSegmentedButtonRow {
                     SegmentedButton(
-                        selected = viewMode == ViewMode.CODE,
-                        onClick = { viewMode = ViewMode.CODE },
+                        selected = viewMode == SvgViewMode.CODE,
+                        onClick = { viewMode = SvgViewMode.CODE },
                         shape = SegmentedButtonDefaults.itemShape(index = 0, count = 3),
                         icon = {}
                     ) {
@@ -332,8 +332,8 @@ fun SvgViewerScreen(navController: NavController) {
                         Text("Code")
                     }
                     SegmentedButton(
-                        selected = viewMode == ViewMode.SPLIT,
-                        onClick = { viewMode = ViewMode.SPLIT },
+                        selected = viewMode == SvgViewMode.SPLIT,
+                        onClick = { viewMode = SvgViewMode.SPLIT },
                         shape = SegmentedButtonDefaults.itemShape(index = 1, count = 3),
                         icon = {}
                     ) {
@@ -346,8 +346,8 @@ fun SvgViewerScreen(navController: NavController) {
                         Text("Split")
                     }
                     SegmentedButton(
-                        selected = viewMode == ViewMode.PREVIEW,
-                        onClick = { viewMode = ViewMode.PREVIEW },
+                        selected = viewMode == SvgViewMode.PREVIEW,
+                        onClick = { viewMode = SvgViewMode.PREVIEW },
                         shape = SegmentedButtonDefaults.itemShape(index = 2, count = 3),
                         icon = {}
                     ) {
@@ -363,7 +363,7 @@ fun SvgViewerScreen(navController: NavController) {
             }
 
             // Quick-insert toolbar
-            if (viewMode != ViewMode.PREVIEW) {
+            if (viewMode != SvgViewMode.PREVIEW) {
                 QuickInsertToolbar(
                     onInsert = { element ->
                         svgCode = insertSvgElement(svgCode, element)
@@ -373,7 +373,7 @@ fun SvgViewerScreen(navController: NavController) {
 
             // Editor and Preview
             when (viewMode) {
-                ViewMode.SPLIT -> {
+                SvgViewMode.SPLIT -> {
                     SvgCodeEditor(
                         code = svgCode,
                         onCodeChange = { svgCode = it },
@@ -391,7 +391,7 @@ fun SvgViewerScreen(navController: NavController) {
                     )
                 }
 
-                ViewMode.CODE -> {
+                SvgViewMode.CODE -> {
                     SvgCodeEditor(
                         code = svgCode,
                         onCodeChange = { svgCode = it },
@@ -401,7 +401,7 @@ fun SvgViewerScreen(navController: NavController) {
                     )
                 }
 
-                ViewMode.PREVIEW -> {
+                SvgViewMode.PREVIEW -> {
                     SvgPreviewPane(
                         svgCode = debouncedSvgCode,
                         onError = { svgRenderError = true },

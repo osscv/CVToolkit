@@ -24,7 +24,7 @@ import cv.toolkit.R
 import cv.toolkit.ads.BannerAd
 import kotlinx.coroutines.launch
 
-private enum class ViewMode { Split, EditorOnly, PreviewOnly }
+private enum class MdViewMode { Split, EditorOnly, PreviewOnly }
 
 private val defaultSampleMarkdown = """
 # Markdown Preview
@@ -65,7 +65,7 @@ That's a horizontal rule above. Enjoy writing Markdown!
 @Composable
 fun MarkdownPreviewScreen(navController: NavController) {
     var markdownText by remember { mutableStateOf(defaultSampleMarkdown) }
-    var viewMode by remember { mutableStateOf(ViewMode.Split) }
+    var viewMode by remember { mutableStateOf(MdViewMode.Split) }
     val clipboard = LocalClipboard.current
     val scope = rememberCoroutineScope()
 
@@ -122,8 +122,8 @@ fun MarkdownPreviewScreen(navController: NavController) {
             ) {
                 SingleChoiceSegmentedButtonRow {
                     SegmentedButton(
-                        selected = viewMode == ViewMode.EditorOnly,
-                        onClick = { viewMode = ViewMode.EditorOnly },
+                        selected = viewMode == MdViewMode.EditorOnly,
+                        onClick = { viewMode = MdViewMode.EditorOnly },
                         shape = SegmentedButtonDefaults.itemShape(index = 0, count = 3),
                         icon = {}
                     ) {
@@ -136,8 +136,8 @@ fun MarkdownPreviewScreen(navController: NavController) {
                         Text("Editor")
                     }
                     SegmentedButton(
-                        selected = viewMode == ViewMode.Split,
-                        onClick = { viewMode = ViewMode.Split },
+                        selected = viewMode == MdViewMode.Split,
+                        onClick = { viewMode = MdViewMode.Split },
                         shape = SegmentedButtonDefaults.itemShape(index = 1, count = 3),
                         icon = {}
                     ) {
@@ -150,8 +150,8 @@ fun MarkdownPreviewScreen(navController: NavController) {
                         Text("Split")
                     }
                     SegmentedButton(
-                        selected = viewMode == ViewMode.PreviewOnly,
-                        onClick = { viewMode = ViewMode.PreviewOnly },
+                        selected = viewMode == MdViewMode.PreviewOnly,
+                        onClick = { viewMode = MdViewMode.PreviewOnly },
                         shape = SegmentedButtonDefaults.itemShape(index = 2, count = 3),
                         icon = {}
                     ) {
@@ -168,7 +168,7 @@ fun MarkdownPreviewScreen(navController: NavController) {
 
             // Editor and Preview
             when (viewMode) {
-                ViewMode.Split -> {
+                MdViewMode.Split -> {
                     // Editor - top half
                     MarkdownEditor(
                         text = markdownText,
@@ -186,7 +186,7 @@ fun MarkdownPreviewScreen(navController: NavController) {
                     )
                 }
 
-                ViewMode.EditorOnly -> {
+                MdViewMode.EditorOnly -> {
                     MarkdownEditor(
                         text = markdownText,
                         onTextChange = { markdownText = it },
@@ -196,7 +196,7 @@ fun MarkdownPreviewScreen(navController: NavController) {
                     )
                 }
 
-                ViewMode.PreviewOnly -> {
+                MdViewMode.PreviewOnly -> {
                     MarkdownPreviewPane(
                         markdown = markdownText,
                         modifier = Modifier

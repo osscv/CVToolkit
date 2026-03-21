@@ -63,13 +63,13 @@ fun SensorDashboardScreen(navController: NavController) {
     val sensorConfigs = remember {
         listOf(
             SensorData("Accelerometer", Sensor.TYPE_ACCELEROMETER, Icons.Filled.Speed, null, false, "m/s\u00B2", listOf("X", "Y", "Z")),
-            SensorData("Gyroscope", Sensor.TYPE_GYROSCOPE, Icons.Filled.RotateRight, null, false, "rad/s", listOf("X", "Y", "Z")),
+            SensorData("Gyroscope", Sensor.TYPE_GYROSCOPE, Icons.AutoMirrored.Filled.RotateRight, null, false, "rad/s", listOf("X", "Y", "Z")),
             SensorData("Magnetometer", Sensor.TYPE_MAGNETIC_FIELD, Icons.Filled.Explore, null, false, "\u00B5T", listOf("X", "Y", "Z")),
             SensorData("Light", Sensor.TYPE_LIGHT, Icons.Filled.LightMode, null, false, "lux", listOf("Illuminance")),
             SensorData("Proximity", Sensor.TYPE_PROXIMITY, Icons.Filled.NearMe, null, false, "cm", listOf("Distance")),
             SensorData("Pressure", Sensor.TYPE_PRESSURE, Icons.Filled.Compress, null, false, "hPa", listOf("Pressure")),
             SensorData("Gravity", Sensor.TYPE_GRAVITY, Icons.Filled.FitnessCenter, null, false, "m/s\u00B2", listOf("X", "Y", "Z")),
-            SensorData("Rotation Vector", Sensor.TYPE_ROTATION_VECTOR, Icons.Filled.ThreeDRotation, null, false, "", listOf("X", "Y", "Z"))
+            SensorData("Rotation Vector", Sensor.TYPE_ROTATION_VECTOR, Icons.Filled.ScreenRotation, null, false, "", listOf("X", "Y", "Z"))
         )
     }
 

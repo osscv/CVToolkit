@@ -197,7 +197,7 @@ fun MarkdownEditorScreen(navController: NavController) {
                                     currentFileUri = null
                                     currentFileName = null
                                 },
-                                leadingIcon = { Icon(Icons.Filled.NoteAdd, null) }
+                                leadingIcon = { Icon(Icons.AutoMirrored.Filled.NoteAdd, null) }
                             )
                             DropdownMenuItem(
                                 text = { Text("Open") },
@@ -454,7 +454,7 @@ private fun EditorMarkdownToolbar(
         ToolbarChip("H2", onClick = onH2)
         ToolbarChip("H3", onClick = onH3)
         ToolbarDivider()
-        ToolbarIconButton(Icons.Filled.FormatListBulleted, "Bullet list", onBulletList)
+        ToolbarIconButton(Icons.AutoMirrored.Filled.FormatListBulleted, "Bullet list", onBulletList)
         ToolbarIconButton(Icons.Filled.FormatListNumbered, "Numbered list", onNumberedList)
         ToolbarDivider()
         ToolbarChip("< >", onClick = onCodeBlock)

@@ -383,7 +383,7 @@ fun SlidesToPdfScreen(navController: NavController) {
                                     },
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .menuAnchor(),
+                                        .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable),
                                     colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors()
                                 )
                                 ExposedDropdownMenu(

@@ -369,9 +369,9 @@ fun ApiTesterScreen(navController: NavController) {
                     val responseHeaders = mutableListOf<Pair<String, String>>()
                     response.headers.forEach { (name, value) -> responseHeaders.add(name to value) }
 
-                    val responseBodyBytes = response.body?.bytes()
-                    val responseBody = responseBodyBytes?.let { String(it) } ?: ""
-                    val bodySize = responseBodyBytes?.size?.toLong() ?: 0L
+                    val responseBodyBytes = response.body.bytes()
+                    val responseBody = String(responseBodyBytes)
+                    val bodySize = responseBodyBytes.size.toLong()
 
                     ApiResponse(
                         statusCode = response.code,
@@ -527,7 +527,7 @@ fun ApiTesterScreen(navController: NavController) {
             }
 
             // ── Tabs: Params | Headers | Auth | Body | Response
-            ScrollableTabRow(
+            PrimaryScrollableTabRow(
                 selectedTabIndex = selectedTab,
                 modifier = Modifier.fillMaxWidth(),
                 edgePadding = 0.dp,

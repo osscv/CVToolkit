@@ -61,6 +61,7 @@ fun MainScreen(navController: NavController) {
         // Lookup tools
         ToolItem(stringResource(R.string.ip_lookup_title), stringResource(R.string.ip_lookup_desc), Icons.Filled.LocationOn, Screen.IpLookup.route),
         ToolItem(stringResource(R.string.dns_lookup_title), stringResource(R.string.dns_lookup_desc), Icons.Filled.Dns, Screen.DnsLookup.route),
+        ToolItem(stringResource(R.string.dns_benchmark_title), stringResource(R.string.dns_benchmark_desc), Icons.Filled.Leaderboard, Screen.DnsBenchmark.route),
         // Calculator tools
         ToolItem(stringResource(R.string.subnet_calc_title), stringResource(R.string.subnet_calc_desc), Icons.Filled.Calculate, Screen.SubnetCalculator.route),
         // Security tools
@@ -87,6 +88,7 @@ fun MainScreen(navController: NavController) {
         ToolItem(stringResource(R.string.ascii_converter_title), stringResource(R.string.ascii_converter_desc), Icons.Filled.TextFields, Screen.AsciiConverter.route),
         ToolItem(stringResource(R.string.jwt_decoder_title), stringResource(R.string.jwt_decoder_desc), Icons.Filled.Token, Screen.JwtDecoder.route),
         ToolItem(stringResource(R.string.password_generator_title), stringResource(R.string.password_generator_desc), Icons.Filled.Password, Screen.PasswordGenerator.route),
+        ToolItem(stringResource(R.string.password_strength_checker_title), stringResource(R.string.password_strength_checker_desc), Icons.Filled.Shield, Screen.PasswordStrengthChecker.route),
         ToolItem(stringResource(R.string.world_time_title), stringResource(R.string.world_time_desc), Icons.Filled.Public, Screen.WorldTime.route),
         ToolItem(stringResource(R.string.uuid_generator_title), stringResource(R.string.uuid_generator_desc), Icons.Filled.Fingerprint, Screen.UuidGenerator.route),
         ToolItem(stringResource(R.string.unix_timestamp_title), stringResource(R.string.unix_timestamp_desc), Icons.Filled.Schedule, Screen.UnixTimestamp.route),
@@ -103,14 +105,14 @@ fun MainScreen(navController: NavController) {
         ToolItem(stringResource(R.string.robots_txt_title), stringResource(R.string.robots_txt_desc), Icons.Filled.SmartToy, Screen.RobotsTxt.route),
         ToolItem(stringResource(R.string.sitemap_viewer_title), stringResource(R.string.sitemap_viewer_desc), Icons.Filled.Map, Screen.SitemapViewer.route),
         ToolItem(stringResource(R.string.image_base64_title), stringResource(R.string.image_base64_desc), Icons.Filled.Image, Screen.ImageBase64.route),
-        ToolItem(stringResource(R.string.lorem_ipsum_title), stringResource(R.string.lorem_ipsum_desc), Icons.Filled.Notes, Screen.LoremIpsum.route),
+        ToolItem(stringResource(R.string.lorem_ipsum_title), stringResource(R.string.lorem_ipsum_desc), Icons.AutoMirrored.Filled.Notes, Screen.LoremIpsum.route),
         ToolItem(stringResource(R.string.api_tester_title), stringResource(R.string.api_tester_desc), Icons.Filled.Storage, Screen.ApiTester.route),
-        ToolItem(stringResource(R.string.markdown_preview_title), stringResource(R.string.markdown_preview_desc), Icons.Filled.Article, Screen.MarkdownPreview.route),
+        ToolItem(stringResource(R.string.markdown_preview_title), stringResource(R.string.markdown_preview_desc), Icons.AutoMirrored.Filled.Article, Screen.MarkdownPreview.route),
         ToolItem(stringResource(R.string.color_palette_title), stringResource(R.string.color_palette_desc), Icons.Filled.ColorLens, Screen.ColorPalette.route),
         ToolItem(stringResource(R.string.typing_test_title), stringResource(R.string.typing_test_desc), Icons.Filled.Keyboard, Screen.TypingTest.route),
         ToolItem(stringResource(R.string.svg_viewer_title), stringResource(R.string.svg_viewer_desc), Icons.Filled.Draw, Screen.SvgViewer.route),
         ToolItem(stringResource(R.string.pdf_viewer_title), stringResource(R.string.pdf_viewer_desc), Icons.Filled.PictureAsPdf, Screen.PdfViewer.route),
-        ToolItem(stringResource(R.string.pdf_merge_title), stringResource(R.string.pdf_merge_desc), Icons.Filled.MergeType, Screen.PdfMerge.route),
+        ToolItem(stringResource(R.string.pdf_merge_title), stringResource(R.string.pdf_merge_desc), Icons.AutoMirrored.Filled.MergeType, Screen.PdfMerge.route),
         ToolItem(stringResource(R.string.image_to_pdf_title), stringResource(R.string.image_to_pdf_desc), Icons.Filled.PhotoLibrary, Screen.ImageToPdf.route),
         ToolItem(stringResource(R.string.compress_pdf_title), stringResource(R.string.compress_pdf_desc), Icons.Filled.Compress, Screen.CompressPdf.route),
         ToolItem(stringResource(R.string.compress_image_title), stringResource(R.string.compress_image_desc), Icons.Filled.PhotoSizeSelectLarge, Screen.CompressImage.route),

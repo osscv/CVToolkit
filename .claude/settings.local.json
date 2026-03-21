@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(ls -d d:/AndroidStudioProjects/CVToolkit/app/src/main/res/values*/)",
-      "Bash(./gradlew :app:assembleDebug --dry-run)"
+      "Bash(./gradlew :app:assembleDebug --dry-run)",
+      "Bash(xargs grep:*)",
+      "Bash(grep -r \"contentDescription\" /d/AndroidStudioProjects/CVToolkit/app/src/main/java/cv/toolkit/screens/*.kt)",
+      "Bash(grep -r \"remember\\\\|mutableState\\\\|rememberCoroutineScope\" /d/AndroidStudioProjects/CVToolkit/app/src/main/java/cv/toolkit/screens/*.kt)",
+      "Bash(grep -r \"AsyncImage\\\\|Image\\\\|painter\\\\|imageVector\" /d/AndroidStudioProjects/CVToolkit/app/src/main/java/cv/toolkit/screens/*.kt)",
+      "Bash(grep -l \"val.*rememberCoroutineScope\\\\|val.*scope.*=\" /d/AndroidStudioProjects/CVToolkit/app/src/main/java/cv/toolkit/screens/*.kt)"
     ]
   }
 }

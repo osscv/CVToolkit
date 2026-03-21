@@ -26,6 +26,7 @@ object LocaleHelper {
         Locale.setDefault(locale)
         val config = Configuration(context.resources.configuration)
         config.setLocale(locale)
+        @Suppress("DEPRECATION")
         context.resources.updateConfiguration(config, context.resources.displayMetrics)
     }
 
@@ -47,12 +48,6 @@ object LocaleHelper {
     }
 
     private fun createLocale(tag: String): Locale {
-        return when {
-            tag.contains("-") -> {
-                val parts = tag.split("-")
-                Locale(parts[0], parts[1])
-            }
-            else -> Locale(tag)
-        }
+        return Locale.forLanguageTag(tag.replace("-", "-"))
     }
 }

@@ -1770,7 +1770,7 @@ private fun fetchAndParseRobotsTxt(urlString: String): RobotsTxtResult {
                 "user-agent" -> {
                     // Save previous block if exists
                     if (currentUserAgent != null) {
-                        userAgents.add(UserAgentBlock(currentUserAgent!!, currentAllow.toList(), currentDisallow.toList()))
+                        userAgents.add(UserAgentBlock(currentUserAgent, currentAllow.toList(), currentDisallow.toList()))
                     }
                     currentUserAgent = value
                     currentAllow = mutableListOf()
@@ -1799,7 +1799,7 @@ private fun fetchAndParseRobotsTxt(urlString: String): RobotsTxtResult {
 
         // Save last block
         if (currentUserAgent != null) {
-            userAgents.add(UserAgentBlock(currentUserAgent!!, currentAllow.toList(), currentDisallow.toList()))
+            userAgents.add(UserAgentBlock(currentUserAgent, currentAllow.toList(), currentDisallow.toList()))
         }
 
         return RobotsTxtResult(

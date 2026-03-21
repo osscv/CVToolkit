@@ -20,6 +20,8 @@
     <string name="network_scan_desc">A\u011Fdaki Cihazlar\u0131 Tara</string>
     <string name="dns_lookup_title">DNS Arama</string>
     <string name="dns_lookup_desc">A, AAAA, CNAME Kay\u0131tlar\u0131</string>
+    <string name="dns_benchmark_title">DNS Karşılaştırması</string>
+    <string name="dns_benchmark_desc">DNS sağlayıcı hızlarını karşılaştır</string>
     <string name="ping_test_title">Ping Testi</string>
     <string name="ping_test_desc">Sunucu Ba\u011Flant\u0131s\u0131n\u0131 Test Et</string>
     <string name="port_scan_title">Port Taramas\u0131</string>
@@ -56,6 +58,8 @@
     <string name="jwt_decoder_desc">JWT Token\'lar\u0131n\u0131 \u00C7\u00F6z</string>
     <string name="password_generator_title">\u015Eifre \u00DCretici</string>
     <string name="password_generator_desc">G\u00FCvenli \u015Eifreler \u00DCret</string>
+    <string name="password_strength_checker_title">Şifre Denetleyici</string>
+    <string name="password_strength_checker_desc">Şifre gücünü analiz et</string>
     <string name="world_time_title">D\u00FCnya Saati</string>
     <string name="world_time_desc">K\u00Fcresel Saat Dilimleri</string>
     <string name="whois_lookup_title">Whois Arama</string>

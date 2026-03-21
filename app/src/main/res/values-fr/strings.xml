@@ -20,6 +20,8 @@
     <string name="network_scan_desc">Scanner les appareils du réseau</string>
     <string name="dns_lookup_title">Recherche DNS</string>
     <string name="dns_lookup_desc">Enregistrements A, AAAA, CNAME</string>
+    <string name="dns_benchmark_title">Benchmark DNS</string>
+    <string name="dns_benchmark_desc">Comparer les vitesses DNS</string>
     <string name="ping_test_title">Test Ping</string>
     <string name="ping_test_desc">Tester la connectivité</string>
     <string name="port_scan_title">Scan de ports</string>
@@ -56,6 +58,8 @@
     <string name="jwt_decoder_desc">Décoder les jetons JWT</string>
     <string name="password_generator_title">Générateur de mots de passe</string>
     <string name="password_generator_desc">Générer des mots de passe sécurisés</string>
+    <string name="password_strength_checker_title">Vérificateur de mot de passe</string>
+    <string name="password_strength_checker_desc">Analyser la force du mot de passe</string>
     <string name="world_time_title">Heure mondiale</string>
     <string name="world_time_desc">Fuseaux horaires mondiaux</string>
     <string name="whois_lookup_title">Recherche Whois</string>

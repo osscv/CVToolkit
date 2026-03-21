@@ -89,7 +89,7 @@ fun SubnetCalculatorScreen(navController: NavController) {
         }
 
         // Calculate subnet mask
-        val maskBits = (0xFFFFFFFF.toUInt() shl (32 - cidrValue)).toUInt()
+        val maskBits = 0xFFFFFFFF.toUInt() shl (32 - cidrValue)
         val subnetMask = listOf(
             ((maskBits shr 24) and 0xFFu).toInt(),
             ((maskBits shr 16) and 0xFFu).toInt(),

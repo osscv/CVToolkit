@@ -20,6 +20,8 @@
     <string name="network_scan_desc">Escanear dispositivos na rede</string>
     <string name="dns_lookup_title">Consulta DNS</string>
     <string name="dns_lookup_desc">Registros A, AAAA, CNAME</string>
+    <string name="dns_benchmark_title">Benchmark DNS</string>
+    <string name="dns_benchmark_desc">Comparar velocidades de DNS</string>
     <string name="ping_test_title">Teste de Ping</string>
     <string name="ping_test_desc">Testar conectividade do host</string>
     <string name="port_scan_title">Varredura de portas</string>
@@ -56,6 +58,8 @@
     <string name="jwt_decoder_desc">Decodificar tokens JWT</string>
     <string name="password_generator_title">Gerador de senhas</string>
     <string name="password_generator_desc">Gerar senhas seguras</string>
+    <string name="password_strength_checker_title">Verificador de senha</string>
+    <string name="password_strength_checker_desc">Analisar força da senha</string>
     <string name="world_time_title">Hora mundial</string>
     <string name="world_time_desc">Fusos hor\u00E1rios globais</string>
     <string name="whois_lookup_title">Consulta Whois</string>

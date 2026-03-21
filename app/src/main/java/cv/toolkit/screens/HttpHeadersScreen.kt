@@ -273,7 +273,7 @@ fun HttpHeadersScreen(navController: NavController) {
                         ) {
                             items(result.headers.entries.toList()) { (key, values) ->
                                 HeaderItem(
-                                    headerName = key ?: "null",
+                                    headerName = key,
                                     headerValues = values,
                                     onCopy = {
                                         scope.launch {
