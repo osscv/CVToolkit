@@ -1,0 +1,15 @@
+{
+  "version": "5.0.0",
+  "version_code": 5,
+  "title": "New Version Available - CVToolkit v5.0",
+  "description": "This major update introduces new toolkit features and functions, enhancing flexibility and providing a smoother and more efficient development and usage experience.",
+  "changelog": [
+    "Added new toolkit features and functions",
+    "Enhanced UI responsiveness",
+    "General bug fixes and performance improvements"
+  ],
+  "download_url": "https://",
+  "mandatory": true,
+  "release_date": "2026-03-21",
+  "file_size": "25 MB"
+}
