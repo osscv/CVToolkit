@@ -1,14 +1,16 @@
 {
-  "version": "5.0.0",
-  "version_code": 5,
-  "title": "New Version Available - CVToolkit v5.0",
-  "description": "This major update introduces new toolkit features and functions, enhancing flexibility and providing a smoother and more efficient development and usage experience.",
+  "version": "6.0.0",
+  "version_code": 6,
+  "title": "New Version Available - CVToolkit v6.0",
+  "description": "This update significantly improves the Merge PDF and Image-to-PDF features. It now includes a preview function before exporting and allows users to sort the order of files before merging, providing a more flexible and efficient workflow.",
   "changelog": [
-    "Added new toolkit features and functions",
-    "Enhanced UI responsiveness",
+    "Improved Merge PDF functionality",
+    "Enhanced Image to PDF conversion",
+    "Added preview before export",
+    "Added ability to sort file order before merging",
     "General bug fixes and performance improvements"
   ],
-  "download_url": "https://raw.githubusercontent.com/osscv/CVToolkit/refs/heads/main/app/release/files/CVToolkit-V5-release.apk",
+  "download_url": "https://raw.githubusercontent.com/osscv/CVToolkit/refs/heads/main/app/release/files/CVToolkit-V6-release.apk",
   "mandatory": true,
   "release_date": "2026-03-21",
   "file_size": "44.8 MB"
