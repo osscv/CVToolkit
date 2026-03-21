@@ -9,14 +9,16 @@
   
   [![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://www.android.com/)
   [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg)](https://android-arsenal.com/api?level=24)
-  [![Kotlin](https://img.shields.io/badge/Kotlin-2.3-blue.svg)](https://kotlinlang.org)
+  [![Kotlin](https://img.shields.io/badge/Kotlin-2.3.20-blue.svg)](https://kotlinlang.org)
   [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-Latest-blue.svg)](https://developer.android.com/jetpack/compose)
-  
+
+  [![Download APK](https://img.shields.io/badge/Download-APK%20v5.0-brightgreen?style=for-the-badge&logo=android)](https://github.com/osscv/CVToolkit/raw/refs/heads/main/app/release/files/CVToolkit-V5-release.apk)
+
   ---
-  
-  **⚠️ IMPORTANT:** If you use this repository, you **MUST** keep all author attribution intact.  
+
+  **⚠️ IMPORTANT:** If you use this repository, you **MUST** keep all author attribution intact.
   **DO NOT REMOVE** the author credits. See [License & Attribution](#-license--attribution) for details.
-  
+
   **Copyright © 2024 [Khoo Lay Yang](https://www.dkly.net) - All Rights Reserved**
 </div>
 
@@ -24,7 +26,7 @@
 
 ## 📱 About
 
-**CV Toolkit** is a professional-grade, all-in-one Android application designed for network diagnostics, cloud infrastructure monitoring, system information, and a comprehensive suite of developer utilities. Built with modern Android technologies (Kotlin 2.3 + Jetpack Compose), it delivers **64 powerful tools across 67 screens** in one beautifully designed app.
+**CV Toolkit** is a professional-grade, all-in-one Android application designed for network diagnostics, cloud infrastructure monitoring, system information, and a comprehensive suite of developer utilities. Built with modern Android technologies (Kotlin 2.3.20 + Jetpack Compose), it delivers **64 powerful tools across 67 screens** in one beautifully designed app.
 
 **Perfect for:**
 - 👨‍💻 **Network Administrators** - Comprehensive network diagnostics and monitoring
@@ -178,18 +180,19 @@ Everything you need for network diagnostics, development, PDF management, code e
 
 ## 🏗️ Technical Stack
 
-- **Language:** Kotlin 2.3 (100%)
-- **UI Framework:** Jetpack Compose BOM 2026.03 (Modern declarative UI with Material Design 3)
+- **Language:** Kotlin 2.3.20 (100%)
+- **UI Framework:** Jetpack Compose BOM 2026.03.00 (Modern declarative UI with Material Design 3)
 - **Architecture:** MVVM with Repository pattern for clean separation of concerns
+- **Build System:** AGP 9.1.0, Gradle 8.0+, JDK 11+
 - **Networking:**
-  - Retrofit 3.0 (Type-safe REST API calls)
-  - OkHttp 5.3 (HTTP client with interceptor support and logging)
-  - Gson 2.13 (JSON parsing and serialization)
+  - Retrofit 3.0.0 (Type-safe REST API calls)
+  - OkHttp 5.3.2 (HTTP client with interceptor support and logging)
+  - Gson 2.13.2 (JSON parsing and serialization)
   - Coroutines (Asynchronous programming)
 - **Camera & ML:**
-  - CameraX 1.5 (Modern camera API with preview and analysis)
-  - ML Kit Barcode Scanning 17.3 (On-device QR/Barcode recognition)
-  - ZXing Core 3.5 (QR code and barcode generation)
+  - CameraX 1.5.3 (Modern camera API with preview and analysis)
+  - ML Kit Barcode Scanning 17.3.0 (On-device QR/Barcode recognition)
+  - ZXing Core 3.5.4 (QR code and barcode generation)
 - **Data Visualization:**
   - Canvas API (Custom line graphs and charts)
   - Real-time rendering with Compose recomposition
@@ -199,11 +202,11 @@ Everything you need for network diagnostics, development, PDF management, code e
 - **Data Persistence:**
   - SQLite (IP lookup history storage)
   - SharedPreferences (Language settings, ad usage tracking)
-- **Navigation:** Jetpack Navigation Compose 2.9 with type-safe sealed class routes (67 destinations)
+- **Navigation:** Jetpack Navigation Compose 2.9.7 with type-safe sealed class routes (67 destinations)
 - **Minimum SDK:** Android 7.0 (API 24) - Wide device compatibility
 - **Target SDK:** Android 16 (API 36) - Latest Android features
 - **Compilation SDK:** 36 (Android 16)
-- **Image Loading:** Coil 2.7 (Efficient image loading with SVG support and caching)
+- **Image Loading:** Coil 2.7.0 (Efficient image loading with SVG support and caching)
 - **Monetization:** Google AdMob (Non-intrusive banner ads with usage-based interstitial and rewarded ads)
 
 ## 🎨 UI/UX Features
@@ -218,6 +221,22 @@ Everything you need for network diagnostics, development, PDF management, code e
 - **Intuitive Navigation** - Easy-to-use interface with logical organization
 - **Copy & Share** - One-tap actions for results and data
 - **Search & Filter** - Quickly find what you need across 311+ regions
+
+## 🌍 Multi-language Support
+
+CV Toolkit supports 18 languages:
+
+| Language | Code | Language | Code |
+|----------|------|----------|------|
+| 🇬🇧 English | en | 🇨🇳 简体中文 | zh-CN |
+| 🇹🇼 繁體中文 | zh-TW | 🇯🇵 日本語 | ja |
+| 🇰🇷 한국어 | ko | 🇩🇪 Deutsch | de |
+| 🇪🇸 Español | es | 🇫🇷 Français | fr |
+| 🇮🇹 Italiano | it | 🇧🇷 Português | pt-BR |
+| 🇷🇺 Русский | ru | 🇹🇷 Türkçe | tr |
+| 🇮🇳 हिन्दी | hi | 🇹🇭 ไทย | th |
+| 🇻🇳 Tiếng Việt | vi | 🇮🇩 Indonesia | id |
+| 🇲🇾 Melayu | ms | 🇸🇦 العربية | ar |
 
 ---
 
@@ -276,9 +295,10 @@ The CDN & Cloud Latency Test has been completely redesigned with professional-gr
 
 ### Prerequisites
 
-- **Android Studio:** Ladybug (2024.2) or later recommended
+- **Android Studio:** Meerkat (2024.3) or later recommended
 - **Android SDK:** API 24 (Android 7.0) or higher
-- **Kotlin:** 2.3+
+- **AGP:** 9.1.0+
+- **Kotlin:** 2.3.20+
 - **Gradle:** 8.0+
 - **JDK:** Java 11 or higher
 
@@ -615,6 +635,7 @@ Feel free to open an issue on GitHub for:
 - **Multi-region Support** - Monitor 35+ regions simultaneously
 - **Professional Grade** - Network diagnostics used by IT professionals
 - **Privacy First** - No data collection, no tracking
+- **18 Languages** - Global localization support
 
 ---
 

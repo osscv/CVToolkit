@@ -9,8 +9,10 @@
 
   [![Android](https://img.shields.io/badge/平台-Android-green.svg)](https://www.android.com/)
   [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg)](https://android-arsenal.com/api?level=24)
-  [![Kotlin](https://img.shields.io/badge/Kotlin-2.3-blue.svg)](https://kotlinlang.org)
+  [![Kotlin](https://img.shields.io/badge/Kotlin-2.3.20-blue.svg)](https://kotlinlang.org)
   [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-最新版-blue.svg)](https://developer.android.com/jetpack/compose)
+
+  [![下载 APK](https://img.shields.io/badge/下载-APK%20v5.0-brightgreen?style=for-the-badge&logo=android)](https://github.com/osscv/CVToolkit/raw/refs/heads/main/app/release/files/CVToolkit-V5-release.apk)
 
   ---
 
@@ -24,7 +26,7 @@
 
 ## 📱 关于
 
-**CV Toolkit** 是一款专业级多功能 Android 应用，专为网络诊断、云基础设施监控、系统信息查看和开发者实用工具而设计。采用现代 Android 技术（Kotlin 2.3 + Jetpack Compose）构建，在一个精美设计的应用中提供 **64 个强大工具，覆盖 67 个屏幕**。
+**CV Toolkit** 是一款专业级多功能 Android 应用，专为网络诊断、云基础设施监控、系统信息查看和开发者实用工具而设计。采用现代 Android 技术（Kotlin 2.3.20 + Jetpack Compose）构建，在一个精美设计的应用中提供 **64 个强大工具，覆盖 67 个屏幕**。
 
 **适用人群：**
 - 👨‍💻 **网络管理员** - 全面的网络诊断与监控工具
@@ -178,18 +180,19 @@ CV Toolkit 的核心功能 - 专业级网络监控工具：
 
 ## 🏗️ 技术栈
 
-- **编程语言：** Kotlin 2.3（100%）
-- **UI 框架：** Jetpack Compose BOM 2026.03（现代声明式 UI + Material Design 3）
+- **编程语言：** Kotlin 2.3.20（100%）
+- **UI 框架：** Jetpack Compose BOM 2026.03.00（现代声明式 UI + Material Design 3）
 - **架构：** MVVM + Repository 模式，清晰的关注点分离
+- **构建系统：** AGP 9.1.0、Gradle 8.0+、JDK 11+
 - **网络层：**
-  - Retrofit 3.0（类型安全的 REST API 调用）
-  - OkHttp 5.3（HTTP 客户端，支持拦截器和日志）
-  - Gson 2.13（JSON 解析与序列化）
+  - Retrofit 3.0.0（类型安全的 REST API 调用）
+  - OkHttp 5.3.2（HTTP 客户端，支持拦截器和日志）
+  - Gson 2.13.2（JSON 解析与序列化）
   - 协程（异步编程）
 - **相机与机器学习：**
-  - CameraX 1.5（现代相机 API，支持预览和分析）
-  - ML Kit Barcode Scanning 17.3（设备端二维码/条形码识别）
-  - ZXing Core 3.5（二维码和条形码生成）
+  - CameraX 1.5.3（现代相机 API，支持预览和分析）
+  - ML Kit Barcode Scanning 17.3.0（设备端二维码/条形码识别）
+  - ZXing Core 3.5.4（二维码和条形码生成）
 - **数据可视化：**
   - Canvas API（自定义折线图和图表）
   - 基于 Compose 重组的实时渲染
@@ -199,11 +202,11 @@ CV Toolkit 的核心功能 - 专业级网络监控工具：
 - **数据持久化：**
   - SQLite（IP 查询历史存储）
   - SharedPreferences（语言设置、广告使用追踪）
-- **导航：** Jetpack Navigation Compose 2.9，基于密封类的类型安全路由（67 个目的地）
+- **导航：** Jetpack Navigation Compose 2.9.7，基于密封类的类型安全路由（67 个目的地）
 - **最低 SDK：** Android 7.0（API 24）- 广泛设备兼容
 - **目标 SDK：** Android 16（API 36）- 最新 Android 特性
 - **编译 SDK：** 36（Android 16）
-- **图片加载：** Coil 2.7（高效图片加载，支持 SVG 和缓存）
+- **图片加载：** Coil 2.7.0（高效图片加载，支持 SVG 和缓存）
 - **广告：** Google AdMob（非侵入式横幅广告，基于使用量的插页式和激励广告）
 
 ## 🎨 UI/UX 特性
@@ -243,9 +246,10 @@ CV Toolkit 支持 18 种语言：
 
 ### 环境要求
 
-- **Android Studio：** Ladybug (2024.2) 或更高版本
+- **Android Studio：** Meerkat (2024.3) 或更高版本
 - **Android SDK：** API 24（Android 7.0）或更高
-- **Kotlin：** 2.3+
+- **AGP：** 9.1.0+
+- **Kotlin：** 2.3.20+
 - **Gradle：** 8.0+
 - **JDK：** Java 11 或更高
 
