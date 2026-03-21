@@ -136,6 +136,8 @@
     <string name="markdown_editor_desc">Edit Markdown with Preview</string>
     <string name="slides_to_pdf_title">Slides to PDF</string>
     <string name="slides_to_pdf_desc">Convert Slides/PPT to PDF</string>
+    <string name="json_formatter_title">JSON Formatter</string>
+    <string name="json_formatter_desc">Format, Minify &amp; Validate</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>

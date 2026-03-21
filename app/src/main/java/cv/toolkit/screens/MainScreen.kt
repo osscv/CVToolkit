@@ -83,6 +83,7 @@ fun MainScreen(navController: NavController) {
 
     // Encoder & Decoder tools
     val encoderTools = listOf(
+        ToolItem(stringResource(R.string.json_formatter_title), stringResource(R.string.json_formatter_desc), Icons.Filled.DataObject, Screen.JsonFormatter.route),
         ToolItem(stringResource(R.string.base64_title), stringResource(R.string.base64_desc), Icons.Filled.Code, Screen.Base64Tool.route),
         ToolItem(stringResource(R.string.url_encoder_title), stringResource(R.string.url_encoder_desc), Icons.Filled.Link, Screen.UrlEncoder.route),
         ToolItem(stringResource(R.string.binary_converter_title), stringResource(R.string.binary_converter_desc), Icons.Filled.DataObject, Screen.BinaryConverter.route),

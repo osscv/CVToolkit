@@ -24,7 +24,7 @@
 
 ## 📱 About
 
-**CV Toolkit** is a professional-grade, all-in-one Android application designed for network diagnostics, cloud infrastructure monitoring, system information, and a comprehensive suite of developer utilities. Built with modern Android technologies (Kotlin 2.3 + Jetpack Compose), it delivers **63 powerful tools across 66 screens** in one beautifully designed app.
+**CV Toolkit** is a professional-grade, all-in-one Android application designed for network diagnostics, cloud infrastructure monitoring, system information, and a comprehensive suite of developer utilities. Built with modern Android technologies (Kotlin 2.3 + Jetpack Compose), it delivers **64 powerful tools across 67 screens** in one beautifully designed app.
 
 **Perfect for:**
 - 👨‍💻 **Network Administrators** - Comprehensive network diagnostics and monitoring
@@ -57,7 +57,7 @@ The crown jewel of CV Toolkit - a professional-grade network monitoring tool fea
 - **Edge location detection** for Cloudflare, CloudFront, and Alibaba Cloud
 - **Background service** support for uninterrupted monitoring
 
-### 📱 **63 Professional Tools**
+### 📱 **64 Professional Tools**
 Everything you need for network diagnostics, development, PDF management, code editing, and system analysis in one app.
 
 ### 🔒 **Privacy-First Design**
@@ -103,9 +103,10 @@ Everything you need for network diagnostics, development, PDF management, code e
   - Lightsail
   - Fastly
 
-### 🛠️ Utility Tools (42 Tools across 9 Categories)
+### 🛠️ Utility Tools (43 Tools across 9 Categories)
 
-**🔄 Encoders & Decoders (7 tools):**
+**🔄 Encoders & Decoders (8 tools):**
+- **JSON Formatter/Validator** - Format, minify, and validate JSON with syntax highlighting, statistics (key/value counts, depth, types), configurable indentation, and one-tap copy
 - **Base64 Encoder/Decoder** - Encode and decode Base64 strings
 - **URL Encoder/Decoder** - Encode and decode URL strings
 - **Binary Converter** - Convert text to/from Binary, Hex, and Octal
@@ -162,7 +163,7 @@ Everything you need for network diagnostics, development, PDF management, code e
 - **Text Counter** - Count words, characters, lines, and paragraphs
 - **Text Diff** - Compare two texts and highlight differences
 - **Lorem Ipsum Generator** - Generate placeholder text for design and development
-- **Typing Test** - Practice and measure typing speed and accuracy
+- **Typing Test** - Practice and measure typing speed (WPM) and accuracy with 2,300+ unique content pieces across 25+ topics. Features 3 modes (Words/Sentences/Paragraphs), 3 difficulty levels, configurable duration (30s/60s/120s/Full Text), real-time stats, and repeat/new test options. Every session generates a unique random combination
 - **Stopwatch** - Timer with lap functionality
 
 ### 📱 Device Tools (5 Tools)
@@ -198,7 +199,7 @@ Everything you need for network diagnostics, development, PDF management, code e
 - **Data Persistence:**
   - SQLite (IP lookup history storage)
   - SharedPreferences (Language settings, ad usage tracking)
-- **Navigation:** Jetpack Navigation Compose 2.9 with type-safe sealed class routes (66 destinations)
+- **Navigation:** Jetpack Navigation Compose 2.9 with type-safe sealed class routes (67 destinations)
 - **Minimum SDK:** Android 7.0 (API 24) - Wide device compatibility
 - **Target SDK:** Android 16 (API 36) - Latest Android features
 - **Compilation SDK:** 36 (Android 16)
@@ -604,7 +605,7 @@ Feel free to open an issue on GitHub for:
 
 ## 📊 Statistics
 
-- **63 Professional Tools** organized into 3 categories (9 subcategories) across **66 screens**
+- **64 Professional Tools** organized into 3 categories (9 subcategories) across **67 screens**
 - **311+ Global Test Regions** across 14 cloud/CDN providers
 - **Real-time Monitoring** with live graphs and continuous ping
 - **Advanced Analytics** - Min/Max/Avg/Jitter/Packet Loss tracking

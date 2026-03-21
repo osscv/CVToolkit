@@ -73,6 +73,7 @@ sealed class Screen(val route: String) {
     object SlidesToPdf : Screen("slides_to_pdf")
     object PasswordStrengthChecker : Screen("password_strength_checker")
     object DnsBenchmark : Screen("dns_benchmark")
+    object JsonFormatter : Screen("json_formatter")
 }
 
 @Composable
@@ -343,6 +344,10 @@ fun NavGraph(navController: NavHostController) {
 
         composable(Screen.DnsBenchmark.route) {
             DnsBenchmarkScreen(navController = navController)
+        }
+
+        composable(Screen.JsonFormatter.route) {
+            JsonFormatterScreen(navController = navController)
         }
     }
 }
