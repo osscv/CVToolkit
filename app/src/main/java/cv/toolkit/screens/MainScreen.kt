@@ -49,6 +49,8 @@ fun MainScreen(navController: NavController) {
     var showPrivacyDialog by remember { mutableStateOf(false) }
     var showAboutDialog by remember { mutableStateOf(false) }
     var searchQuery by remember { mutableStateOf("") }
+    var selectedTab by remember { mutableIntStateOf(0) }
+    val tabTitles = listOf("All", "Network", "Utility", "Device")
 
     val networkTools = listOf(
         // Basic connectivity tests first
@@ -76,50 +78,100 @@ fun MainScreen(navController: NavController) {
         ToolItem(stringResource(R.string.wifi_analyzer_title), stringResource(R.string.wifi_analyzer_desc), Icons.Filled.Wifi, Screen.WifiAnalyzer.route)
     )
 
-    val utilityTools = listOf(
-        ToolItem(stringResource(R.string.ip_calc_title), stringResource(R.string.ip_calc_desc), Icons.Filled.Transform, Screen.IPCalculator.route),
+    // Encoder & Decoder tools
+    val encoderTools = listOf(
         ToolItem(stringResource(R.string.base64_title), stringResource(R.string.base64_desc), Icons.Filled.Code, Screen.Base64Tool.route),
         ToolItem(stringResource(R.string.url_encoder_title), stringResource(R.string.url_encoder_desc), Icons.Filled.Link, Screen.UrlEncoder.route),
         ToolItem(stringResource(R.string.binary_converter_title), stringResource(R.string.binary_converter_desc), Icons.Filled.DataObject, Screen.BinaryConverter.route),
-        ToolItem(stringResource(R.string.hash_generator_title), stringResource(R.string.hash_generator_desc), Icons.Filled.Tag, Screen.HashGenerator.route),
-        ToolItem(stringResource(R.string.caesar_cipher_title), stringResource(R.string.caesar_cipher_desc), Icons.Filled.Key, Screen.CaesarCipher.route),
-        ToolItem(stringResource(R.string.morse_code_title), stringResource(R.string.morse_code_desc), Icons.Filled.GraphicEq, Screen.MorseCode.route),
         ToolItem(stringResource(R.string.hex_encoder_title), stringResource(R.string.hex_encoder_desc), Icons.Filled.Memory, Screen.HexEncoder.route),
         ToolItem(stringResource(R.string.ascii_converter_title), stringResource(R.string.ascii_converter_desc), Icons.Filled.TextFields, Screen.AsciiConverter.route),
         ToolItem(stringResource(R.string.jwt_decoder_title), stringResource(R.string.jwt_decoder_desc), Icons.Filled.Token, Screen.JwtDecoder.route),
+        ToolItem(stringResource(R.string.image_base64_title), stringResource(R.string.image_base64_desc), Icons.Filled.Image, Screen.ImageBase64.route)
+    )
+
+    // Security & Crypto tools
+    val securityTools = listOf(
+        ToolItem(stringResource(R.string.hash_generator_title), stringResource(R.string.hash_generator_desc), Icons.Filled.Tag, Screen.HashGenerator.route),
+        ToolItem(stringResource(R.string.caesar_cipher_title), stringResource(R.string.caesar_cipher_desc), Icons.Filled.Key, Screen.CaesarCipher.route),
+        ToolItem(stringResource(R.string.morse_code_title), stringResource(R.string.morse_code_desc), Icons.Filled.GraphicEq, Screen.MorseCode.route),
         ToolItem(stringResource(R.string.password_generator_title), stringResource(R.string.password_generator_desc), Icons.Filled.Password, Screen.PasswordGenerator.route),
         ToolItem(stringResource(R.string.password_strength_checker_title), stringResource(R.string.password_strength_checker_desc), Icons.Filled.Shield, Screen.PasswordStrengthChecker.route),
-        ToolItem(stringResource(R.string.world_time_title), stringResource(R.string.world_time_desc), Icons.Filled.Public, Screen.WorldTime.route),
-        ToolItem(stringResource(R.string.uuid_generator_title), stringResource(R.string.uuid_generator_desc), Icons.Filled.Fingerprint, Screen.UuidGenerator.route),
-        ToolItem(stringResource(R.string.unix_timestamp_title), stringResource(R.string.unix_timestamp_desc), Icons.Filled.Schedule, Screen.UnixTimestamp.route),
-        ToolItem(stringResource(R.string.color_converter_title), stringResource(R.string.color_converter_desc), Icons.Filled.Palette, Screen.ColorConverter.route),
-        ToolItem(stringResource(R.string.text_diff_title), stringResource(R.string.text_diff_desc), Icons.Filled.Compare, Screen.TextDiff.route),
-        ToolItem(stringResource(R.string.unit_converter_title), stringResource(R.string.unit_converter_desc), Icons.Filled.Straighten, Screen.UnitConverter.route),
+        ToolItem(stringResource(R.string.file_hash_title), stringResource(R.string.file_hash_desc), Icons.Filled.Fingerprint, Screen.FileHash.route)
+    )
+
+    // QR & Barcode tools
+    val qrTools = listOf(
         ToolItem(stringResource(R.string.qr_generator_title), stringResource(R.string.qr_generator_desc), Icons.Filled.QrCode2, Screen.QrGenerator.route),
         ToolItem(stringResource(R.string.barcode_generator_title), stringResource(R.string.barcode_generator_desc), Icons.Filled.QrCode, Screen.BarcodeGenerator.route),
-        ToolItem(stringResource(R.string.qr_scanner_title), stringResource(R.string.qr_scanner_desc), Icons.Filled.QrCodeScanner, Screen.QrScanner.route),
-        ToolItem(stringResource(R.string.text_counter_title), stringResource(R.string.text_counter_desc), Icons.Filled.Numbers, Screen.TextCounter.route),
-        ToolItem(stringResource(R.string.stopwatch_title), stringResource(R.string.stopwatch_desc), Icons.Filled.Timer, Screen.Stopwatch.route),
-        ToolItem(stringResource(R.string.file_hash_title), stringResource(R.string.file_hash_desc), Icons.Filled.Fingerprint, Screen.FileHash.route),
+        ToolItem(stringResource(R.string.qr_scanner_title), stringResource(R.string.qr_scanner_desc), Icons.Filled.QrCodeScanner, Screen.QrScanner.route)
+    )
+
+    // Web & API tools
+    val webTools = listOf(
+        ToolItem(stringResource(R.string.api_tester_title), stringResource(R.string.api_tester_desc), Icons.Filled.Storage, Screen.ApiTester.route),
         ToolItem(stringResource(R.string.user_agent_parser_title), stringResource(R.string.user_agent_parser_desc), Icons.Filled.Web, Screen.UserAgentParser.route),
         ToolItem(stringResource(R.string.robots_txt_title), stringResource(R.string.robots_txt_desc), Icons.Filled.SmartToy, Screen.RobotsTxt.route),
-        ToolItem(stringResource(R.string.sitemap_viewer_title), stringResource(R.string.sitemap_viewer_desc), Icons.Filled.Map, Screen.SitemapViewer.route),
-        ToolItem(stringResource(R.string.image_base64_title), stringResource(R.string.image_base64_desc), Icons.Filled.Image, Screen.ImageBase64.route),
-        ToolItem(stringResource(R.string.lorem_ipsum_title), stringResource(R.string.lorem_ipsum_desc), Icons.AutoMirrored.Filled.Notes, Screen.LoremIpsum.route),
-        ToolItem(stringResource(R.string.api_tester_title), stringResource(R.string.api_tester_desc), Icons.Filled.Storage, Screen.ApiTester.route),
-        ToolItem(stringResource(R.string.markdown_preview_title), stringResource(R.string.markdown_preview_desc), Icons.AutoMirrored.Filled.Article, Screen.MarkdownPreview.route),
-        ToolItem(stringResource(R.string.color_palette_title), stringResource(R.string.color_palette_desc), Icons.Filled.ColorLens, Screen.ColorPalette.route),
-        ToolItem(stringResource(R.string.typing_test_title), stringResource(R.string.typing_test_desc), Icons.Filled.Keyboard, Screen.TypingTest.route),
-        ToolItem(stringResource(R.string.svg_viewer_title), stringResource(R.string.svg_viewer_desc), Icons.Filled.Draw, Screen.SvgViewer.route),
+        ToolItem(stringResource(R.string.sitemap_viewer_title), stringResource(R.string.sitemap_viewer_desc), Icons.Filled.Map, Screen.SitemapViewer.route)
+    )
+
+    // PDF & Document tools
+    val pdfTools = listOf(
         ToolItem(stringResource(R.string.pdf_viewer_title), stringResource(R.string.pdf_viewer_desc), Icons.Filled.PictureAsPdf, Screen.PdfViewer.route),
         ToolItem(stringResource(R.string.pdf_merge_title), stringResource(R.string.pdf_merge_desc), Icons.AutoMirrored.Filled.MergeType, Screen.PdfMerge.route),
         ToolItem(stringResource(R.string.image_to_pdf_title), stringResource(R.string.image_to_pdf_desc), Icons.Filled.PhotoLibrary, Screen.ImageToPdf.route),
         ToolItem(stringResource(R.string.compress_pdf_title), stringResource(R.string.compress_pdf_desc), Icons.Filled.Compress, Screen.CompressPdf.route),
-        ToolItem(stringResource(R.string.compress_image_title), stringResource(R.string.compress_image_desc), Icons.Filled.PhotoSizeSelectLarge, Screen.CompressImage.route),
-        ToolItem(stringResource(R.string.text_editor_title), stringResource(R.string.text_editor_desc), Icons.Filled.EditNote, Screen.TextEditor.route),
-        ToolItem(stringResource(R.string.markdown_editor_title), stringResource(R.string.markdown_editor_desc), Icons.Filled.Description, Screen.MarkdownEditor.route),
         ToolItem(stringResource(R.string.slides_to_pdf_title), stringResource(R.string.slides_to_pdf_desc), Icons.Filled.Slideshow, Screen.SlidesToPdf.route)
     )
+
+    // Editor tools
+    val editorTools = listOf(
+        ToolItem(stringResource(R.string.text_editor_title), stringResource(R.string.text_editor_desc), Icons.Filled.EditNote, Screen.TextEditor.route),
+        ToolItem(stringResource(R.string.markdown_editor_title), stringResource(R.string.markdown_editor_desc), Icons.Filled.Description, Screen.MarkdownEditor.route),
+        ToolItem(stringResource(R.string.markdown_preview_title), stringResource(R.string.markdown_preview_desc), Icons.AutoMirrored.Filled.Article, Screen.MarkdownPreview.route),
+        ToolItem(stringResource(R.string.svg_viewer_title), stringResource(R.string.svg_viewer_desc), Icons.Filled.Draw, Screen.SvgViewer.route)
+    )
+
+    // Media & Image tools
+    val mediaTools = listOf(
+        ToolItem(stringResource(R.string.compress_image_title), stringResource(R.string.compress_image_desc), Icons.Filled.PhotoSizeSelectLarge, Screen.CompressImage.route),
+        ToolItem(stringResource(R.string.color_converter_title), stringResource(R.string.color_converter_desc), Icons.Filled.Palette, Screen.ColorConverter.route),
+        ToolItem(stringResource(R.string.color_palette_title), stringResource(R.string.color_palette_desc), Icons.Filled.ColorLens, Screen.ColorPalette.route)
+    )
+
+    // Converter & Calculator tools
+    val converterTools = listOf(
+        ToolItem(stringResource(R.string.ip_calc_title), stringResource(R.string.ip_calc_desc), Icons.Filled.Transform, Screen.IPCalculator.route),
+        ToolItem(stringResource(R.string.unit_converter_title), stringResource(R.string.unit_converter_desc), Icons.Filled.Straighten, Screen.UnitConverter.route),
+        ToolItem(stringResource(R.string.world_time_title), stringResource(R.string.world_time_desc), Icons.Filled.Public, Screen.WorldTime.route),
+        ToolItem(stringResource(R.string.unix_timestamp_title), stringResource(R.string.unix_timestamp_desc), Icons.Filled.Schedule, Screen.UnixTimestamp.route),
+        ToolItem(stringResource(R.string.uuid_generator_title), stringResource(R.string.uuid_generator_desc), Icons.Filled.Fingerprint, Screen.UuidGenerator.route)
+    )
+
+    // Text & Misc tools
+    val textTools = listOf(
+        ToolItem(stringResource(R.string.text_counter_title), stringResource(R.string.text_counter_desc), Icons.Filled.Numbers, Screen.TextCounter.route),
+        ToolItem(stringResource(R.string.text_diff_title), stringResource(R.string.text_diff_desc), Icons.Filled.Compare, Screen.TextDiff.route),
+        ToolItem(stringResource(R.string.lorem_ipsum_title), stringResource(R.string.lorem_ipsum_desc), Icons.AutoMirrored.Filled.Notes, Screen.LoremIpsum.route),
+        ToolItem(stringResource(R.string.typing_test_title), stringResource(R.string.typing_test_desc), Icons.Filled.Keyboard, Screen.TypingTest.route),
+        ToolItem(stringResource(R.string.stopwatch_title), stringResource(R.string.stopwatch_desc), Icons.Filled.Timer, Screen.Stopwatch.route)
+    )
+
+    // All utility subcategories with their labels
+    data class ToolCategory(val label: String, val tools: List<ToolItem>)
+    val utilityCategories = listOf(
+        ToolCategory("Encoders & Decoders", encoderTools),
+        ToolCategory("Security & Crypto", securityTools),
+        ToolCategory("QR & Barcode", qrTools),
+        ToolCategory("Web & API", webTools),
+        ToolCategory("PDF & Documents", pdfTools),
+        ToolCategory("Editors", editorTools),
+        ToolCategory("Media & Colors", mediaTools),
+        ToolCategory("Converters & Calculators", converterTools),
+        ToolCategory("Text & Misc", textTools)
+    )
+
+    // Flat utility list for tab counts
+    val utilityTools = utilityCategories.flatMap { it.tools }
 
     val deviceTools = listOf(
         ToolItem(stringResource(R.string.drm_info_title), stringResource(R.string.drm_info_desc), Icons.Filled.Lock, Screen.DrmInfo.route),
@@ -130,16 +182,25 @@ fun MainScreen(navController: NavController) {
     )
 
     val isSearching = searchQuery.isNotBlank()
-    val filteredNetworkTools = if (isSearching) {
-        networkTools.filter { it.title.contains(searchQuery, ignoreCase = true) || it.description.contains(searchQuery, ignoreCase = true) }
-    } else networkTools
-    val filteredUtilityTools = if (isSearching) {
-        utilityTools.filter { it.title.contains(searchQuery, ignoreCase = true) || it.description.contains(searchQuery, ignoreCase = true) }
-    } else utilityTools
-    val filteredDeviceTools = if (isSearching) {
-        deviceTools.filter { it.title.contains(searchQuery, ignoreCase = true) || it.description.contains(searchQuery, ignoreCase = true) }
-    } else deviceTools
-    val noResults = isSearching && filteredNetworkTools.isEmpty() && filteredUtilityTools.isEmpty() && filteredDeviceTools.isEmpty()
+    fun filterTools(tools: List<ToolItem>) = if (isSearching) {
+        tools.filter { it.title.contains(searchQuery, ignoreCase = true) || it.description.contains(searchQuery, ignoreCase = true) }
+    } else tools
+    val filteredNetworkTools = filterTools(networkTools)
+    val filteredDeviceTools = filterTools(deviceTools)
+    val filteredUtilityCategories = utilityCategories.map {
+        ToolCategory(it.label, filterTools(it.tools))
+    }.filter { it.tools.isNotEmpty() }
+    val filteredUtilityCount = filteredUtilityCategories.sumOf { it.tools.size }
+
+    // Apply tab filter
+    val showNetwork = selectedTab == 0 || selectedTab == 1
+    val showUtility = selectedTab == 0 || selectedTab == 2
+    val showDevice = selectedTab == 0 || selectedTab == 3
+
+    val visibleNetwork = if (showNetwork) filteredNetworkTools else emptyList()
+    val visibleUtilityCategories = if (showUtility) filteredUtilityCategories else emptyList()
+    val visibleDevice = if (showDevice) filteredDeviceTools else emptyList()
+    val noResults = visibleNetwork.isEmpty() && visibleUtilityCategories.isEmpty() && visibleDevice.isEmpty()
 
     Scaffold(
         topBar = {
@@ -216,6 +277,36 @@ fun MainScreen(navController: NavController) {
                     unfocusedContainerColor = MaterialTheme.colorScheme.surface
                 )
             )
+
+            // Category tabs
+            PrimaryScrollableTabRow(
+                selectedTabIndex = selectedTab,
+                modifier = Modifier.fillMaxWidth(),
+                edgePadding = 12.dp,
+                divider = {},
+                containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.01f)
+            ) {
+                tabTitles.forEachIndexed { index, title ->
+                    val count = when (index) {
+                        1 -> filteredNetworkTools.size
+                        2 -> filteredUtilityCount
+                        3 -> filteredDeviceTools.size
+                        else -> filteredNetworkTools.size + filteredUtilityCount + filteredDeviceTools.size
+                    }
+                    Tab(
+                        selected = selectedTab == index,
+                        onClick = { selectedTab = index },
+                        text = {
+                            Text(
+                                "$title ($count)",
+                                style = MaterialTheme.typography.labelLarge,
+                                fontWeight = if (selectedTab == index) FontWeight.Bold else FontWeight.Normal
+                            )
+                        }
+                    )
+                }
+            }
+
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
                 contentPadding = PaddingValues(12.dp),
@@ -248,27 +339,43 @@ fun MainScreen(navController: NavController) {
                         }
                     }
                 }
-                if (filteredNetworkTools.isNotEmpty()) {
-                    item(span = { GridItemSpan(2) }) {
-                        Text("Network Tools", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(vertical = 8.dp))
+                if (visibleNetwork.isNotEmpty()) {
+                    if (selectedTab == 0) {
+                        item(span = { GridItemSpan(2) }) {
+                            Text("Network Tools", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(vertical = 8.dp))
+                        }
                     }
-                    items(filteredNetworkTools) { tool ->
+                    items(visibleNetwork) { tool ->
                         ToolCard(tool = tool, onClick = { navController.navigate(tool.route) })
                     }
                 }
-                if (filteredUtilityTools.isNotEmpty()) {
-                    item(span = { GridItemSpan(2) }) {
-                        Text("Utility Tools", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(vertical = 8.dp))
+                if (visibleUtilityCategories.isNotEmpty()) {
+                    if (selectedTab == 0) {
+                        item(span = { GridItemSpan(2) }) {
+                            Text("Utility Tools", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(vertical = 8.dp))
+                        }
                     }
-                    items(filteredUtilityTools) { tool ->
-                        ToolCard(tool = tool, onClick = { navController.navigate(tool.route) })
+                    visibleUtilityCategories.forEach { category ->
+                        item(span = { GridItemSpan(2) }) {
+                            Text(
+                                category.label,
+                                style = MaterialTheme.typography.labelLarge,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.padding(top = 8.dp, bottom = 4.dp)
+                            )
+                        }
+                        items(category.tools) { tool ->
+                            ToolCard(tool = tool, onClick = { navController.navigate(tool.route) })
+                        }
                     }
                 }
-                if (filteredDeviceTools.isNotEmpty()) {
-                    item(span = { GridItemSpan(2) }) {
-                        Text("Device Tools", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(vertical = 8.dp))
+                if (visibleDevice.isNotEmpty()) {
+                    if (selectedTab == 0) {
+                        item(span = { GridItemSpan(2) }) {
+                            Text("Device Tools", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(vertical = 8.dp))
+                        }
                     }
-                    items(filteredDeviceTools) { tool ->
+                    items(visibleDevice) { tool ->
                         ToolCard(tool = tool, onClick = { navController.navigate(tool.route) })
                     }
                 }
