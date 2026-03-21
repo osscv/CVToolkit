@@ -7,7 +7,7 @@
   
   [![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://www.android.com/)
   [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg)](https://android-arsenal.com/api?level=24)
-  [![Kotlin](https://img.shields.io/badge/Kotlin-1.9+-blue.svg)](https://kotlinlang.org)
+  [![Kotlin](https://img.shields.io/badge/Kotlin-2.3-blue.svg)](https://kotlinlang.org)
   [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-Latest-blue.svg)](https://developer.android.com/jetpack/compose)
   
   ---
@@ -22,7 +22,7 @@
 
 ## 📱 About
 
-**CV Toolkit** is a professional-grade, all-in-one Android application designed for network diagnostics, cloud infrastructure monitoring, system information, and a comprehensive suite of developer utilities. Built with modern Android technologies (Kotlin + Jetpack Compose), it delivers 40+ powerful tools in one beautifully designed app.
+**CV Toolkit** is a professional-grade, all-in-one Android application designed for network diagnostics, cloud infrastructure monitoring, system information, and a comprehensive suite of developer utilities. Built with modern Android technologies (Kotlin 2.3 + Jetpack Compose), it delivers **60+ powerful tools across 73 screens** in one beautifully designed app.
 
 **Perfect for:**
 - 👨‍💻 **Network Administrators** - Comprehensive network diagnostics and monitoring
@@ -55,8 +55,8 @@ The crown jewel of CV Toolkit - a professional-grade network monitoring tool fea
 - **Edge location detection** for Cloudflare, CloudFront, and Alibaba Cloud
 - **Background service** support for uninterrupted monitoring
 
-### 📱 **40+ Professional Tools**
-Everything you need for network diagnostics, development, and system analysis in one app.
+### 📱 **60+ Professional Tools**
+Everything you need for network diagnostics, development, PDF management, code editing, and system analysis in one app.
 
 ### 🔒 **Privacy-First Design**
 - Zero data collection
@@ -68,20 +68,22 @@ Everything you need for network diagnostics, development, and system analysis in
 
 ## ✨ Key Features
 
-### 🌐 Network Tools (13 Tools)
+### 🌐 Network Tools (15 Tools)
 
 - **Speed Test** - Comprehensive internet speed testing with download/upload speeds, ping latency, jitter measurement, and historical tracking. Foreground service support for uninterrupted testing
 - **Ping Test** - ICMP ping testing with packet count configuration, timeout settings, and detailed statistics (min/max/avg/packet loss)
+- **Continuous Ping** - Multi-host real-time ping monitoring with live line graphs, color-coded per host, for ongoing connectivity analysis
 - **Traceroute** - Visual network path tracing showing all hops with latency measurements and geographic information
-- **Port Scanner** - Scan for open ports on any host
-- **Network Scanner (Device Discovery)** - Discover all devices connected to your network
-- **IP Lookup** - Get detailed geolocation and ISP information for any IP address
+- **Port Scanner** - Scan for open ports on any host with service detection and parallel scanning
+- **Network Scanner (Device Discovery)** - Discover all devices connected to your network with MAC address lookup and manufacturer identification
+- **IP Lookup** - Get detailed geolocation, ISP, security flags (VPN/proxy/TOR detection), and carrier information for any IP address with local history
 - **DNS Lookup** - Comprehensive DNS record querying (A, AAAA, CNAME, MX, TXT, NS, SOA, PTR) with custom DNS server support and response time tracking
 - **Subnet Calculator** - Advanced IPv4/IPv6 subnet calculations with CIDR notation, network/broadcast addresses, usable host range, and subnet mask conversion
 - **SSL/TLS Checker** - Detailed SSL certificate inspection including validity period, issuer information, subject details, certificate chain, encryption algorithms, and expiration warnings
 - **Whois Lookup** - Get domain registration information
 - **HTTP Headers Viewer** - Inspect HTTP response headers
-- **Custom Request Builder** - Build and send custom HTTP/CURL requests with headers
+- **Custom Request Builder** - Build and send custom HTTP/CURL requests with headers and body
+- **WiFi Analyzer** - Analyze WiFi signal strength, channels, and network details
 - **CDN & Cloud Latency Test** - **Real-time monitoring with live graphs** - Test latency to 311+ regions across 14 major providers with continuous ping, multi-region tracking, detailed statistics (min/max/avg/jitter/packet loss), automatic edge detection, and color-coded line charts:
   - AWS (Amazon Web Services)
   - GCP (Google Cloud Platform)
@@ -98,7 +100,7 @@ Everything you need for network diagnostics, development, and system analysis in
   - Lightsail
   - Fastly
 
-### 🛠️ Utility Tools (23 Tools)
+### 🛠️ Utility Tools (40+ Tools)
 
 **Encoders & Decoders:**
 - **Base64 Encoder/Decoder** - Encode and decode Base64 strings
@@ -107,9 +109,10 @@ Everything you need for network diagnostics, development, and system analysis in
 - **Hex Encoder/Decoder** - Convert text to/from hexadecimal
 - **ASCII Converter** - Convert text to ASCII values and vice versa
 - **JWT Decoder** - Decode and inspect JWT tokens
+- **Image Base64** - Convert images to/from Base64 encoding
 
 **Security & Cryptography:**
-- **Hash Generator** - Generate MD5, SHA-1, SHA-256, SHA-512 hashes
+- **Hash Generator** - Generate MD5, SHA-1, SHA-256, SHA-384, SHA-512 hashes
 - **Caesar Cipher** - Encrypt/decrypt with Caesar cipher, ROT13, ROT47
 - **Morse Code Converter** - Convert text to Morse code and back
 - **Password Generator** - Generate strong, secure passwords
@@ -123,8 +126,10 @@ Everything you need for network diagnostics, development, and system analysis in
 **Text & Data Tools:**
 - **Text Counter** - Count words, characters, lines, and paragraphs
 - **Text Diff** - Compare two texts and highlight differences
+- **Lorem Ipsum Generator** - Generate placeholder text for design and development
 - **IP Calculator** - Convert between different IP formats
 - **Color Converter** - Convert between HEX, RGB, HSL, and CMYK color formats
+- **Color Palette Generator** - Generate and explore color palettes
 
 **Time & ID Tools:**
 - **World Time** - View current time across global time zones
@@ -134,43 +139,71 @@ Everything you need for network diagnostics, development, and system analysis in
 **Measurement:**
 - **Unit Converter** - Convert length, weight, temperature, and data sizes
 
-**Utility:**
-- **Stopwatch** - Timer with lap functionality
+**Web & API Tools:**
+- **API Tester** - Save, organize, and execute API requests with custom headers and body
+- **Robots.txt Analyzer** - Fetch and parse robots.txt files from any domain
+- **Sitemap Viewer** - Parse and browse XML sitemaps
 - **User Agent Parser** - Parse and analyze browser User-Agent strings
 
-### 📱 Device Tools (3 Tools)
+**Document & PDF Tools:**
+- **PDF Viewer** - View and navigate PDF documents
+- **PDF Merge** - Combine multiple PDF files into one
+- **Image to PDF** - Convert images to PDF documents
+- **Compress PDF** - Reduce PDF file size
+- **Slides to PDF** - Convert presentation slides (PPT) to PDF
+
+**Editor Tools:**
+- **Text Editor** - Create and edit text files on device
+- **Markdown Editor** - Write markdown with live preview
+- **Markdown Preview** - Render and preview markdown content
+- **SVG Viewer & Editor** - View and edit SVG vector graphics
+
+**Media Tools:**
+- **Compress Image** - Reduce image file size while maintaining quality
+- **Typing Test** - Practice and measure typing speed and accuracy
+
+**Utility:**
+- **Stopwatch** - Timer with lap functionality
+
+### 📱 Device Tools (5 Tools)
 
 - **Device Information** - Complete system information (CPU, RAM, storage, OS, etc.)
 - **DRM & Codec Info** - View DRM systems, video/audio codecs, and supported formats
 - **Camera Information** - Detailed camera specifications and capabilities
+- **Security Audit** - Comprehensive device security check and vulnerability assessment
+- **Sensor Dashboard** - Real-time readings from all device sensors (accelerometer, gyroscope, proximity, etc.)
 
 ---
 
 ## 🏗️ Technical Stack
 
-- **Language:** Kotlin (100%)
-- **UI Framework:** Jetpack Compose (Modern declarative UI with Material Design 3)
+- **Language:** Kotlin 2.3 (100%)
+- **UI Framework:** Jetpack Compose BOM 2026.03 (Modern declarative UI with Material Design 3)
 - **Architecture:** MVVM with Repository pattern for clean separation of concerns
-- **Networking:** 
-  - Retrofit 2 (Type-safe REST API calls)
-  - OkHttp (HTTP client with interceptor support)
-  - Gson (JSON parsing and serialization)
+- **Networking:**
+  - Retrofit 3.0 (Type-safe REST API calls)
+  - OkHttp 5.3 (HTTP client with interceptor support and logging)
+  - Gson 2.13 (JSON parsing and serialization)
   - Coroutines (Asynchronous programming)
 - **Camera & ML:**
-  - CameraX (Modern camera API with preview)
-  - ML Kit Barcode Scanning (On-device QR/Barcode recognition)
-  - ZXing (QR code and barcode generation)
+  - CameraX 1.5 (Modern camera API with preview and analysis)
+  - ML Kit Barcode Scanning 17.3 (On-device QR/Barcode recognition)
+  - ZXing Core 3.5 (QR code and barcode generation)
 - **Data Visualization:**
   - Canvas API (Custom line graphs and charts)
   - Real-time rendering with Compose recomposition
 - **Background Processing:**
   - Foreground Services (Speed tests and continuous monitoring)
   - Coroutines (Parallel processing and async operations)
-- **Navigation:** Jetpack Navigation Compose with type-safe routes
+- **Data Persistence:**
+  - SQLite (IP lookup history storage)
+  - SharedPreferences (Language settings, ad usage tracking)
+- **Navigation:** Jetpack Navigation Compose 2.9 with type-safe sealed class routes (73 destinations)
 - **Minimum SDK:** Android 7.0 (API 24) - Wide device compatibility
-- **Target SDK:** Android 14 (API 36) - Latest Android features
-- **Image Loading:** Coil (Efficient image loading with caching)
-- **Monetization:** Google AdMob (Non-intrusive banner ads)
+- **Target SDK:** Android 16 (API 36) - Latest Android features
+- **Compilation SDK:** 36 (Android 16)
+- **Image Loading:** Coil 2.7 (Efficient image loading with SVG support and caching)
+- **Monetization:** Google AdMob (Non-intrusive banner ads with usage-based interstitial and rewarded ads)
 
 ## 🎨 UI/UX Features
 
@@ -242,9 +275,9 @@ The CDN & Cloud Latency Test has been completely redesigned with professional-gr
 
 ### Prerequisites
 
-- **Android Studio:** Hedgehog (2023.1.1) or later recommended
+- **Android Studio:** Ladybug (2024.2) or later recommended
 - **Android SDK:** API 24 (Android 7.0) or higher
-- **Kotlin:** 1.9+
+- **Kotlin:** 2.3+
 - **Gradle:** 8.0+
 - **JDK:** Java 11 or higher
 
@@ -453,9 +486,12 @@ cd CVToolkit
 **Permissions Used:**
 - `INTERNET` - Required for network diagnostics, IP lookups, DNS queries
 - `ACCESS_NETWORK_STATE` - Detect current network configuration
-- `CAMERA` - QR/Barcode scanning (optional feature)
-- `FOREGROUND_SERVICE` - Background speed tests
+- `CAMERA` - QR/Barcode scanning and camera info (optional feature)
+- `FOREGROUND_SERVICE` / `FOREGROUND_SERVICE_DATA_SYNC` - Background speed tests and continuous monitoring
 - `POST_NOTIFICATIONS` - Speed test progress notifications
+- `ACCESS_WIFI_STATE` / `CHANGE_WIFI_STATE` - WiFi analysis features
+- `ACCESS_FINE_LOCATION` / `ACCESS_COARSE_LOCATION` - Location-based network features
+- `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` - Sustained speed testing
 
 **Advertising:**
 - This app displays ads via Google AdMob
@@ -559,6 +595,8 @@ Feel free to open an issue on GitHub for:
 - [ZXing](https://github.com/zxing/zxing) - QR code generation
 - [ML Kit](https://developers.google.com/ml-kit) - Barcode scanning
 - [CameraX](https://developer.android.com/training/camerax) - Camera API
+- [Coil](https://coil-kt.github.io/coil/) - Image loading with SVG support
+- [OkHttp](https://square.github.io/okhttp/) - HTTP client
 - [dkly DATAHUB](https://data.dkly.net) - IP lookup services
 - All cloud providers for their global infrastructure
 
@@ -566,7 +604,7 @@ Feel free to open an issue on GitHub for:
 
 ## 📊 Statistics
 
-- **40+ Professional Tools** organized into 3 categories
+- **60+ Professional Tools** organized into 3 categories across **73 screens**
 - **311+ Global Test Regions** across 14 cloud/CDN providers
 - **Real-time Monitoring** with live graphs and continuous ping
 - **Advanced Analytics** - Min/Max/Avg/Jitter/Packet Loss tracking

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -54,7 +55,7 @@ fun PingTestScreen(navController: NavController) {
     val activity = context as? Activity
     var target by remember { mutableStateOf("") }
     var isPinging by remember { mutableStateOf(false) }
-    var results by remember { mutableStateOf(listOf<PingResult>()) }
+    val results = remember { mutableStateListOf<PingResult>() }
     var resolvedIp by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -85,7 +86,7 @@ fun PingTestScreen(navController: NavController) {
     fun startPing() {
         if (target.isBlank()) return
         isPinging = true
-        results = emptyList()
+        results.clear()
         resolvedIp = ""
 
         // Determine ping count based on selected mode
@@ -133,7 +134,7 @@ fun PingTestScreen(navController: NavController) {
                     val time = System.currentTimeMillis() - start
                     PingResult(seq + 1, if (reachable) time else -1, reachable)
                 }
-                results = results + result
+                results.add(result)
                 seq++
                 if (seq < pingCount && isPinging) {
                     delay(1000)

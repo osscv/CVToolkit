@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.AltRoute
@@ -108,7 +109,7 @@ fun TracerouteScreen(navController: NavController) {
     val activity = context as? Activity
     var target by remember { mutableStateOf("") }
     var isTracing by remember { mutableStateOf(false) }
-    var hops by remember { mutableStateOf(listOf<TracerouteHop>()) }
+    val hops = remember { mutableStateListOf<TracerouteHop>() }
     var isResolving by remember { mutableStateOf(false) }
     var resolvedIps by remember { mutableStateOf(listOf<ResolvedIp>()) }
     var showIpSelectionDialog by remember { mutableStateOf(false) }
@@ -170,7 +171,7 @@ fun TracerouteScreen(navController: NavController) {
         if (traceTarget.isBlank()) return
         currentTracingTarget = traceTarget
         isTracing = true
-        hops = emptyList()
+        hops.clear()
 
         scope.launch(Dispatchers.IO) {
             val targetIp = try {
@@ -220,7 +221,7 @@ fun TracerouteScreen(navController: NavController) {
                     rtt3 = rtt3,
                     status = status
                 )
-                hops = hops + hop
+                hops.add(hop)
 
                 // Check if we reached the destination
                 if (hopIp.isNotEmpty() && (hopIp == targetIp || hopIp == traceTarget)) {

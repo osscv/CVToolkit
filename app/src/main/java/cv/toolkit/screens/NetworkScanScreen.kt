@@ -3,6 +3,7 @@ package cv.toolkit.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -65,7 +66,7 @@ fun NetworkScanScreen(navController: NavController) {
     val activity = context as? android.app.Activity
     var isScanning by remember { mutableStateOf(false) }
     var progress by remember { mutableFloatStateOf(0f) }
-    var devices by remember { mutableStateOf(listOf<NetworkDevice>()) }
+    val devices = remember { mutableStateListOf<NetworkDevice>() }
     var localIp by remember { mutableStateOf("") }
     var gatewayIp by remember { mutableStateOf("") }
     var netmask by remember { mutableStateOf("") }
@@ -85,7 +86,7 @@ fun NetworkScanScreen(navController: NavController) {
     fun startScan() {
         if (localIp.isEmpty()) return
         isScanning = true
-        devices = emptyList()
+        devices.clear()
         progress = 0f
 
         scope.launch(Dispatchers.IO) {
@@ -136,7 +137,8 @@ fun NetworkScanScreen(navController: NavController) {
                 }
             }
 
-            devices = sortDevicesByIp(foundDevices.values.toList())
+            devices.clear()
+            devices.addAll(sortDevicesByIp(foundDevices.values.toList()))
             progress = progress.coerceAtLeast(0.2f)
 
             // Always run Java-based batch scan for remaining IPs to avoid missing devices when native tools fail
@@ -175,7 +177,8 @@ fun NetworkScanScreen(navController: NavController) {
                         progress = initialProgress + (scannedCount.incrementAndGet().toFloat() / totalIps * 0.5f)
                     }
                 }.awaitAll()
-                devices = sortDevicesByIp(foundDevices.values.toList())
+                devices.clear()
+                devices.addAll(sortDevicesByIp(foundDevices.values.toList()))
             }
 
             // Ensure gateway is present even if not caught by scans
@@ -196,7 +199,8 @@ fun NetworkScanScreen(navController: NavController) {
                         gwPing.second,
                         if (gwInfo.type != DeviceType.UNKNOWN) gwInfo.type else DeviceType.ROUTER
                     )
-                    devices = sortDevicesByIp(foundDevices.values.toList())
+                    devices.clear()
+                devices.addAll(sortDevicesByIp(foundDevices.values.toList()))
                 }
             }
 
@@ -220,7 +224,8 @@ fun NetworkScanScreen(navController: NavController) {
                         progress = 0.7f + (enrichedCount.incrementAndGet().toFloat() / devicesToEnrich.size * 0.25f)
                     }
                 }.awaitAll()
-                devices = sortDevicesByIp(foundDevices.values.toList())
+                devices.clear()
+                devices.addAll(sortDevicesByIp(foundDevices.values.toList()))
             }
 
             // Final ARP check
@@ -236,7 +241,8 @@ fun NetworkScanScreen(navController: NavController) {
                 }
             }
 
-            devices = sortDevicesByIp(foundDevices.values.toList())
+            devices.clear()
+                devices.addAll(sortDevicesByIp(foundDevices.values.toList()))
             progress = 1f
             isScanning = false
             // Track usage for interstitial ad (every 2 scans)

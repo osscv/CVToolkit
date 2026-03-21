@@ -1,19 +1,17 @@
 package cv.toolkit
 
 import android.app.Application
-import com.google.android.gms.ads.MobileAds
-import cv.toolkit.ads.AdMobManager
+import coil.ImageLoader
+import coil.ImageLoaderFactory
+import coil.decode.SvgDecoder
 
-class CVToolkitApplication : Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-
-        // Initialize the Google Mobile Ads SDK
-        MobileAds.initialize(this) {
-            // Preload ads after SDK initialization
-            AdMobManager.loadInterstitialAd(this)
-            AdMobManager.loadRewardedAd(this)
-        }
+class CVToolkitApplication : Application(), ImageLoaderFactory {
+    override fun newImageLoader(): ImageLoader {
+        return ImageLoader.Builder(this)
+            .components {
+                add(SvgDecoder.Factory())
+            }
+            .crossfade(true)
+            .build()
     }
 }

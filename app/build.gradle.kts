@@ -4,11 +4,10 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+@Suppress("UnstableApiUsage")
 android {
     namespace = "cv.toolkit"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "cv.toolkit"
@@ -71,6 +70,22 @@ dependencies {
 
     // Coil for image loading
     implementation(libs.coil.compose)
+    implementation(libs.coil.svg)
+
+    // ZXing for QR code generation
+    implementation(libs.zxing.core)
+
+    // ML Kit Barcode Scanning
+    implementation(libs.mlkit.barcode.scanning)
+
+    // CameraX for camera preview
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+
+    // Guava for ListenableFuture
+    implementation(libs.guava)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -60,7 +61,7 @@ fun PortScanScreen(navController: NavController) {
         6 to listOf(25, 110, 143, 465, 587, 993, 995)
     )
     var progress by remember { mutableFloatStateOf(0f) }
-    var results by remember { mutableStateOf(listOf<PortResult>()) }
+    val results = remember { mutableStateListOf<PortResult>() }
 
     val scope = rememberCoroutineScope()
 
@@ -113,7 +114,7 @@ fun PortScanScreen(navController: NavController) {
         }
 
         isScanning = true
-        results = emptyList()
+        results.clear()
         progress = 0f
 
         scope.launch(Dispatchers.IO) {
@@ -135,7 +136,8 @@ fun PortScanScreen(navController: NavController) {
                             progress = completed.toFloat() / totalScans
                         }
                     }.awaitAll()
-                    results = openPorts.toList().sortedBy { it.port }
+                    results.clear()
+                    results.addAll(openPorts.toList().sortedBy { it.port })
                 }
             }
             isScanning = false
