@@ -155,28 +155,43 @@ fun ContinuousPingScreen(navController: NavController) {
                     async {
                         val result = try {
                             val start = System.currentTimeMillis()
+                            // Use /system/bin/ping for broader Android compatibility
                             val process = Runtime.getRuntime().exec(
-                                arrayOf("ping", "-c", "1", "-W", "2", host.host)
+                                arrayOf("/system/bin/ping", "-c", "1", "-W", "2", host.host)
                             )
                             val output = process.inputStream.bufferedReader().readText()
-                            process.waitFor()
+                            val errorOutput = process.errorStream.bufferedReader().readText()
+                            val exitCode = process.waitFor()
                             val elapsed = System.currentTimeMillis() - start
 
+                            // Parse RTT from output (handles both "time=X" and "time<X" formats)
                             val rttMatch = Regex("time[=<]\\s*([\\d.]+)").find(output)
                             val rttTime = rttMatch?.groupValues?.getOrNull(1)?.toDoubleOrNull()?.toLong() ?: elapsed
 
-                            val success = process.exitValue() == 0 && output.contains("time=")
+                            val success = exitCode == 0 && (output.contains("time=") || output.contains("time<"))
                             ContinuousPingResult(
                                 timestamp = System.currentTimeMillis(),
                                 latency = if (success) rttTime else -1,
                                 success = success
                             )
                         } catch (_: Exception) {
-                            // Fallback to Java-based ping
+                            // Fallback: TCP connect to common ports (80, 443) as ping alternative
                             val start = System.currentTimeMillis()
                             val reachable = try {
-                                InetAddress.getByName(host.host).isReachable(2000)
-                            } catch (_: Exception) { false }
+                                val addr = InetAddress.getByName(host.host)
+                                val socket = java.net.Socket()
+                                socket.connect(java.net.InetSocketAddress(addr, 443), 2000)
+                                socket.close()
+                                true
+                            } catch (_: Exception) {
+                                try {
+                                    val addr = InetAddress.getByName(host.host)
+                                    val socket = java.net.Socket()
+                                    socket.connect(java.net.InetSocketAddress(addr, 80), 2000)
+                                    socket.close()
+                                    true
+                                } catch (_: Exception) { false }
+                            }
                             val time = System.currentTimeMillis() - start
                             ContinuousPingResult(
                                 timestamp = System.currentTimeMillis(),
