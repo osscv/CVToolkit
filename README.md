@@ -24,7 +24,7 @@
 
 ## 📱 About
 
-**CV Toolkit** is a professional-grade, all-in-one Android application designed for network diagnostics, cloud infrastructure monitoring, system information, and a comprehensive suite of developer utilities. Built with modern Android technologies (Kotlin 2.3 + Jetpack Compose), it delivers **65+ powerful tools across 75 screens** in one beautifully designed app.
+**CV Toolkit** is a professional-grade, all-in-one Android application designed for network diagnostics, cloud infrastructure monitoring, system information, and a comprehensive suite of developer utilities. Built with modern Android technologies (Kotlin 2.3 + Jetpack Compose), it delivers **63 powerful tools across 66 screens** in one beautifully designed app.
 
 **Perfect for:**
 - 👨‍💻 **Network Administrators** - Comprehensive network diagnostics and monitoring
@@ -57,7 +57,7 @@ The crown jewel of CV Toolkit - a professional-grade network monitoring tool fea
 - **Edge location detection** for Cloudflare, CloudFront, and Alibaba Cloud
 - **Background service** support for uninterrupted monitoring
 
-### 📱 **65+ Professional Tools**
+### 📱 **63 Professional Tools**
 Everything you need for network diagnostics, development, PDF management, code editing, and system analysis in one app.
 
 ### 🔒 **Privacy-First Design**
@@ -103,9 +103,9 @@ Everything you need for network diagnostics, development, PDF management, code e
   - Lightsail
   - Fastly
 
-### 🛠️ Utility Tools (40+ Tools)
+### 🛠️ Utility Tools (42 Tools across 9 Categories)
 
-**Encoders & Decoders:**
+**🔄 Encoders & Decoders (7 tools):**
 - **Base64 Encoder/Decoder** - Encode and decode Base64 strings
 - **URL Encoder/Decoder** - Encode and decode URL strings
 - **Binary Converter** - Convert text to/from Binary, Hex, and Octal
@@ -114,59 +114,55 @@ Everything you need for network diagnostics, development, PDF management, code e
 - **JWT Decoder** - Decode and inspect JWT tokens
 - **Image Base64** - Convert images to/from Base64 encoding
 
-**Security & Cryptography:**
+**🔐 Security & Crypto (6 tools):**
 - **Hash Generator** - Generate MD5, SHA-1, SHA-256, SHA-384, SHA-512 hashes
 - **Caesar Cipher** - Encrypt/decrypt with Caesar cipher, ROT13, ROT47
 - **Morse Code Converter** - Convert text to Morse code and back
-- **Password Generator** - Generate strong, secure passwords
+- **Password Generator** - Generate strong, secure passwords with customizable options
 - **Password Strength Checker** - Analyze password entropy, character composition, crack time estimation, detect common patterns/sequences, and provide detailed security checks with visual strength meter
 - **File Hash Calculator** - Calculate MD5, SHA, CRC32 hashes for files with metadata
 
-**QR Codes & Barcodes:**
+**📱 QR & Barcode (3 tools):**
 - **QR Code Generator** - Generate QR codes from text, URLs, contacts, etc.
 - **Barcode Generator** - Generate various barcode formats (EAN, UPC, Code 128, etc.)
 - **QR/Barcode Scanner** - Scan and decode QR codes and barcodes with camera
 
-**Text & Data Tools:**
-- **Text Counter** - Count words, characters, lines, and paragraphs
-- **Text Diff** - Compare two texts and highlight differences
-- **Lorem Ipsum Generator** - Generate placeholder text for design and development
-- **IP Calculator** - Convert between different IP formats
-- **Color Converter** - Convert between HEX, RGB, HSL, and CMYK color formats
-- **Color Palette Generator** - Generate and explore color palettes
-
-**Time & ID Tools:**
-- **World Time** - View current time across global time zones
-- **Unix Timestamp Converter** - Convert between Unix timestamps and readable dates
-- **UUID Generator** - Generate UUID v1, v4, and v5
-
-**Measurement:**
-- **Unit Converter** - Convert length, weight, temperature, and data sizes
-
-**Web & API Tools:**
+**🌐 Web & API (4 tools):**
 - **API Tester** - Save, organize, and execute API requests with custom headers and body
+- **User Agent Parser** - Parse and analyze browser User-Agent strings
 - **Robots.txt Analyzer** - Fetch and parse robots.txt files from any domain
 - **Sitemap Viewer** - Parse and browse XML sitemaps
-- **User Agent Parser** - Parse and analyze browser User-Agent strings
 
-**Document & PDF Tools:**
+**📄 PDF & Documents (5 tools):**
 - **PDF Viewer** - View and navigate PDF documents
 - **PDF Merge** - Combine multiple PDF files into one
 - **Image to PDF** - Convert images to PDF documents
 - **Compress PDF** - Reduce PDF file size
 - **Slides to PDF** - Convert presentation slides (PPT) to PDF
 
-**Editor Tools:**
+**✏️ Editors (4 tools):**
 - **Text Editor** - Create and edit text files on device
 - **Markdown Editor** - Write markdown with live preview
 - **Markdown Preview** - Render and preview markdown content
 - **SVG Viewer & Editor** - View and edit SVG vector graphics
 
-**Media Tools:**
+**🎨 Media & Colors (3 tools):**
 - **Compress Image** - Reduce image file size while maintaining quality
-- **Typing Test** - Practice and measure typing speed and accuracy
+- **Color Converter** - Convert between HEX, RGB, HSL, and CMYK color formats
+- **Color Palette Generator** - Generate and explore color palettes
 
-**Utility:**
+**🔢 Converters & Calculators (5 tools):**
+- **IP Calculator** - Convert between different IP formats
+- **Unit Converter** - Convert length, weight, temperature, and data sizes
+- **World Time** - View current time across global time zones
+- **Unix Timestamp Converter** - Convert between Unix timestamps and readable dates
+- **UUID Generator** - Generate UUID v1, v4, and v5
+
+**📝 Text & Misc (5 tools):**
+- **Text Counter** - Count words, characters, lines, and paragraphs
+- **Text Diff** - Compare two texts and highlight differences
+- **Lorem Ipsum Generator** - Generate placeholder text for design and development
+- **Typing Test** - Practice and measure typing speed and accuracy
 - **Stopwatch** - Timer with lap functionality
 
 ### 📱 Device Tools (5 Tools)
@@ -202,7 +198,7 @@ Everything you need for network diagnostics, development, PDF management, code e
 - **Data Persistence:**
   - SQLite (IP lookup history storage)
   - SharedPreferences (Language settings, ad usage tracking)
-- **Navigation:** Jetpack Navigation Compose 2.9 with type-safe sealed class routes (73 destinations)
+- **Navigation:** Jetpack Navigation Compose 2.9 with type-safe sealed class routes (66 destinations)
 - **Minimum SDK:** Android 7.0 (API 24) - Wide device compatibility
 - **Target SDK:** Android 16 (API 36) - Latest Android features
 - **Compilation SDK:** 36 (Android 16)
@@ -608,7 +604,7 @@ Feel free to open an issue on GitHub for:
 
 ## 📊 Statistics
 
-- **65+ Professional Tools** organized into 3 categories across **75 screens**
+- **63 Professional Tools** organized into 3 categories (9 subcategories) across **66 screens**
 - **311+ Global Test Regions** across 14 cloud/CDN providers
 - **Real-time Monitoring** with live graphs and continuous ping
 - **Advanced Analytics** - Min/Max/Avg/Jitter/Packet Loss tracking
