@@ -139,7 +139,7 @@ Everything you need for network diagnostics, development, PDF management, code e
 **📄 PDF & Documents (5 tools):**
 - **PDF Viewer** - View and navigate PDF documents
 - **PDF Merge** - Combine multiple PDF files into one with multi-select import, drag-to-reorder, and full page preview before saving
-- **Image to PDF** - Convert images to PDF with multi-select import, drag-to-reorder, page size/orientation/margin/fit settings, and full page preview before export
+- **Image to PDF** - Convert images to PDF with multi-select import, drag-to-reorder, per-image rotation (90°/180°/270°), visual crop editor with draggable handles, page size/orientation/margin/fit settings, and full page preview before export
 - **Compress PDF** - Reduce PDF file size
 - **Slides to PDF** - Convert presentation slides (PPT) to PDF
 
@@ -250,6 +250,8 @@ CV Toolkit supports 18 languages:
 - Full page preview - swipe through all pages before saving the merged PDF
 
 **Image to PDF Improvements:**
+- **Image Rotation** - rotate any image 90°/180°/270° before conversion with one tap
+- **Visual Crop Editor** - crop images with draggable corner handles, dark overlay preview, and rule-of-thirds grid
 - Drag-to-reorder - long press and drag to rearrange image order
 - Full page preview - swipe through all pages with settings applied before exporting
 - Preview shows all pages (not just the first) with page counter and swipe navigation

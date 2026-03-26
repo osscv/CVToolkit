@@ -10,6 +10,8 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -23,18 +25,23 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import cv.toolkit.R
 import cv.toolkit.ads.BannerAd
-import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
@@ -49,7 +56,9 @@ private data class ImageItem(
     val id: Long,
     val uri: Uri,
     val name: String,
-    val thumbnail: Bitmap?
+    val thumbnail: Bitmap?,
+    val rotation: Int = 0,
+    val cropRect: RectF? = null
 )
 
 private enum class PageSize(val label: String, val widthPt: Int, val heightPt: Int) {
@@ -102,6 +111,7 @@ fun ImageToPdfScreen(navController: NavController) {
     var previewBitmaps by remember { mutableStateOf<List<Bitmap>>(emptyList()) }
     var pageSizeMenuExpanded by remember { mutableStateOf(false) }
     var showPreview by remember { mutableStateOf(false) }
+    var cropDialogImageId by remember { mutableStateOf<Long?>(null) }
 
     // Pending PDF bytes to be saved once the user picks a destination
     var pendingPdfBytes by remember { mutableStateOf<ByteArray?>(null) }
@@ -168,6 +178,30 @@ fun ImageToPdfScreen(navController: NavController) {
     if (showPreview) {
         BackHandler {
             showPreview = false
+        }
+    }
+
+    // Crop dialog
+    cropDialogImageId?.let { imageId ->
+        val imageItem = images.find { it.id == imageId }
+        if (imageItem != null) {
+            CropDialog(
+                context = context,
+                imageItem = imageItem,
+                onConfirm = { cropRect ->
+                    images = images.map {
+                        if (it.id == imageId) it.copy(cropRect = cropRect) else it
+                    }
+                    cropDialogImageId = null
+                },
+                onReset = {
+                    images = images.map {
+                        if (it.id == imageId) it.copy(cropRect = null) else it
+                    }
+                    cropDialogImageId = null
+                },
+                onDismiss = { cropDialogImageId = null }
+            )
         }
     }
 
@@ -431,7 +465,9 @@ fun ImageToPdfScreen(navController: NavController) {
                                         Image(
                                             bitmap = bmp.asImageBitmap(),
                                             contentDescription = item.name,
-                                            modifier = Modifier.fillMaxSize(),
+                                            modifier = Modifier
+                                                .fillMaxSize()
+                                                .graphicsLayer { rotationZ = item.rotation.toFloat() },
                                             contentScale = ContentScale.Crop
                                         )
                                     }
@@ -448,10 +484,59 @@ fun ImageToPdfScreen(navController: NavController) {
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
                                     )
-                                    Text(
-                                        "Page ${index + 1}",
-                                        style = MaterialTheme.typography.labelSmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Text(
+                                            "Page ${index + 1}",
+                                            style = MaterialTheme.typography.labelSmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                        if (item.rotation != 0) {
+                                            Text(
+                                                " \u00B7 ${item.rotation}\u00B0",
+                                                style = MaterialTheme.typography.labelSmall,
+                                                color = MaterialTheme.colorScheme.primary
+                                            )
+                                        }
+                                        if (item.cropRect != null) {
+                                            Text(
+                                                " \u00B7 Cropped",
+                                                style = MaterialTheme.typography.labelSmall,
+                                                color = MaterialTheme.colorScheme.primary
+                                            )
+                                        }
+                                    }
+                                }
+
+                                // Rotate
+                                IconButton(
+                                    onClick = {
+                                        images = images.map {
+                                            if (it.id == item.id) it.copy(rotation = (it.rotation + 90) % 360) else it
+                                        }
+                                    },
+                                    enabled = !isConverting,
+                                    modifier = Modifier.size(36.dp)
+                                ) {
+                                    Icon(
+                                        Icons.Filled.RotateRight,
+                                        "Rotate",
+                                        modifier = Modifier.size(20.dp),
+                                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+
+                                // Crop
+                                IconButton(
+                                    onClick = { cropDialogImageId = item.id },
+                                    enabled = !isConverting,
+                                    modifier = Modifier.size(36.dp)
+                                ) {
+                                    Icon(
+                                        Icons.Filled.Crop,
+                                        "Crop",
+                                        modifier = Modifier.size(20.dp),
+                                        tint = if (item.cropRect != null) MaterialTheme.colorScheme.primary
+                                               else MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 }
 
@@ -893,6 +978,266 @@ fun ImageToPdfScreen(navController: NavController) {
     }
 }
 
+@Composable
+private fun CropDialog(
+    context: Context,
+    imageItem: ImageItem,
+    onConfirm: (RectF) -> Unit,
+    onReset: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    val bitmap = remember {
+        val bmp = decodeFullBitmap(context, imageItem.uri, 1024) ?: return@remember null
+        if (imageItem.rotation != 0) {
+            val matrix = Matrix().apply { postRotate(imageItem.rotation.toFloat()) }
+            val rotated = Bitmap.createBitmap(bmp, 0, 0, bmp.width, bmp.height, matrix, true)
+            if (rotated !== bmp) bmp.recycle()
+            rotated
+        } else bmp
+    }
+
+    if (bitmap == null) {
+        onDismiss()
+        return
+    }
+
+    var cropLeft by remember { mutableFloatStateOf(imageItem.cropRect?.left ?: 0f) }
+    var cropTop by remember { mutableFloatStateOf(imageItem.cropRect?.top ?: 0f) }
+    var cropRight by remember { mutableFloatStateOf(imageItem.cropRect?.right ?: 1f) }
+    var cropBottom by remember { mutableFloatStateOf(imageItem.cropRect?.bottom ?: 1f) }
+    var activeHandle by remember { mutableIntStateOf(-1) }
+
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.85f),
+            shape = MaterialTheme.shapes.large
+        ) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(
+                    "Crop Image",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    "Drag corners to adjust crop area",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Spacer(Modifier.height(12.dp))
+
+                var imageDisplayRect by remember { mutableStateOf(android.graphics.Rect(0, 0, 0, 0)) }
+                val imageBitmap = remember(bitmap) { bitmap.asImageBitmap() }
+                val primaryColor = MaterialTheme.colorScheme.primary
+                val overlayColor = androidx.compose.ui.graphics.Color.Black.copy(alpha = 0.5f)
+                val handleOuterColor = androidx.compose.ui.graphics.Color.White
+                val gridColor = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.3f)
+
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .clip(MaterialTheme.shapes.medium)
+                        .background(androidx.compose.ui.graphics.Color(0xFF1A1A1A))
+                ) {
+                    androidx.compose.foundation.Canvas(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .pointerInput(Unit) {
+                                detectDragGestures(
+                                    onDragStart = { offset ->
+                                        val imgL = imageDisplayRect.left.toFloat()
+                                        val imgT = imageDisplayRect.top.toFloat()
+                                        val imgW = imageDisplayRect.width().toFloat()
+                                        val imgH = imageDisplayRect.height().toFloat()
+
+                                        val cL = imgL + cropLeft * imgW
+                                        val cT = imgT + cropTop * imgH
+                                        val cR = imgL + cropRight * imgW
+                                        val cB = imgT + cropBottom * imgH
+
+                                        val corners = listOf(
+                                            Offset(cL, cT),
+                                            Offset(cR, cT),
+                                            Offset(cL, cB),
+                                            Offset(cR, cB)
+                                        )
+
+                                        val closest = corners.withIndex().minByOrNull {
+                                            (offset - it.value).getDistance()
+                                        }
+
+                                        activeHandle = if (closest != null && (offset - closest.value).getDistance() < 80f) {
+                                            closest.index
+                                        } else if (offset.x in cL..cR && offset.y in cT..cB) {
+                                            4 // move entire box
+                                        } else {
+                                            -1
+                                        }
+                                    },
+                                    onDrag = { change, dragAmount ->
+                                        change.consume()
+                                        val imgW = imageDisplayRect.width().toFloat()
+                                        val imgH = imageDisplayRect.height().toFloat()
+                                        if (imgW <= 0 || imgH <= 0) return@detectDragGestures
+
+                                        val dx = dragAmount.x / imgW
+                                        val dy = dragAmount.y / imgH
+
+                                        when (activeHandle) {
+                                            0 -> {
+                                                cropLeft = (cropLeft + dx).coerceIn(0f, cropRight - 0.05f)
+                                                cropTop = (cropTop + dy).coerceIn(0f, cropBottom - 0.05f)
+                                            }
+                                            1 -> {
+                                                cropRight = (cropRight + dx).coerceIn(cropLeft + 0.05f, 1f)
+                                                cropTop = (cropTop + dy).coerceIn(0f, cropBottom - 0.05f)
+                                            }
+                                            2 -> {
+                                                cropLeft = (cropLeft + dx).coerceIn(0f, cropRight - 0.05f)
+                                                cropBottom = (cropBottom + dy).coerceIn(cropTop + 0.05f, 1f)
+                                            }
+                                            3 -> {
+                                                cropRight = (cropRight + dx).coerceIn(cropLeft + 0.05f, 1f)
+                                                cropBottom = (cropBottom + dy).coerceIn(cropTop + 0.05f, 1f)
+                                            }
+                                            4 -> {
+                                                val w = cropRight - cropLeft
+                                                val h = cropBottom - cropTop
+                                                val newLeft = (cropLeft + dx).coerceIn(0f, 1f - w)
+                                                val newTop = (cropTop + dy).coerceIn(0f, 1f - h)
+                                                cropLeft = newLeft
+                                                cropTop = newTop
+                                                cropRight = newLeft + w
+                                                cropBottom = newTop + h
+                                            }
+                                        }
+                                    },
+                                    onDragEnd = { activeHandle = -1 },
+                                    onDragCancel = { activeHandle = -1 }
+                                )
+                            }
+                    ) {
+                        // Calculate image display rect (fit within canvas)
+                        val scaleX = size.width / bitmap.width
+                        val scaleY = size.height / bitmap.height
+                        val scale = minOf(scaleX, scaleY)
+                        val imgW = bitmap.width * scale
+                        val imgH = bitmap.height * scale
+                        val imgL = (size.width - imgW) / 2f
+                        val imgT = (size.height - imgH) / 2f
+
+                        imageDisplayRect = android.graphics.Rect(
+                            imgL.toInt(), imgT.toInt(),
+                            (imgL + imgW).toInt(), (imgT + imgH).toInt()
+                        )
+
+                        // Draw image
+                        drawImage(
+                            image = imageBitmap,
+                            dstOffset = androidx.compose.ui.unit.IntOffset(imgL.toInt(), imgT.toInt()),
+                            dstSize = IntSize(imgW.toInt(), imgH.toInt())
+                        )
+
+                        // Crop box pixel coordinates
+                        val cL = imgL + cropLeft * imgW
+                        val cT = imgT + cropTop * imgH
+                        val cR = imgL + cropRight * imgW
+                        val cB = imgT + cropBottom * imgH
+
+                        // Dark overlay outside crop
+                        drawRect(overlayColor, Offset(imgL, imgT), Size(imgW, cT - imgT))
+                        drawRect(overlayColor, Offset(imgL, cB), Size(imgW, imgT + imgH - cB))
+                        drawRect(overlayColor, Offset(imgL, cT), Size(cL - imgL, cB - cT))
+                        drawRect(overlayColor, Offset(cR, cT), Size(imgL + imgW - cR, cB - cT))
+
+                        // Crop border
+                        drawRect(
+                            color = handleOuterColor,
+                            topLeft = Offset(cL, cT),
+                            size = Size(cR - cL, cB - cT),
+                            style = Stroke(width = 2f)
+                        )
+
+                        // Rule-of-thirds grid
+                        val thirdW = (cR - cL) / 3f
+                        val thirdH = (cB - cT) / 3f
+                        for (i in 1..2) {
+                            drawLine(gridColor, Offset(cL + thirdW * i, cT), Offset(cL + thirdW * i, cB), strokeWidth = 1f)
+                            drawLine(gridColor, Offset(cL, cT + thirdH * i), Offset(cR, cT + thirdH * i), strokeWidth = 1f)
+                        }
+
+                        // Corner handles
+                        val handleRadius = 8f
+                        listOf(
+                            Offset(cL, cT), Offset(cR, cT),
+                            Offset(cL, cB), Offset(cR, cB)
+                        ).forEach { corner ->
+                            drawCircle(handleOuterColor, handleRadius, corner)
+                            drawCircle(primaryColor, handleRadius - 2f, corner)
+                        }
+                    }
+                }
+
+                Spacer(Modifier.height(12.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    OutlinedButton(
+                        onClick = onReset,
+                        modifier = Modifier.weight(1f)
+                    ) { Text("Reset") }
+                    OutlinedButton(
+                        onClick = onDismiss,
+                        modifier = Modifier.weight(1f)
+                    ) { Text("Cancel") }
+                    Button(
+                        onClick = {
+                            if (cropLeft == 0f && cropTop == 0f && cropRight == 1f && cropBottom == 1f) {
+                                onReset()
+                            } else {
+                                onConfirm(RectF(cropLeft, cropTop, cropRight, cropBottom))
+                            }
+                        },
+                        modifier = Modifier.weight(1f)
+                    ) { Text("Apply") }
+                }
+            }
+        }
+    }
+}
+
+private fun applyTransforms(bitmap: Bitmap, rotation: Int, cropRect: RectF?): Bitmap {
+    var result = bitmap
+
+    // Apply rotation
+    if (rotation != 0) {
+        val matrix = Matrix().apply { postRotate(rotation.toFloat()) }
+        val rotated = Bitmap.createBitmap(result, 0, 0, result.width, result.height, matrix, true)
+        if (rotated !== result) result.recycle()
+        result = rotated
+    }
+
+    // Apply crop
+    if (cropRect != null) {
+        val x = (cropRect.left * result.width).toInt().coerceIn(0, result.width - 1)
+        val y = (cropRect.top * result.height).toInt().coerceIn(0, result.height - 1)
+        val w = ((cropRect.right - cropRect.left) * result.width).toInt()
+            .coerceAtLeast(1).coerceAtMost(result.width - x)
+        val h = ((cropRect.bottom - cropRect.top) * result.height).toInt()
+            .coerceAtLeast(1).coerceAtMost(result.height - y)
+        val cropped = Bitmap.createBitmap(result, x, y, w, h)
+        if (cropped !== result) result.recycle()
+        result = cropped
+    }
+
+    return result
+}
+
 private fun getDisplayName(context: Context, uri: Uri): String {
     var name = "Unknown"
     context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
@@ -1060,7 +1405,8 @@ private fun generatePreview(
     val (pageWidth, pageHeight) = resolvePageDimensions(pageSize, customWidthPt, customHeightPt, orientation)
     val margin = marginPreset.valuePt
 
-    val bitmap = decodeFullBitmap(context, imageItem.uri, 1024) ?: return null
+    val rawBitmap = decodeFullBitmap(context, imageItem.uri, 1024) ?: return null
+    val bitmap = applyTransforms(rawBitmap, imageItem.rotation, imageItem.cropRect)
 
     // Create a preview bitmap scaled down for display
     val previewScale = 2f // render at 2x points for decent preview resolution
@@ -1105,7 +1451,8 @@ private fun convertImagesToPdf(
 
     try {
         images.forEachIndexed { index, imageItem ->
-            val bitmap = decodeFullBitmap(context, imageItem.uri, 4096)
+            val rawBitmap = decodeFullBitmap(context, imageItem.uri, 4096)
+            val bitmap = rawBitmap?.let { applyTransforms(it, imageItem.rotation, imageItem.cropRect) }
             if (bitmap != null) {
                 val pageInfo = PdfDocument.PageInfo.Builder(pageWidth, pageHeight, index + 1).create()
                 val page = document.startPage(pageInfo)
