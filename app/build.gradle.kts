@@ -12,8 +12,8 @@ android {
         applicationId = "cv.toolkit"
         minSdk = 24
         targetSdk = 36
-        versionCode = 6
-        versionName = "6.0"
+        versionCode = 7
+        versionName = "7.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -86,6 +86,12 @@ dependencies {
 
     // Guava for ListenableFuture
     implementation(libs.guava)
+
+    // EXIF metadata support
+    implementation(libs.androidx.exifinterface)
+
+    // PDFBox for PDF encryption/password
+    implementation(libs.pdfbox.android)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

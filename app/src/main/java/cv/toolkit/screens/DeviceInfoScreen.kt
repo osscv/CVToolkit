@@ -301,7 +301,7 @@ private fun getScreenSection(context: Context): InfoSection {
 
     val refreshRate = try {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            context.display?.refreshRate?.toInt() ?: 60
+            context.display.refreshRate.toInt()
         } else {
             @Suppress("DEPRECATION")
             wm.defaultDisplay.refreshRate.toInt()

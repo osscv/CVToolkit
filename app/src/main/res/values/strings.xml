@@ -138,6 +138,26 @@
     <string name="slides_to_pdf_desc">Convert Slides/PPT to PDF</string>
     <string name="json_formatter_title">JSON Formatter</string>
     <string name="json_formatter_desc">Format, Minify &amp; Validate</string>
+    <string name="exif_viewer_title">EXIF Viewer</string>
+    <string name="exif_viewer_desc">View Image EXIF Metadata</string>
+    <string name="exif_remover_title">EXIF Remover</string>
+    <string name="exif_remover_desc">Strip EXIF Data for Privacy</string>
+    <string name="pdf_to_image_title">PDF to Image</string>
+    <string name="pdf_to_image_desc">Extract Pages as Images</string>
+    <string name="pdf_split_title">PDF Split</string>
+    <string name="pdf_split_desc">Split PDF into Pages</string>
+    <string name="pdf_password_title">PDF Password</string>
+    <string name="pdf_password_desc">Add/Remove PDF Protection</string>
+    <string name="image_resizer_title">Image Resizer</string>
+    <string name="image_resizer_desc">Resize with Social Presets</string>
+    <string name="image_format_converter_title">Image Converter</string>
+    <string name="image_format_converter_desc">Convert JPEG, PNG, WebP, BMP</string>
+    <string name="image_cropper_title">Image Cropper</string>
+    <string name="image_cropper_desc">Crop with Aspect Ratios</string>
+    <string name="color_picker_title">Color Picker</string>
+    <string name="color_picker_desc">Pick Colors from Images</string>
+    <string name="favicon_generator_title">Favicon Generator</string>
+    <string name="favicon_generator_desc">Generate Multi-size Favicons</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>

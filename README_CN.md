@@ -12,21 +12,21 @@ p# CV Toolkit
   [![Kotlin](https://img.shields.io/badge/Kotlin-2.3.20-blue.svg)](https://kotlinlang.org)
   [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-最新版-blue.svg)](https://developer.android.com/jetpack/compose)
 
-  [![下载 APK](https://img.shields.io/badge/下载-APK%20v6.0-brightgreen?style=for-the-badge&logo=android)](https://github.com/osscv/CVToolkit/raw/refs/heads/main/app/release/files/CVToolkit-V6-release.apk)
+  [![下载 APK](https://img.shields.io/badge/下载-APK%20v7.0-brightgreen?style=for-the-badge&logo=android)](https://github.com/osscv/CVToolkit/raw/refs/heads/main/app/release/files/CVToolkit-V7-release.apk)
 
   ---
 
   **⚠️ 重要提示：** 如果您使用此仓库，**必须**保留所有作者署名信息。
   **请勿删除**作者信息。详见[许可证与署名](#-许可证与署名)。
 
-  **版权所有 © 2024 [Khoo Lay Yang](https://www.dkly.net) - 保留所有权利**
+  **版权所有 © 2024-2026 [Khoo Lay Yang](https://www.dkly.net) - 保留所有权利**
 </div>
 
 ---
 
 ## 📱 关于
 
-**CV Toolkit** 是一款专业级多功能 Android 应用，专为网络诊断、云基础设施监控、系统信息查看和开发者实用工具而设计。采用现代 Android 技术（Kotlin 2.3.20 + Jetpack Compose）构建，在一个精美设计的应用中提供 **64 个强大工具，覆盖 67 个屏幕**。
+**CV Toolkit** 是一款专业级多功能 Android 应用，专为网络诊断、云基础设施监控、系统信息查看和开发者实用工具而设计。采用现代 Android 技术（Kotlin 2.3.20 + Jetpack Compose）构建，在一个精美设计的应用中提供 **74 个强大工具，覆盖 77 个屏幕**。
 
 **适用人群：**
 - 👨‍💻 **网络管理员** - 全面的网络诊断与监控工具
@@ -59,8 +59,8 @@ CV Toolkit 的核心功能 - 专业级网络监控工具：
 - **边缘节点检测** 支持 Cloudflare、CloudFront 和阿里云
 - **后台服务** 支持不间断监控
 
-### 📱 **64 个专业工具**
-涵盖网络诊断、开发工具、PDF 管理、代码编辑和系统分析，一应俱全。
+### 📱 **74 个专业工具**
+涵盖网络诊断、开发工具、PDF 管理、图像处理、代码编辑和系统分析，一应俱全。
 
 ### 🔒 **隐私优先设计**
 - 零数据收集
@@ -105,7 +105,7 @@ CV Toolkit 的核心功能 - 专业级网络监控工具：
   - Lightsail
   - Fastly
 
-### 🛠️ 实用工具（43 个工具，分为 9 个子类别）
+### 🛠️ 实用工具（53 个工具，分为 9 个子类别）
 
 **🔄 编码与解码（8 个工具）：**
 - **JSON 格式化工具** - 格式化、压缩和验证 JSON，支持语法高亮、统计信息（键/值计数、深度、类型）、可配置缩进和一键复制
@@ -136,11 +136,14 @@ CV Toolkit 的核心功能 - 专业级网络监控工具：
 - **Robots.txt 分析器** - 获取并解析任意域名的 robots.txt 文件
 - **站点地图查看器** - 解析和浏览 XML 站点地图
 
-**📄 PDF 与文档（5 个工具）：**
+**📄 PDF 与文档（8 个工具）：**
 - **PDF 查看器** - 查看和浏览 PDF 文档
 - **PDF 合并** - 将多个 PDF 文件合并为一个
+- **PDF 拆分** - 将 PDF 拆分为单页或自定义页面范围，支持可视化页面缩略图、三种拆分模式（逐页/页面范围/选择页面）和页面选择/取消选择
+- **PDF 转图片** - 将 PDF 页面导出为高质量 PNG 或 JPEG 图片，支持 DPI 配置（72/150/200/300）、JPEG 质量滑块、逐页预览（含尺寸和文件大小）及单页保存
 - **图片转 PDF** - 将图片转换为 PDF 文档，支持多选导入、拖拽排序、单张图片旋转（90°/180°/270°）、可视化裁剪编辑器（可拖拽角点手柄）、页面大小/方向/边距/适配设置，以及导出前全页预览
 - **PDF 压缩** - 减小 PDF 文件大小
+- **PDF 密码** - 为 PDF 添加或移除密码保护，支持 128 位加密、可配置权限（打印、复制、修改）、自动检测加密文件和密码验证
 - **幻灯片转 PDF** - 将演示文稿（PPT）转换为 PDF
 
 **✏️ 编辑器（4 个工具）：**
@@ -149,10 +152,17 @@ CV Toolkit 的核心功能 - 专业级网络监控工具：
 - **Markdown 预览** - 渲染和预览 Markdown 内容
 - **SVG 查看器与编辑器** - 查看和编辑 SVG 矢量图形
 
-**🎨 媒体与颜色（3 个工具）：**
+**🎨 媒体与颜色（10 个工具）：**
 - **图片压缩** - 在保持质量的同时减小图片文件大小
+- **图片调整大小** - 将图片调整为精确尺寸，支持社交媒体预设（Instagram、Facebook、Twitter/X、YouTube、LinkedIn、TikTok、Pinterest、WhatsApp）和常见尺寸（HD、Full HD、2K、4K、A4），支持锁定宽高比
+- **图片裁剪** - 裁剪图片，支持 10 种宽高比预设（自由、1:1、4:3、3:4、16:9、9:16、3:2、2:3、5:4、4:5），可视化裁剪叠层含三分法网格、可拖拽裁剪区域和角点手柄
+- **图片格式转换** - 在 JPEG、PNG、WebP（有损/无损）和 BMP 之间转换，有损格式支持质量控制，显示转换前后大小对比
+- **EXIF 查看器** - 查看详细的图片 EXIF 元数据，按类别分组：相机（品牌、型号、镜头）、图像详情（尺寸、分辨率、色彩空间、方向）、拍摄设置（曝光、光圈、ISO、焦距、闪光灯、测光模式）、日期时间、GPS 位置（经纬度、海拔）和版权信息。支持一键复制所有数据
+- **EXIF 移除器** - 批量移除图片 EXIF 元数据以保护隐私，显示 EXIF 标签数量，输出 95% 质量的清洁 JPEG
+- **取色器** - 点击图片任意位置提取颜色，支持 HEX、RGB、RGBA 和 HSL 值、单值复制按钮、颜色历史调色板和全部复制功能
 - **颜色转换器** - HEX、RGB、HSL 和 CMYK 颜色格式之间的转换
 - **调色板生成器** - 生成和探索调色板
+- **Favicon 生成器** - 从图片生成 15 种标准尺寸（16x16 至 512x512）的网站图标，适用于浏览器标签、Apple Touch Icon、Android Chrome、PWA、Windows 磁贴等，支持全选/全不选、逐个预览和按尺寸保存
 
 **🔢 转换器与计算器（5 个工具）：**
 - **IP 计算器** - 不同 IP 格式之间的转换
@@ -202,7 +212,7 @@ CV Toolkit 的核心功能 - 专业级网络监控工具：
 - **数据持久化：**
   - SQLite（IP 查询历史存储）
   - SharedPreferences（语言设置、广告使用追踪）
-- **导航：** Jetpack Navigation Compose 2.9.7，基于密封类的类型安全路由（67 个目的地）
+- **导航：** Jetpack Navigation Compose 2.9.7，基于密封类的类型安全路由（77 个目的地）
 - **最低 SDK：** Android 7.0（API 24）- 广泛设备兼容
 - **目标 SDK：** Android 16（API 36）- 最新 Android 特性
 - **编译 SDK：** 36（Android 16）
@@ -371,7 +381,7 @@ cd CVToolkit
 
 ## 📝 许可证与署名
 
-版权所有 © 2024 Khoo Lay Yang。保留所有权利。
+版权所有 © 2024-2026 Khoo Lay Yang。保留所有权利。
 
 本项目为专有软件。未经作者明确许可，禁止未经授权的复制、分发、修改或使用。
 

@@ -12,21 +12,21 @@
   [![Kotlin](https://img.shields.io/badge/Kotlin-2.3.20-blue.svg)](https://kotlinlang.org)
   [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-Latest-blue.svg)](https://developer.android.com/jetpack/compose)
 
-  [![Download APK](https://img.shields.io/badge/Download-APK%20v6.0-brightgreen?style=for-the-badge&logo=android)](https://github.com/osscv/CVToolkit/raw/refs/heads/main/app/release/files/CVToolkit-V6-release.apk)
+  [![Download APK](https://img.shields.io/badge/Download-APK%20v7.0-brightgreen?style=for-the-badge&logo=android)](https://github.com/osscv/CVToolkit/raw/refs/heads/main/app/release/files/CVToolkit-V7-release.apk)
 
   ---
 
   **⚠️ IMPORTANT:** If you use this repository, you **MUST** keep all author attribution intact.
   **DO NOT REMOVE** the author credits. See [License & Attribution](#-license--attribution) for details.
 
-  **Copyright © 2024 [Khoo Lay Yang](https://www.dkly.net) - All Rights Reserved**
+  **Copyright © 2024-2026 [Khoo Lay Yang](https://www.dkly.net) - All Rights Reserved**
 </div>
 
 ---
 
 ## 📱 About
 
-**CV Toolkit** is a professional-grade, all-in-one Android application designed for network diagnostics, cloud infrastructure monitoring, system information, and a comprehensive suite of developer utilities. Built with modern Android technologies (Kotlin 2.3.20 + Jetpack Compose), it delivers **64 powerful tools across 67 screens** in one beautifully designed app.
+**CV Toolkit** is a professional-grade, all-in-one Android application designed for network diagnostics, cloud infrastructure monitoring, system information, and a comprehensive suite of developer utilities. Built with modern Android technologies (Kotlin 2.3.20 + Jetpack Compose), it delivers **74 powerful tools across 77 screens** in one beautifully designed app.
 
 **Perfect for:**
 - 👨‍💻 **Network Administrators** - Comprehensive network diagnostics and monitoring
@@ -59,8 +59,8 @@ The crown jewel of CV Toolkit - a professional-grade network monitoring tool fea
 - **Edge location detection** for Cloudflare, CloudFront, and Alibaba Cloud
 - **Background service** support for uninterrupted monitoring
 
-### 📱 **64 Professional Tools**
-Everything you need for network diagnostics, development, PDF management, code editing, and system analysis in one app.
+### 📱 **74 Professional Tools**
+Everything you need for network diagnostics, development, PDF management, image processing, code editing, and system analysis in one app.
 
 ### 🔒 **Privacy-First Design**
 - Zero data collection
@@ -105,7 +105,7 @@ Everything you need for network diagnostics, development, PDF management, code e
   - Lightsail
   - Fastly
 
-### 🛠️ Utility Tools (43 Tools across 9 Categories)
+### 🛠️ Utility Tools (53 Tools across 9 Categories)
 
 **🔄 Encoders & Decoders (8 tools):**
 - **JSON Formatter/Validator** - Format, minify, and validate JSON with syntax highlighting, statistics (key/value counts, depth, types), configurable indentation, and one-tap copy
@@ -136,11 +136,14 @@ Everything you need for network diagnostics, development, PDF management, code e
 - **Robots.txt Analyzer** - Fetch and parse robots.txt files from any domain
 - **Sitemap Viewer** - Parse and browse XML sitemaps
 
-**📄 PDF & Documents (5 tools):**
+**📄 PDF & Documents (8 tools):**
 - **PDF Viewer** - View and navigate PDF documents
 - **PDF Merge** - Combine multiple PDF files into one with multi-select import, drag-to-reorder, and full page preview before saving
+- **PDF Split** - Split PDF into individual pages or custom page ranges with visual page thumbnails, three split modes (Each Page, Page Range, Select Pages), and page selection/deselection
+- **PDF to Image** - Extract PDF pages as high-quality PNG or JPEG images with configurable DPI (72/150/200/300), JPEG quality slider, per-page preview with dimensions and file size, and individual page saving
 - **Image to PDF** - Convert images to PDF with multi-select import, drag-to-reorder, per-image rotation (90°/180°/270°), visual crop editor with draggable handles, page size/orientation/margin/fit settings, and full page preview before export
 - **Compress PDF** - Reduce PDF file size
+- **PDF Password** - Add or remove password protection from PDFs with 128-bit encryption, configurable permissions (printing, copying, modifying), auto-detection of encrypted files, and password verification
 - **Slides to PDF** - Convert presentation slides (PPT) to PDF
 
 **✏️ Editors (4 tools):**
@@ -149,10 +152,17 @@ Everything you need for network diagnostics, development, PDF management, code e
 - **Markdown Preview** - Render and preview markdown content
 - **SVG Viewer & Editor** - View and edit SVG vector graphics
 
-**🎨 Media & Colors (3 tools):**
+**🎨 Media & Colors (10 tools):**
 - **Compress Image** - Reduce image file size while maintaining quality
+- **Image Resizer** - Resize images to exact dimensions with social media presets (Instagram, Facebook, Twitter/X, YouTube, LinkedIn, TikTok, Pinterest, WhatsApp) and common sizes (HD, Full HD, 2K, 4K, A4), with aspect ratio locking
+- **Image Cropper** - Crop images with 10 aspect ratio presets (Free, 1:1, 4:3, 3:4, 16:9, 9:16, 3:2, 2:3, 5:4, 4:5), visual crop overlay with rule-of-thirds grid, draggable crop area, and corner handles
+- **Image Format Converter** - Convert between JPEG, PNG, WebP (Lossy/Lossless), and BMP with quality control for lossy formats and before/after size comparison
+- **EXIF Viewer** - View detailed image EXIF metadata organized by category: Camera (make, model, lens), Image Details (dimensions, resolution, color space, orientation), Shooting Settings (exposure, aperture, ISO, focal length, flash, metering), Date & Time, GPS Location (lat/long, altitude), and Copyright info. Copy all data to clipboard
+- **EXIF Remover** - Strip EXIF metadata from images for privacy with batch processing support, EXIF tag count display, and clean JPEG output at 95% quality
+- **Color Picker** - Pick colors from any image by tapping, with HEX, RGB, RGBA, and HSL values, per-value copy buttons, color history palette, and copy-all functionality
 - **Color Converter** - Convert between HEX, RGB, HSL, and CMYK color formats
 - **Color Palette Generator** - Generate and explore color palettes
+- **Favicon Generator** - Generate favicons from images in 15 standard sizes (16x16 to 512x512) for browser tabs, Apple Touch Icons, Android Chrome, PWA, Windows tiles, and more, with select all/none, individual previews, and per-size saving
 
 **🔢 Converters & Calculators (5 tools):**
 - **IP Calculator** - Convert between different IP formats
@@ -202,7 +212,7 @@ Everything you need for network diagnostics, development, PDF management, code e
 - **Data Persistence:**
   - SQLite (IP lookup history storage)
   - SharedPreferences (Language settings, ad usage tracking)
-- **Navigation:** Jetpack Navigation Compose 2.9.7 with type-safe sealed class routes (67 destinations)
+- **Navigation:** Jetpack Navigation Compose 2.9.7 with type-safe sealed class routes (77 destinations)
 - **Minimum SDK:** Android 7.0 (API 24) - Wide device compatibility
 - **Target SDK:** Android 16 (API 36) - Latest Android features
 - **Compilation SDK:** 36 (Android 16)
@@ -241,6 +251,22 @@ CV Toolkit supports 18 languages:
 ---
 
 ## 🆕 What's New - Latest Updates
+
+### V7.0 - Image & PDF Powerhouse 🖼️📄
+
+**New Image & Media Tools (7 tools):**
+- **Image Resizer** - Resize images to exact dimensions with 12 social media presets and 10 common size presets, aspect ratio locking
+- **Image Cropper** - Crop images with 10 aspect ratio presets, visual overlay with rule-of-thirds grid and corner handles
+- **Image Format Converter** - Convert between JPEG, PNG, WebP (Lossy/Lossless), and BMP with quality slider
+- **EXIF Viewer** - View all EXIF metadata (camera, shooting settings, GPS, dates, copyright) organized by category
+- **EXIF Remover** - Batch strip EXIF data from images for privacy protection
+- **Color Picker** - Tap on any image to extract colors with HEX, RGB, RGBA, HSL values and color history
+- **Favicon Generator** - Generate favicons in 15 standard sizes (16x16 to 512x512) for websites and apps
+
+**New PDF Tools (3 tools):**
+- **PDF Split** - Split PDFs by page range or select individual pages with visual thumbnails
+- **PDF to Image** - Extract pages as PNG/JPEG at configurable DPI (72-300)
+- **PDF Password** - Add 128-bit encryption or remove password protection with configurable permissions
 
 ### V6.0 - PDF & Document Tools Enhanced 📄
 
@@ -573,7 +599,7 @@ All contributions will be reviewed to ensure compliance with these requirements.
 
 ## 📝 License & Attribution
 
-Copyright © 2024 Khoo Lay Yang. All Rights Reserved.
+Copyright © 2024-2026 Khoo Lay Yang. All Rights Reserved.
 
 This project is proprietary software. Unauthorized copying, distribution, modification, or use of this software is prohibited without explicit permission from the author.
 
@@ -582,7 +608,7 @@ This project is proprietary software. Unauthorized copying, distribution, modifi
 **IMPORTANT:** If you use, fork, or modify this repository, you **MUST**:
 
 1. **Keep all author attribution intact** - Do not remove or modify:
-   - The copyright notice "Copyright © 2024 Khoo Lay Yang"
+   - The copyright notice "Copyright © 2024-2026 Khoo Lay Yang"
    - Author information (Name: Khoo Lay Yang, Website: www.dkly.net)
    - "Made with ❤️ by Khoo Lay Yang" footer in the README
    - Author credits in the app's "About Author" section
@@ -632,6 +658,8 @@ Feel free to open an issue on GitHub for:
 - [CameraX](https://developer.android.com/training/camerax) - Camera API
 - [Coil](https://coil-kt.github.io/coil/) - Image loading with SVG support
 - [OkHttp](https://square.github.io/okhttp/) - HTTP client
+- [AndroidX ExifInterface](https://developer.android.com/jetpack/androidx/releases/exifinterface) - EXIF metadata reading
+- [PDFBox Android](https://github.com/TomRoush/PdfBox-Android) - PDF encryption and password protection
 - [dkly DATAHUB](https://data.dkly.net) - IP lookup services
 - All cloud providers for their global infrastructure
 
@@ -639,7 +667,7 @@ Feel free to open an issue on GitHub for:
 
 ## 📊 Statistics
 
-- **64 Professional Tools** organized into 3 categories (9 subcategories) across **67 screens**
+- **74 Professional Tools** organized into 3 categories (9 subcategories) across **77 screens**
 - **311+ Global Test Regions** across 14 cloud/CDN providers
 - **Real-time Monitoring** with live graphs and continuous ping
 - **Advanced Analytics** - Min/Max/Avg/Jitter/Packet Loss tracking

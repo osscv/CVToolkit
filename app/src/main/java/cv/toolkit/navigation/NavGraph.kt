@@ -74,6 +74,16 @@ sealed class Screen(val route: String) {
     object PasswordStrengthChecker : Screen("password_strength_checker")
     object DnsBenchmark : Screen("dns_benchmark")
     object JsonFormatter : Screen("json_formatter")
+    object ExifViewer : Screen("exif_viewer")
+    object ExifRemover : Screen("exif_remover")
+    object PdfToImage : Screen("pdf_to_image")
+    object PdfSplit : Screen("pdf_split")
+    object PdfPassword : Screen("pdf_password")
+    object ImageResizer : Screen("image_resizer")
+    object ImageFormatConverter : Screen("image_format_converter")
+    object ImageCropper : Screen("image_cropper")
+    object ColorPicker : Screen("color_picker")
+    object FaviconGenerator : Screen("favicon_generator")
 }
 
 @Composable
@@ -348,6 +358,46 @@ fun NavGraph(navController: NavHostController) {
 
         composable(Screen.JsonFormatter.route) {
             JsonFormatterScreen(navController = navController)
+        }
+
+        composable(Screen.ExifViewer.route) {
+            ExifViewerScreen(navController = navController)
+        }
+
+        composable(Screen.ExifRemover.route) {
+            ExifRemoverScreen(navController = navController)
+        }
+
+        composable(Screen.PdfToImage.route) {
+            PdfToImageScreen(navController = navController)
+        }
+
+        composable(Screen.PdfSplit.route) {
+            PdfSplitScreen(navController = navController)
+        }
+
+        composable(Screen.PdfPassword.route) {
+            PdfPasswordScreen(navController = navController)
+        }
+
+        composable(Screen.ImageResizer.route) {
+            ImageResizerScreen(navController = navController)
+        }
+
+        composable(Screen.ImageFormatConverter.route) {
+            ImageFormatConverterScreen(navController = navController)
+        }
+
+        composable(Screen.ImageCropper.route) {
+            ImageCropperScreen(navController = navController)
+        }
+
+        composable(Screen.ColorPicker.route) {
+            ColorPickerScreen(navController = navController)
+        }
+
+        composable(Screen.FaviconGenerator.route) {
+            FaviconGeneratorScreen(navController = navController)
         }
     }
 }

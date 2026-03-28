@@ -18,7 +18,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -518,7 +518,7 @@ fun ImageToPdfScreen(navController: NavController) {
                                     modifier = Modifier.size(36.dp)
                                 ) {
                                     Icon(
-                                        Icons.Filled.RotateRight,
+                                        Icons.AutoMirrored.Filled.RotateRight,
                                         "Rotate",
                                         modifier = Modifier.size(20.dp),
                                         tint = MaterialTheme.colorScheme.onSurfaceVariant

@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -211,7 +211,7 @@ fun JsonFormatterScreen(navController: NavController) {
                     modifier = Modifier.weight(1f),
                     enabled = inputText.isNotBlank()
                 ) {
-                    Icon(Icons.Filled.FormatIndentIncrease, null, modifier = Modifier.size(18.dp))
+                    Icon(Icons.AutoMirrored.Filled.FormatIndentIncrease, null, modifier = Modifier.size(18.dp))
                     Spacer(Modifier.width(4.dp))
                     Text("Format")
                 }
@@ -338,7 +338,7 @@ fun JsonFormatterScreen(navController: NavController) {
                                     showOutput = false
                                     stats = null
                                 }) {
-                                    Icon(Icons.Filled.Input, "Use as input", modifier = Modifier.size(20.dp))
+                                    Icon(Icons.AutoMirrored.Filled.Input, "Use as input", modifier = Modifier.size(20.dp))
                                 }
                             }
                         }

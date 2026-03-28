@@ -122,8 +122,11 @@ fun MainScreen(navController: NavController) {
     val pdfTools = listOf(
         ToolItem(stringResource(R.string.pdf_viewer_title), stringResource(R.string.pdf_viewer_desc), Icons.Filled.PictureAsPdf, Screen.PdfViewer.route),
         ToolItem(stringResource(R.string.pdf_merge_title), stringResource(R.string.pdf_merge_desc), Icons.AutoMirrored.Filled.MergeType, Screen.PdfMerge.route),
+        ToolItem(stringResource(R.string.pdf_split_title), stringResource(R.string.pdf_split_desc), Icons.Filled.ContentCut, Screen.PdfSplit.route),
+        ToolItem(stringResource(R.string.pdf_to_image_title), stringResource(R.string.pdf_to_image_desc), Icons.Filled.BurstMode, Screen.PdfToImage.route),
         ToolItem(stringResource(R.string.image_to_pdf_title), stringResource(R.string.image_to_pdf_desc), Icons.Filled.PhotoLibrary, Screen.ImageToPdf.route),
         ToolItem(stringResource(R.string.compress_pdf_title), stringResource(R.string.compress_pdf_desc), Icons.Filled.Compress, Screen.CompressPdf.route),
+        ToolItem(stringResource(R.string.pdf_password_title), stringResource(R.string.pdf_password_desc), Icons.Filled.Lock, Screen.PdfPassword.route),
         ToolItem(stringResource(R.string.slides_to_pdf_title), stringResource(R.string.slides_to_pdf_desc), Icons.Filled.Slideshow, Screen.SlidesToPdf.route)
     )
 
@@ -138,8 +141,15 @@ fun MainScreen(navController: NavController) {
     // Media & Image tools
     val mediaTools = listOf(
         ToolItem(stringResource(R.string.compress_image_title), stringResource(R.string.compress_image_desc), Icons.Filled.PhotoSizeSelectLarge, Screen.CompressImage.route),
+        ToolItem(stringResource(R.string.image_resizer_title), stringResource(R.string.image_resizer_desc), Icons.Filled.AspectRatio, Screen.ImageResizer.route),
+        ToolItem(stringResource(R.string.image_cropper_title), stringResource(R.string.image_cropper_desc), Icons.Filled.Crop, Screen.ImageCropper.route),
+        ToolItem(stringResource(R.string.image_format_converter_title), stringResource(R.string.image_format_converter_desc), Icons.Filled.SwapHoriz, Screen.ImageFormatConverter.route),
+        ToolItem(stringResource(R.string.exif_viewer_title), stringResource(R.string.exif_viewer_desc), Icons.Filled.ImageSearch, Screen.ExifViewer.route),
+        ToolItem(stringResource(R.string.exif_remover_title), stringResource(R.string.exif_remover_desc), Icons.Filled.CleaningServices, Screen.ExifRemover.route),
+        ToolItem(stringResource(R.string.color_picker_title), stringResource(R.string.color_picker_desc), Icons.Filled.Colorize, Screen.ColorPicker.route),
         ToolItem(stringResource(R.string.color_converter_title), stringResource(R.string.color_converter_desc), Icons.Filled.Palette, Screen.ColorConverter.route),
-        ToolItem(stringResource(R.string.color_palette_title), stringResource(R.string.color_palette_desc), Icons.Filled.ColorLens, Screen.ColorPalette.route)
+        ToolItem(stringResource(R.string.color_palette_title), stringResource(R.string.color_palette_desc), Icons.Filled.ColorLens, Screen.ColorPalette.route),
+        ToolItem(stringResource(R.string.favicon_generator_title), stringResource(R.string.favicon_generator_desc), Icons.Filled.Web, Screen.FaviconGenerator.route)
     )
 
     // Converter & Calculator tools
