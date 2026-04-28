@@ -23,6 +23,7 @@
 </div>
 
 ---
+  <img src="https://www.dkly.net/uploads/projects/project_69f0f707e4ed9.png" alt="CV Toolkit Poster" width="1920"/>
 
 ## 📱 About
 
