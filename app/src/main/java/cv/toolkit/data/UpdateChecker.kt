@@ -3,6 +3,7 @@ package cv.toolkit.data
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.provider.Settings
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import kotlinx.coroutines.Dispatchers
@@ -52,6 +53,14 @@ object UpdateChecker {
     fun openDownloadUrl(context: Context, url: String) {
         if (url.isBlank()) return
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        context.startActivity(intent)
+    }
+
+    fun openAppDetailsSettings(context: Context) {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+            data = Uri.fromParts("package", context.packageName, null)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
         context.startActivity(intent)
     }
 }
