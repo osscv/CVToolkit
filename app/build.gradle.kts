@@ -12,8 +12,8 @@ android {
         applicationId = "cv.toolkit"
         minSdk = 24
         targetSdk = 36
-        versionCode = 7
-        versionName = "7.0"
+        versionCode = 10
+        versionName = "10.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -92,6 +92,14 @@ dependencies {
 
     // PDFBox for PDF encryption/password
     implementation(libs.pdfbox.android)
+
+    // WebView asset loader
+    implementation(libs.androidx.webkit)
+
+    // GTFS Realtime (protobuf) for transit vehicle positions
+    implementation(libs.protobuf.java)
+    implementation(libs.gtfs.realtime.bindings)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

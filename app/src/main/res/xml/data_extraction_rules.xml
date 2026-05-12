@@ -5,10 +5,10 @@
 -->
 <data-extraction-rules>
     <cloud-backup>
-        <!-- TODO: Use <include> and <exclude> to control what is backed up.
-        <include .../>
-        <exclude .../>
-        -->
+        <!-- IP lookup history is privacy-sensitive, exclude from cloud backup -->
+        <exclude domain="database" path="/" />
+        <!-- Ad usage tracking is device-specific, exclude from backup -->
+        <exclude domain="sharedpref" path="ad_usage_prefs.xml" />
     </cloud-backup>
     <!--
     <device-transfer>

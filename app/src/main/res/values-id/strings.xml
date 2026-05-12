@@ -137,6 +137,25 @@
     <string name="slides_to_pdf_title">Slide ke PDF</string>
     <string name="slides_to_pdf_desc">Konversi Slide/PPT ke PDF</string>
 
+    <string name="gif_maker_title">Pembuat GIF</string>
+    <string name="gif_maker_desc">Gambar ke GIF &amp; Video ke GIF</string>
+    <string name="photo_collage_title">Kolase Foto</string>
+    <string name="photo_collage_desc">Susun Foto dalam Tata Letak</string>
+    <string name="image_watermark_title">Tanda Air Gambar</string>
+    <string name="image_watermark_desc">Tambah Tanda Air Teks/Gambar</string>
+    <string name="battery_info_title">Info Baterai</string>
+    <string name="battery_info_desc">Kesehatan, Suhu, Tegangan &amp; Siklus</string>
+    <string name="display_info_title">Info Layar</string>
+    <string name="display_info_desc">Resolusi, DPI, HDR &amp; Refresh</string>
+    <string name="storage_analyzer_title">Penganalisis Penyimpanan</string>
+    <string name="storage_analyzer_desc">Rincian Penyimpanan &amp; RAM</string>
+    <string name="bluetooth_scanner_title">Pemindai Bluetooth</string>
+    <string name="bluetooth_scanner_desc">Temukan Perangkat BT &amp; BLE</string>
+    <string name="gps_location_title">GPS / Lokasi</string>
+    <string name="gps_location_desc">Koordinat, Kecepatan &amp; Satelit</string>
+    <string name="nfc_reader_title">Pembaca NFC</string>
+    <string name="nfc_reader_desc">Baca &amp; Tampilkan Tag NFC</string>
+
     <!-- Settings -->
     <string name="settings_title">Pengaturan</string>
     <string name="language_title">Bahasa</string>
@@ -152,4 +171,34 @@
     <string name="back">Kembali</string>
     <string name="coming_soon">Segera Hadir</string>
     <string name="feature_in_development">Fitur ini sedang dikembangkan</string>
+
+    <!-- Text & Productivity -->
+    <string name="pomodoro_timer_title">Timer Pomodoro</string>
+    <string name="pomodoro_timer_desc">Timer fokus dengan interval</string>
+    <string name="random_generator_title">Generator Acak</string>
+    <string name="random_generator_desc">Angka, teks, warna, UUID</string>
+    <string name="note_pad_title">Catatan</string>
+    <string name="note_pad_desc">Catatan cepat tersimpan lokal</string>
+    <string name="text_case_converter_title">Konverter Huruf</string>
+    <string name="text_case_converter_desc">BESAR, kecil, unta, ular</string>
+    <string name="image_bg_remover_title">Hapus Latar Belakang</string>
+    <string name="image_bg_remover_desc">Hapus latar belakang gambar</string>
+    <string name="image_filters_title">Filter Gambar</string>
+    <string name="image_filters_desc">Abu-abu, sepia, blur &amp; lainnya</string>
+    <string name="meme_generator_title">Pembuat Meme</string>
+    <string name="meme_generator_desc">Tambahkan teks pada gambar</string>
+    <string name="screenshot_stitcher_title">Gabung Screenshot</string>
+    <string name="screenshot_stitcher_desc">Gabungkan beberapa screenshot jadi satu</string>
+    <string name="image_rotate_flip_title">Putar &amp; Balik</string>
+    <string name="image_rotate_flip_desc">Putar 90/180/270 &amp; balik</string>
+    <string name="currency_converter_title">Konverter Mata Uang</string>
+    <string name="currency_converter_desc">Kurs real-time</string>
+    <string name="date_calculator_title">Kalkulator Tanggal</string>
+    <string name="date_calculator_desc">Selisih hari, umur, tambah/kurang</string>
+    <string name="aspect_ratio_calc_title">Rasio Aspek</string>
+    <string name="aspect_ratio_calc_desc">Hitung &amp; skalakan rasio</string>
+    <string name="number_base_converter_title">Basis Bilangan</string>
+    <string name="number_base_converter_desc">Konversi antar basis 2-36</string>
+    <string name="scientific_calc_title">Kalkulator Ilmiah</string>
+    <string name="scientific_calc_desc">Fungsi matematika lanjutan</string>
 </resources>

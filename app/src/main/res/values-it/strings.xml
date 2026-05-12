@@ -137,6 +137,25 @@
     <string name="slides_to_pdf_title">Diapositive in PDF</string>
     <string name="slides_to_pdf_desc">Converti diapositive/PPT in PDF</string>
 
+    <string name="gif_maker_title">Creatore GIF</string>
+    <string name="gif_maker_desc">Immagini in GIF &amp; Video in GIF</string>
+    <string name="photo_collage_title">Collage Foto</string>
+    <string name="photo_collage_desc">Disponi le foto in layout</string>
+    <string name="image_watermark_title">Filigrana Immagine</string>
+    <string name="image_watermark_desc">Aggiungi filigrane testo/immagine</string>
+    <string name="battery_info_title">Info batteria</string>
+    <string name="battery_info_desc">Salute, Temp., Tensione &amp; Cicli</string>
+    <string name="display_info_title">Info schermo</string>
+    <string name="display_info_desc">Risoluzione, DPI, HDR &amp; Frequenza</string>
+    <string name="storage_analyzer_title">Analizzatore di memoria</string>
+    <string name="storage_analyzer_desc">Dettagli memoria &amp; RAM</string>
+    <string name="bluetooth_scanner_title">Scanner Bluetooth</string>
+    <string name="bluetooth_scanner_desc">Scopri dispositivi BT &amp; BLE</string>
+    <string name="gps_location_title">GPS / Posizione</string>
+    <string name="gps_location_desc">Coordinate, Velocità &amp; Satelliti</string>
+    <string name="nfc_reader_title">Lettore NFC</string>
+    <string name="nfc_reader_desc">Leggi &amp; visualizza tag NFC</string>
+
     <!-- Settings -->
     <string name="settings_title">Impostazioni</string>
     <string name="language_title">Lingua</string>

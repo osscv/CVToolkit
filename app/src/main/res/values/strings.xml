@@ -159,6 +159,132 @@
     <string name="favicon_generator_title">Favicon Generator</string>
     <string name="favicon_generator_desc">Generate Multi-size Favicons</string>
 
+    <string name="gif_maker_title">GIF Maker</string>
+    <string name="gif_maker_desc">Images to GIF &amp; Video to GIF</string>
+    <string name="photo_collage_title">Photo Collage</string>
+    <string name="photo_collage_desc">Arrange Photos into Layouts</string>
+    <string name="image_watermark_title">Image Watermark</string>
+    <string name="image_watermark_desc">Add Text/Image Watermarks</string>
+
+    <string name="battery_info_title">Battery Info</string>
+    <string name="battery_info_desc">Health, Temp, Voltage &amp; Cycles</string>
+    <string name="display_info_title">Display Info</string>
+    <string name="display_info_desc">Resolution, DPI, HDR &amp; Refresh</string>
+    <string name="storage_analyzer_title">Storage Analyzer</string>
+    <string name="storage_analyzer_desc">Storage &amp; RAM Breakdown</string>
+    <string name="bluetooth_scanner_title">Bluetooth Scanner</string>
+    <string name="bluetooth_scanner_desc">Discover BT &amp; BLE Devices</string>
+    <string name="gps_location_title">GPS / Location</string>
+    <string name="gps_location_desc">Coordinates, Speed &amp; Satellites</string>
+    <string name="nfc_reader_title">NFC Reader</string>
+    <string name="nfc_reader_desc">Read &amp; Display NFC Tags</string>
+
+    <!-- Text & Productivity -->
+    <string name="pomodoro_timer_title">Pomodoro Timer</string>
+    <string name="pomodoro_timer_desc">Focus Timer with Intervals</string>
+    <string name="random_generator_title">Random Generator</string>
+    <string name="random_generator_desc">Numbers, Strings, Colors, UUID</string>
+    <string name="note_pad_title">Note Pad</string>
+    <string name="note_pad_desc">Quick Notes with Local Save</string>
+    <string name="text_case_converter_title">Case Converter</string>
+    <string name="text_case_converter_desc">UPPER, lower, camel, snake</string>
+
+    <!-- Media & Image (new) -->
+    <string name="image_bg_remover_title">Background Remover</string>
+    <string name="image_bg_remover_desc">Remove Image Backgrounds</string>
+    <string name="image_filters_title">Image Filters</string>
+    <string name="image_filters_desc">Grayscale, Sepia, Blur &amp; More</string>
+    <string name="meme_generator_title">Meme Generator</string>
+    <string name="meme_generator_desc">Add Text to Images</string>
+    <string name="screenshot_stitcher_title">Screenshot Stitcher</string>
+    <string name="screenshot_stitcher_desc">Combine Screenshots into One</string>
+    <string name="image_rotate_flip_title">Rotate &amp; Flip</string>
+    <string name="image_rotate_flip_desc">Rotate 90/180/270 &amp; Flip</string>
+
+    <!-- Converters & Calculators (new) -->
+    <string name="currency_converter_title">Currency Converter</string>
+    <string name="currency_converter_desc">Real-time Exchange Rates</string>
+    <string name="date_calculator_title">Date Calculator</string>
+    <string name="date_calculator_desc">Days Between, Age, Add/Sub</string>
+    <string name="aspect_ratio_calc_title">Aspect Ratio</string>
+    <string name="aspect_ratio_calc_desc">Calculate &amp; Scale Ratios</string>
+    <string name="number_base_converter_title">Number Base</string>
+    <string name="number_base_converter_desc">Convert Between Bases 2-36</string>
+    <string name="scientific_calc_title">Scientific Calculator</string>
+    <string name="scientific_calc_desc">Advanced Math Functions</string>
+
+    <!-- Malaysia Data -->
+    <string name="weather_title">MY Weather</string>
+    <string name="weather_desc">Forecast, Warnings &amp; Earthquakes</string>
+    <string name="birthday_explorer_title">Birthday Explorer</string>
+    <string name="birthday_explorer_desc">MY Birth Stats by Date</string>
+    <string name="immigration_title">MY Immigration</string>
+    <string name="immigration_desc">Foreign Arrivals Data</string>
+    <string name="data_catalogue_title">MY Data Catalogue</string>
+    <string name="data_catalogue_desc">300+ Government Datasets</string>
+    <string name="fuel_price_title">Fuel Prices</string>
+    <string name="fuel_price_desc">RON95, RON97 &amp; Diesel</string>
+    <string name="population_title">Population</string>
+    <string name="population_desc">State &amp; District Breakdown</string>
+    <string name="exchange_rate_title">Exchange Rates</string>
+    <string name="exchange_rate_desc">BNM Monthly MYR Rates</string>
+    <string name="cpi_inflation_title">CPI &amp; Inflation</string>
+    <string name="cpi_inflation_desc">Consumer Price Trends</string>
+    <string name="covid_title">COVID-19</string>
+    <string name="covid_desc">Cases, Recovery &amp; Trends</string>
+    <string name="crime_title">Crime Statistics</string>
+    <string name="crime_desc">Crime by Category &amp; Year</string>
+    <string name="transport_ridership_title">Transport Ridership</string>
+    <string name="transport_ridership_desc">Public Transport Usage</string>
+    <string name="births_deaths_title">Births &amp; Deaths</string>
+    <string name="births_deaths_desc">Demographic Trends</string>
+    <string name="marriage_title">Marriage Statistics</string>
+    <string name="marriage_desc">Annual Marriage Trends</string>
+    <string name="household_income_title">Household Income</string>
+    <string name="household_income_desc">Income by State</string>
+    <string name="gdp_title">GDP &amp; GNI</string>
+    <string name="gdp_desc">Economic Growth Trends</string>
+    <string name="labour_market_title">Labour Market</string>
+    <string name="labour_market_desc">Employment &amp; Unemployment</string>
+    <string name="blood_donation_title">Blood Donations</string>
+    <string name="blood_donation_desc">Daily Donation Trends</string>
+    <string name="interest_rate_title">Interest Rates</string>
+    <string name="interest_rate_desc">OPR &amp; Banking Rates</string>
+    <string name="electricity_title">Electricity</string>
+    <string name="electricity_desc">Consumption by Sector</string>
+    <string name="epf_dividend_title">EPF Dividend</string>
+    <string name="epf_dividend_desc">Annual Dividend Rates</string>
+    <string name="vehicle_registration_title">Vehicle Registration</string>
+    <string name="vehicle_registration_desc">Monthly Car Registrations</string>
+    <string name="transit_realtime_title">Transit Tracker</string>
+    <string name="transit_realtime_desc">Live Public Transport Map</string>
+    <string name="sg_weather_title">SG Weather</string>
+    <string name="sg_weather_desc">24hr &amp; 4-Day Forecast</string>
+    <string name="sg_air_quality_title">SG Air Quality</string>
+    <string name="sg_air_quality_desc">PSI, PM2.5 &amp; UV Index</string>
+    <string name="sg_taxi_title">SG Taxi Availability</string>
+    <string name="sg_taxi_desc">Live Taxi Positions Map</string>
+    <string name="sg_environment_title">SG Environment</string>
+    <string name="sg_environment_desc">Temperature, Rainfall &amp; Wind</string>
+    <string name="sg_flood_alert_title">SG Flood Alerts</string>
+    <string name="sg_flood_alert_desc">Real-time Flood Warnings</string>
+    <string name="sg_carpark_title">SG Carpark</string>
+    <string name="sg_carpark_desc">Real-time Lot Availability</string>
+    <string name="sg_traffic_title">SG Traffic Cameras</string>
+    <string name="sg_traffic_desc">Live Traffic Images</string>
+    <string name="sg_data_catalogue_title">SG Data Catalogue</string>
+    <string name="sg_data_catalogue_desc">5,000+ Government Datasets</string>
+    <string name="sg_wbgt_title">SG Heat Stress</string>
+    <string name="sg_wbgt_desc">WBGT by Station</string>
+    <string name="sg_lightning_title">SG Lightning</string>
+    <string name="sg_lightning_desc">Real-time Strike Map</string>
+    <string name="sg_design_patent_title">SG IP Applications</string>
+    <string name="sg_design_patent_desc">Design &amp; Patent Lookup</string>
+    <string name="ie_data_catalogue_title">IE Data Catalogue</string>
+    <string name="ie_data_catalogue_desc">21,900+ Government Datasets</string>
+    <string name="swk_data_catalogue_title">Sarawak Data</string>
+    <string name="swk_data_catalogue_desc">200+ Government Datasets</string>
+
     <!-- Settings -->
     <string name="settings_title">Settings</string>
     <string name="language_title">Language</string>

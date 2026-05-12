@@ -136,6 +136,25 @@
     <string name="markdown_editor_desc">Sunting Markdown dengan Pratonton</string>
     <string name="slides_to_pdf_title">Slaid ke PDF</string>
     <string name="slides_to_pdf_desc">Tukar Slaid/PPT ke PDF</string>
+    <string name="gif_maker_title">Pembuat GIF</string>
+    <string name="gif_maker_desc">Imej ke GIF &amp; Video ke GIF</string>
+    <string name="photo_collage_title">Kolaj Foto</string>
+    <string name="photo_collage_desc">Susun Foto dalam Susun Atur</string>
+    <string name="image_watermark_title">Tera Air Imej</string>
+    <string name="image_watermark_desc">Tambah Tera Air Teks/Imej</string>
+
+    <string name="battery_info_title">Maklumat Bateri</string>
+    <string name="battery_info_desc">Kesihatan, Suhu, Voltan &amp; Kitaran</string>
+    <string name="display_info_title">Maklumat Paparan</string>
+    <string name="display_info_desc">Resolusi, DPI, HDR &amp; Kadar Segar Semula</string>
+    <string name="storage_analyzer_title">Penganalisis Storan</string>
+    <string name="storage_analyzer_desc">Pecahan Storan &amp; RAM</string>
+    <string name="bluetooth_scanner_title">Pengimbas Bluetooth</string>
+    <string name="bluetooth_scanner_desc">Temui Peranti BT &amp; BLE</string>
+    <string name="gps_location_title">GPS / Lokasi</string>
+    <string name="gps_location_desc">Koordinat, Kelajuan &amp; Satelit</string>
+    <string name="nfc_reader_title">Pembaca NFC</string>
+    <string name="nfc_reader_desc">Baca &amp; Papar Tag NFC</string>
 
     <!-- Settings -->
     <string name="settings_title">Tetapan</string>
@@ -152,4 +171,34 @@
     <string name="back">Kembali</string>
     <string name="coming_soon">Akan Datang</string>
     <string name="feature_in_development">Ciri ini sedang dibangunkan</string>
+
+    <!-- Text & Productivity -->
+    <string name="pomodoro_timer_title">Pemasa Pomodoro</string>
+    <string name="pomodoro_timer_desc">Pemasa fokus dengan selang</string>
+    <string name="random_generator_title">Penjana Rawak</string>
+    <string name="random_generator_desc">Nombor, teks, warna, UUID</string>
+    <string name="note_pad_title">Pad Nota</string>
+    <string name="note_pad_desc">Nota pantas simpan tempatan</string>
+    <string name="text_case_converter_title">Penukar Huruf</string>
+    <string name="text_case_converter_desc">BESAR, kecil, unta, ular</string>
+    <string name="image_bg_remover_title">Buang Latar Belakang</string>
+    <string name="image_bg_remover_desc">Buang latar belakang imej</string>
+    <string name="image_filters_title">Penapis Imej</string>
+    <string name="image_filters_desc">Kelabu, sepia, kabur &amp; lagi</string>
+    <string name="meme_generator_title">Penjana Meme</string>
+    <string name="meme_generator_desc">Tambah teks pada imej</string>
+    <string name="screenshot_stitcher_title">Gabung Tangkap Skrin</string>
+    <string name="screenshot_stitcher_desc">Gabungkan beberapa tangkap skrin</string>
+    <string name="image_rotate_flip_title">Putar &amp; Balik</string>
+    <string name="image_rotate_flip_desc">Putar 90/180/270 &amp; balik</string>
+    <string name="currency_converter_title">Penukar Mata Wang</string>
+    <string name="currency_converter_desc">Kadar pertukaran masa nyata</string>
+    <string name="date_calculator_title">Kalkulator Tarikh</string>
+    <string name="date_calculator_desc">Selisih hari, umur, tambah/tolak</string>
+    <string name="aspect_ratio_calc_title">Nisbah Aspek</string>
+    <string name="aspect_ratio_calc_desc">Kira &amp; skala nisbah</string>
+    <string name="number_base_converter_title">Asas Nombor</string>
+    <string name="number_base_converter_desc">Tukar antara asas 2-36</string>
+    <string name="scientific_calc_title">Kalkulator Saintifik</string>
+    <string name="scientific_calc_desc">Fungsi matematik lanjutan</string>
 </resources>

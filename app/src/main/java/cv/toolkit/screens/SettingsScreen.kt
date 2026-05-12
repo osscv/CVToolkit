@@ -1,5 +1,6 @@
 package cv.toolkit.screens
 
+import android.app.Activity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,9 +17,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.unit.sp
 import cv.toolkit.R
 import cv.toolkit.ads.BannerAd
 import cv.toolkit.data.LocaleHelper
+import cv.toolkit.data.ThemeHelper
+import cv.toolkit.ui.components.SectionHeader
+import cv.toolkit.ui.theme.MonoText
 
 data class LanguageOption(
     val tag: String,
@@ -32,6 +39,7 @@ data class LanguageOption(
 fun SettingsScreen(navController: NavController) {
     val context = LocalContext.current
     var selectedLanguage by remember { mutableStateOf(LocaleHelper.getSavedLanguage(context)) }
+    var selectedTheme by remember { mutableStateOf(ThemeHelper.getSavedTheme(context)) }
 
     val languages = listOf(
         LanguageOption("system", stringResource(R.string.system_default), "", "\uD83C\uDF10"),
@@ -80,15 +88,60 @@ fun SettingsScreen(navController: NavController) {
                 modifier = Modifier.weight(1f),
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
             ) {
+                // --- Theme Section ---
                 item {
-                    Text(
-                        text = stringResource(R.string.language_title),
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.padding(vertical = 12.dp)
+                    Spacer(Modifier.height(8.dp))
+                    SectionHeader(label = "Appearance")
+                }
+
+                item {
+                    ThemeOption(
+                        icon = Icons.Filled.BrightnessAuto,
+                        title = "System Default",
+                        subtitle = "Follow device theme",
+                        isSelected = selectedTheme == ThemeHelper.THEME_SYSTEM,
+                        onClick = {
+                            selectedTheme = ThemeHelper.THEME_SYSTEM
+                            ThemeHelper.saveTheme(context, ThemeHelper.THEME_SYSTEM)
+                            (context as? Activity)?.recreate()
+                        }
                     )
                 }
+
+                item {
+                    ThemeOption(
+                        icon = Icons.Filled.LightMode,
+                        title = "Light",
+                        subtitle = "Always use light theme",
+                        isSelected = selectedTheme == ThemeHelper.THEME_LIGHT,
+                        onClick = {
+                            selectedTheme = ThemeHelper.THEME_LIGHT
+                            ThemeHelper.saveTheme(context, ThemeHelper.THEME_LIGHT)
+                            (context as? Activity)?.recreate()
+                        }
+                    )
+                }
+
+                item {
+                    ThemeOption(
+                        icon = Icons.Filled.DarkMode,
+                        title = "Dark",
+                        subtitle = "Always use dark theme",
+                        isSelected = selectedTheme == ThemeHelper.THEME_DARK,
+                        onClick = {
+                            selectedTheme = ThemeHelper.THEME_DARK
+                            ThemeHelper.saveTheme(context, ThemeHelper.THEME_DARK)
+                            (context as? Activity)?.recreate()
+                        }
+                    )
+                }
+
+                // --- Language Section ---
+                item {
+                    Spacer(Modifier.height(20.dp))
+                    SectionHeader(label = stringResource(R.string.language_title))
+                }
+
                 items(languages) { language ->
                     LanguageItem(
                         language = language,
@@ -108,27 +161,101 @@ fun SettingsScreen(navController: NavController) {
 }
 
 @Composable
-private fun LanguageItem(
-    language: LanguageOption,
+private fun ThemeOption(
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    title: String,
+    subtitle: String,
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
+    val borderColor = if (isSelected) MaterialTheme.colorScheme.primary
+        else MaterialTheme.colorScheme.outlineVariant
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 3.dp),
-        shape = MaterialTheme.shapes.medium,
-        color = if (isSelected) MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.4f)
-        else MaterialTheme.colorScheme.surface,
-        tonalElevation = if (isSelected) 2.dp else 0.dp
+            .padding(vertical = 4.dp),
+        shape = RoundedCornerShape(12.dp),
+        color = if (isSelected) MaterialTheme.colorScheme.primary.copy(alpha = 0.08f)
+            else MaterialTheme.colorScheme.surfaceContainerLow,
+        border = BorderStroke(1.dp, borderColor),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable(onClick = onClick)
-                .padding(horizontal = 16.dp, vertical = 14.dp),
+                .padding(horizontal = 14.dp, vertical = 12.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(14.dp)
+        ) {
+            Surface(
+                modifier = Modifier.size(36.dp),
+                shape = RoundedCornerShape(10.dp),
+                color = if (isSelected) MaterialTheme.colorScheme.primary.copy(alpha = 0.18f)
+                    else MaterialTheme.colorScheme.surfaceContainerHigh,
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Icon(
+                        icon,
+                        contentDescription = null,
+                        modifier = Modifier.size(20.dp),
+                        tint = if (isSelected) MaterialTheme.colorScheme.primary
+                            else MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Medium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    text = subtitle,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            if (isSelected) {
+                Icon(
+                    Icons.Filled.CheckCircle,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(22.dp)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun LanguageItem(
+    language: LanguageOption,
+    isSelected: Boolean,
+    onClick: () -> Unit
+) {
+    val borderColor = if (isSelected) MaterialTheme.colorScheme.primary
+        else MaterialTheme.colorScheme.outlineVariant
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
+        shape = RoundedCornerShape(12.dp),
+        color = if (isSelected) MaterialTheme.colorScheme.primary.copy(alpha = 0.08f)
+            else MaterialTheme.colorScheme.surfaceContainerLow,
+        border = BorderStroke(1.dp, borderColor),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable(onClick = onClick)
+                .padding(horizontal = 14.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(14.dp)
         ) {
             Text(
                 text = language.flag,
@@ -137,25 +264,25 @@ private fun LanguageItem(
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = language.nativeName,
-                    style = MaterialTheme.typography.bodyLarge,
-                    fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
-                    color = if (isSelected) MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.onSurface
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Medium,
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
                 if (language.englishName.isNotEmpty()) {
+                    Spacer(Modifier.height(2.dp))
                     Text(
                         text = language.englishName,
-                        style = MaterialTheme.typography.bodySmall,
+                        style = MonoText.Label.copy(fontSize = 11.sp),
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
             if (isSelected) {
                 Icon(
-                    Icons.Filled.Check,
+                    Icons.Filled.CheckCircle,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(22.dp)
                 )
             }
         }

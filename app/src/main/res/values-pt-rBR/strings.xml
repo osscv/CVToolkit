@@ -137,6 +137,25 @@
     <string name="slides_to_pdf_title">Slides para PDF</string>
     <string name="slides_to_pdf_desc">Converter slides/PPT em PDF</string>
 
+    <string name="gif_maker_title">Criador de GIF</string>
+    <string name="gif_maker_desc">Imagens para GIF &amp; Vídeo para GIF</string>
+    <string name="photo_collage_title">Colagem de Fotos</string>
+    <string name="photo_collage_desc">Organizar fotos em layouts</string>
+    <string name="image_watermark_title">Marca d\'Água</string>
+    <string name="image_watermark_desc">Adicionar marcas d\'água texto/imagem</string>
+    <string name="battery_info_title">Info da bateria</string>
+    <string name="battery_info_desc">Saúde, Temp., Tensão &amp; Ciclos</string>
+    <string name="display_info_title">Info da tela</string>
+    <string name="display_info_desc">Resolução, DPI, HDR &amp; Taxa de atualização</string>
+    <string name="storage_analyzer_title">Analisador de armazenamento</string>
+    <string name="storage_analyzer_desc">Detalhes de armazenamento &amp; RAM</string>
+    <string name="bluetooth_scanner_title">Scanner Bluetooth</string>
+    <string name="bluetooth_scanner_desc">Descobrir dispositivos BT &amp; BLE</string>
+    <string name="gps_location_title">GPS / Localização</string>
+    <string name="gps_location_desc">Coordenadas, Velocidade &amp; Satélites</string>
+    <string name="nfc_reader_title">Leitor NFC</string>
+    <string name="nfc_reader_desc">Ler &amp; exibir tags NFC</string>
+
     <!-- Settings -->
     <string name="settings_title">Configura\u00E7\u00F5es</string>
     <string name="language_title">Idioma</string>

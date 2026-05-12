@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html><head>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<link rel="stylesheet" href="https://appassets.androidplatform.net/assets/leaflet.css"/>
+<script src="https://appassets.androidplatform.net/assets/leaflet.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#e0e0e0}
+#map{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%}
+</style>
+</head><body>
+<div id="map"></div>
+<script>
+var mapDiv = document.getElementById('map');
+mapDiv.style.height = window.innerHeight + 'px';
+mapDiv.style.width = window.innerWidth + 'px';
+var map = L.map('map',{zoomControl:true}).setView([1.35, 103.82], 11);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OSM',
+  maxZoom: 19
+}).addTo(map);
+var strikesLayer = L.layerGroup().addTo(map);
+
+function resizeMap(){
+  mapDiv.style.height = window.innerHeight + 'px';
+  mapDiv.style.width = window.innerWidth + 'px';
+  map.invalidateSize();
+}
+window.addEventListener('resize', resizeMap);
+setTimeout(resizeMap, 100);
+setTimeout(resizeMap, 500);
+setTimeout(resizeMap, 1500);
+setTimeout(resizeMap, 3000);
+
+function updateStrikes(data) {
+  strikesLayer.clearLayers();
+  var bounds = [];
+  for (var i = 0; i < data.length; i++) {
+    var s = data[i];
+    var color = s.type === 'G' ? '#E53935' : '#FDD835';
+    var fillColor = s.type === 'G' ? '#E53935' : '#FDD835';
+    var marker = L.circleMarker([s.lat, s.lng], {
+      radius: 7,
+      color: '#fff',
+      weight: 2,
+      fillColor: fillColor,
+      fillOpacity: 0.9
+    });
+    marker.bindPopup('<b>' + s.text + '</b><br/>Lat: ' + s.lat.toFixed(4) + ', Lng: ' + s.lng.toFixed(4));
+    strikesLayer.addLayer(marker);
+    bounds.push([s.lat, s.lng]);
+  }
+  if (bounds.length > 0) {
+    map.fitBounds(bounds, {padding: [30, 30], maxZoom: 13});
+  }
+}
+</script>
+</body></html>

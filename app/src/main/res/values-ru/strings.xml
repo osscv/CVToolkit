@@ -137,6 +137,25 @@
     <string name="slides_to_pdf_title">Слайды в PDF</string>
     <string name="slides_to_pdf_desc">Конвертация слайдов/PPT в PDF</string>
 
+    <string name="gif_maker_title">Создание GIF</string>
+    <string name="gif_maker_desc">Изображения в GIF &amp; Видео в GIF</string>
+    <string name="photo_collage_title">Фотоколлаж</string>
+    <string name="photo_collage_desc">Расположить фото в макетах</string>
+    <string name="image_watermark_title">Водяной знак</string>
+    <string name="image_watermark_desc">Добавить текстовый/графический водяной знак</string>
+    <string name="battery_info_title">Информация о батарее</string>
+    <string name="battery_info_desc">Состояние, Темп., Напряжение &amp; Циклы</string>
+    <string name="display_info_title">Информация об экране</string>
+    <string name="display_info_desc">Разрешение, DPI, HDR &amp; Частота обновления</string>
+    <string name="storage_analyzer_title">Анализатор хранилища</string>
+    <string name="storage_analyzer_desc">Детали хранилища &amp; RAM</string>
+    <string name="bluetooth_scanner_title">Bluetooth-сканер</string>
+    <string name="bluetooth_scanner_desc">Обнаружение устройств BT &amp; BLE</string>
+    <string name="gps_location_title">GPS / Местоположение</string>
+    <string name="gps_location_desc">Координаты, Скорость &amp; Спутники</string>
+    <string name="nfc_reader_title">NFC-считыватель</string>
+    <string name="nfc_reader_desc">Чтение &amp; отображение NFC-меток</string>
+
     <!-- Settings -->
     <string name="settings_title">\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438</string>
     <string name="language_title">\u042F\u0437\u044B\u043A</string>

@@ -136,6 +136,25 @@
     <string name="markdown_editor_desc">पूर्वावलोकन के साथ Markdown संपादित करें</string>
     <string name="slides_to_pdf_title">स्लाइड से PDF</string>
     <string name="slides_to_pdf_desc">स्लाइड/PPT को PDF में बदलें</string>
+    <string name="gif_maker_title">GIF बनाएँ</string>
+    <string name="gif_maker_desc">छवि से GIF &amp; वीडियो से GIF</string>
+    <string name="photo_collage_title">फोटो कोलाज</string>
+    <string name="photo_collage_desc">फोटो को लेआउट में व्यवस्थित करें</string>
+    <string name="image_watermark_title">छवि वॉटरमार्क</string>
+    <string name="image_watermark_desc">टेक्स्ट/छवि वॉटरमार्क जोड़ें</string>
+
+    <string name="battery_info_title">बैटरी जानकारी</string>
+    <string name="battery_info_desc">स्वास्थ्य, तापमान, वोल्टेज &amp; चक्र</string>
+    <string name="display_info_title">डिस्प्ले जानकारी</string>
+    <string name="display_info_desc">रेज़ोल्यूशन, DPI, HDR &amp; रिफ्रेश</string>
+    <string name="storage_analyzer_title">स्टोरेज विश्लेषक</string>
+    <string name="storage_analyzer_desc">स्टोरेज &amp; RAM विवरण</string>
+    <string name="bluetooth_scanner_title">ब्लूटूथ स्कैनर</string>
+    <string name="bluetooth_scanner_desc">BT &amp; BLE डिवाइस खोजें</string>
+    <string name="gps_location_title">GPS / स्थान</string>
+    <string name="gps_location_desc">निर्देशांक, गति &amp; उपग्रह</string>
+    <string name="nfc_reader_title">NFC रीडर</string>
+    <string name="nfc_reader_desc">NFC टैग पढ़ें &amp; प्रदर्शित करें</string>
 
     <!-- Settings -->
     <string name="settings_title">सेटिंग्स</string>
@@ -152,4 +171,34 @@
     <string name="back">वापस</string>
     <string name="coming_soon">जल्द आ रहा है</string>
     <string name="feature_in_development">यह सुविधा विकास में है</string>
+
+    <!-- Text & Productivity -->
+    <string name="pomodoro_timer_title">पोमोडोरो टाइमर</string>
+    <string name="pomodoro_timer_desc">फोकस टाइमर अंतराल के साथ</string>
+    <string name="random_generator_title">रैंडम जनरेटर</string>
+    <string name="random_generator_desc">संख्या, स्ट्रिंग, रंग, UUID</string>
+    <string name="note_pad_title">नोट पैड</string>
+    <string name="note_pad_desc">स्थानीय सेव के साथ त्वरित नोट्स</string>
+    <string name="text_case_converter_title">केस कन्वर्टर</string>
+    <string name="text_case_converter_desc">बड़ा, छोटा, कैमल, स्नेक</string>
+    <string name="image_bg_remover_title">बैकग्राउंड रिमूवर</string>
+    <string name="image_bg_remover_desc">छवि पृष्ठभूमि हटाएं</string>
+    <string name="image_filters_title">इमेज फ़िल्टर</string>
+    <string name="image_filters_desc">ग्रेस्केल, सेपिया, ब्लर आदि</string>
+    <string name="meme_generator_title">मीम जनरेटर</string>
+    <string name="meme_generator_desc">छवियों पर टेक्स्ट जोड़ें</string>
+    <string name="screenshot_stitcher_title">स्क्रीनशॉट स्टिचर</string>
+    <string name="screenshot_stitcher_desc">कई स्क्रीनशॉट को एक में जोड़ें</string>
+    <string name="image_rotate_flip_title">घुमाएं और पलटें</string>
+    <string name="image_rotate_flip_desc">90/180/270° घुमाएं और पलटें</string>
+    <string name="currency_converter_title">मुद्रा कन्वर्टर</string>
+    <string name="currency_converter_desc">रीयल-टाइम विनिमय दरें</string>
+    <string name="date_calculator_title">तिथि कैलकुलेटर</string>
+    <string name="date_calculator_desc">दिनों का अंतर, आयु, जोड़ें/घटाएं</string>
+    <string name="aspect_ratio_calc_title">पक्षानुपात</string>
+    <string name="aspect_ratio_calc_desc">अनुपात गणना और स्केलिंग</string>
+    <string name="number_base_converter_title">संख्या आधार</string>
+    <string name="number_base_converter_desc">आधार 2-36 के बीच रूपांतरण</string>
+    <string name="scientific_calc_title">वैज्ञानिक कैलकुलेटर</string>
+    <string name="scientific_calc_desc">उन्नत गणित फंक्शन</string>
 </resources>

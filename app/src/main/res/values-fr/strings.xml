@@ -137,6 +137,25 @@
     <string name="markdown_editor_desc">Modifier Markdown avec aperçu</string>
     <string name="slides_to_pdf_title">Diapositives en PDF</string>
     <string name="slides_to_pdf_desc">Convertir diapositives/PPT en PDF</string>
+    <string name="gif_maker_title">Créateur GIF</string>
+    <string name="gif_maker_desc">Images en GIF &amp; Vidéo en GIF</string>
+    <string name="photo_collage_title">Collage Photo</string>
+    <string name="photo_collage_desc">Disposer les photos en mises en page</string>
+    <string name="image_watermark_title">Filigrane d\'image</string>
+    <string name="image_watermark_desc">Ajouter des filigranes texte/image</string>
+
+    <string name="battery_info_title">Info batterie</string>
+    <string name="battery_info_desc">Santé, Temp., Tension &amp; Cycles</string>
+    <string name="display_info_title">Info écran</string>
+    <string name="display_info_desc">Résolution, DPI, HDR &amp; Rafraîchissement</string>
+    <string name="storage_analyzer_title">Analyseur de stockage</string>
+    <string name="storage_analyzer_desc">Détail stockage &amp; RAM</string>
+    <string name="bluetooth_scanner_title">Scanner Bluetooth</string>
+    <string name="bluetooth_scanner_desc">Découvrir appareils BT &amp; BLE</string>
+    <string name="gps_location_title">GPS / Localisation</string>
+    <string name="gps_location_desc">Coordonnées, Vitesse &amp; Satellites</string>
+    <string name="nfc_reader_title">Lecteur NFC</string>
+    <string name="nfc_reader_desc">Lire &amp; afficher les tags NFC</string>
 
     <!-- Settings -->
     <string name="settings_title">Param\u00E8tres</string>
@@ -153,4 +172,34 @@
     <string name="back">Retour</string>
     <string name="coming_soon">Bientôt disponible</string>
     <string name="feature_in_development">Cette fonctionnalité est en développement</string>
+
+    <!-- Text & Productivity -->
+    <string name="pomodoro_timer_title">Minuteur Pomodoro</string>
+    <string name="pomodoro_timer_desc">Minuteur de concentration</string>
+    <string name="random_generator_title">Générateur Aléatoire</string>
+    <string name="random_generator_desc">Nombres, textes, couleurs, UUID</string>
+    <string name="note_pad_title">Bloc-notes</string>
+    <string name="note_pad_desc">Notes rapides sauvegardées localement</string>
+    <string name="text_case_converter_title">Convertisseur de Casse</string>
+    <string name="text_case_converter_desc">MAJUS, minus, chameau, serpent</string>
+    <string name="image_bg_remover_title">Supprimer le Fond</string>
+    <string name="image_bg_remover_desc">Supprimer l\'arrière-plan</string>
+    <string name="image_filters_title">Filtres d\'Image</string>
+    <string name="image_filters_desc">Gris, sépia, flou et plus</string>
+    <string name="meme_generator_title">Générateur de Mèmes</string>
+    <string name="meme_generator_desc">Ajouter du texte aux images</string>
+    <string name="screenshot_stitcher_title">Assembleur de Captures</string>
+    <string name="screenshot_stitcher_desc">Combiner des captures en une seule</string>
+    <string name="image_rotate_flip_title">Rotation &amp; Miroir</string>
+    <string name="image_rotate_flip_desc">Rotation 90/180/270 &amp; miroir</string>
+    <string name="currency_converter_title">Convertisseur de Devises</string>
+    <string name="currency_converter_desc">Taux de change en temps réel</string>
+    <string name="date_calculator_title">Calculateur de Dates</string>
+    <string name="date_calculator_desc">Jours entre dates, âge, ajouter/soustraire</string>
+    <string name="aspect_ratio_calc_title">Rapport d\'Aspect</string>
+    <string name="aspect_ratio_calc_desc">Calculer et mettre à l\'échelle</string>
+    <string name="number_base_converter_title">Base Numérique</string>
+    <string name="number_base_converter_desc">Convertir entre bases 2-36</string>
+    <string name="scientific_calc_title">Calculatrice Scientifique</string>
+    <string name="scientific_calc_desc">Fonctions mathématiques avancées</string>
 </resources>

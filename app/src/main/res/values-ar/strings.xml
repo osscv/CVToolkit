@@ -137,6 +137,25 @@
     <string name="slides_to_pdf_title">شرائح إلى PDF</string>
     <string name="slides_to_pdf_desc">تحويل الشرائح/PPT إلى PDF</string>
 
+    <string name="gif_maker_title">صانع GIF</string>
+    <string name="gif_maker_desc">صور إلى GIF &amp; فيديو إلى GIF</string>
+    <string name="photo_collage_title">تجميع الصور</string>
+    <string name="photo_collage_desc">ترتيب الصور في تخطيطات</string>
+    <string name="image_watermark_title">علامة مائية</string>
+    <string name="image_watermark_desc">إضافة علامات مائية نصية/صورية</string>
+    <string name="battery_info_title">معلومات البطارية</string>
+    <string name="battery_info_desc">الصحة، الحرارة، الجهد &amp; الدورات</string>
+    <string name="display_info_title">معلومات الشاشة</string>
+    <string name="display_info_desc">الدقة، DPI، HDR &amp; معدل التحديث</string>
+    <string name="storage_analyzer_title">محلل التخزين</string>
+    <string name="storage_analyzer_desc">تفاصيل التخزين &amp; الذاكرة RAM</string>
+    <string name="bluetooth_scanner_title">ماسح البلوتوث</string>
+    <string name="bluetooth_scanner_desc">اكتشاف أجهزة BT &amp; BLE</string>
+    <string name="gps_location_title">GPS / الموقع</string>
+    <string name="gps_location_desc">الإحداثيات، السرعة &amp; الأقمار الصناعية</string>
+    <string name="nfc_reader_title">قارئ NFC</string>
+    <string name="nfc_reader_desc">قراءة &amp; عرض بطاقات NFC</string>
+
     <!-- Settings -->
     <string name="settings_title">\u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A</string>
     <string name="language_title">\u0627\u0644\u0644\u063A\u0629</string>

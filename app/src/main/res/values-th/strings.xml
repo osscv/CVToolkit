@@ -136,6 +136,25 @@
     <string name="markdown_editor_desc">แก้ไข Markdown พร้อมตัวอย่าง</string>
     <string name="slides_to_pdf_title">สไลด์เป็น PDF</string>
     <string name="slides_to_pdf_desc">แปลงสไลด์/PPT เป็น PDF</string>
+    <string name="gif_maker_title">สร้าง GIF</string>
+    <string name="gif_maker_desc">รูปภาพเป็น GIF &amp; วิดีโอเป็น GIF</string>
+    <string name="photo_collage_title">คอลลาจรูปภาพ</string>
+    <string name="photo_collage_desc">จัดเรียงรูปภาพในเลย์เอาต์</string>
+    <string name="image_watermark_title">ลายน้ำรูปภาพ</string>
+    <string name="image_watermark_desc">เพิ่มลายน้ำข้อความ/รูปภาพ</string>
+
+    <string name="battery_info_title">ข้อมูลแบตเตอรี่</string>
+    <string name="battery_info_desc">สุขภาพ, อุณหภูมิ, แรงดัน &amp; รอบชาร์จ</string>
+    <string name="display_info_title">ข้อมูลจอแสดงผล</string>
+    <string name="display_info_desc">ความละเอียด, DPI, HDR &amp; อัตรารีเฟรช</string>
+    <string name="storage_analyzer_title">วิเคราะห์พื้นที่จัดเก็บ</string>
+    <string name="storage_analyzer_desc">รายละเอียดพื้นที่จัดเก็บ &amp; RAM</string>
+    <string name="bluetooth_scanner_title">สแกนเนอร์บลูทูธ</string>
+    <string name="bluetooth_scanner_desc">ค้นพบอุปกรณ์ BT &amp; BLE</string>
+    <string name="gps_location_title">GPS / ตำแหน่ง</string>
+    <string name="gps_location_desc">พิกัด, ความเร็ว &amp; ดาวเทียม</string>
+    <string name="nfc_reader_title">อ่าน NFC</string>
+    <string name="nfc_reader_desc">อ่าน &amp; แสดงแท็ก NFC</string>
 
     <!-- Settings -->
     <string name="settings_title">การตั้งค่า</string>
@@ -152,4 +171,34 @@
     <string name="back">กลับ</string>
     <string name="coming_soon">เร็วๆ นี้</string>
     <string name="feature_in_development">ฟีเจอร์นี้อยู่ระหว่างการพัฒนา</string>
+
+    <!-- Text & Productivity -->
+    <string name="pomodoro_timer_title">นาฬิกาโพโมโดโร</string>
+    <string name="pomodoro_timer_desc">จับเวลาโฟกัสเป็นช่วง</string>
+    <string name="random_generator_title">สุ่มข้อมูล</string>
+    <string name="random_generator_desc">ตัวเลข, ข้อความ, สี, UUID</string>
+    <string name="note_pad_title">สมุดบันทึก</string>
+    <string name="note_pad_desc">บันทึกด่วนเก็บในเครื่อง</string>
+    <string name="text_case_converter_title">แปลงตัวพิมพ์</string>
+    <string name="text_case_converter_desc">ใหญ่, เล็ก, คาเมล, สเนค</string>
+    <string name="image_bg_remover_title">ลบพื้นหลัง</string>
+    <string name="image_bg_remover_desc">ลบพื้นหลังรูปภาพ</string>
+    <string name="image_filters_title">ฟิลเตอร์รูปภาพ</string>
+    <string name="image_filters_desc">ขาวดำ, ซีเปีย, เบลอ ฯลฯ</string>
+    <string name="meme_generator_title">สร้างมีม</string>
+    <string name="meme_generator_desc">เพิ่มข้อความบนรูปภาพ</string>
+    <string name="screenshot_stitcher_title">ต่อภาพหน้าจอ</string>
+    <string name="screenshot_stitcher_desc">รวมภาพหน้าจอหลายภาพเป็นหนึ่ง</string>
+    <string name="image_rotate_flip_title">หมุนและพลิก</string>
+    <string name="image_rotate_flip_desc">หมุน 90/180/270° และพลิก</string>
+    <string name="currency_converter_title">แปลงสกุลเงิน</string>
+    <string name="currency_converter_desc">อัตราแลกเปลี่ยนเรียลไทม์</string>
+    <string name="date_calculator_title">คำนวณวันที่</string>
+    <string name="date_calculator_desc">ผลต่างวัน, อายุ, บวก/ลบวัน</string>
+    <string name="aspect_ratio_calc_title">อัตราส่วนภาพ</string>
+    <string name="aspect_ratio_calc_desc">คำนวณและปรับอัตราส่วน</string>
+    <string name="number_base_converter_title">แปลงฐานเลข</string>
+    <string name="number_base_converter_desc">แปลงระหว่างฐาน 2-36</string>
+    <string name="scientific_calc_title">เครื่องคิดเลขวิทย์</string>
+    <string name="scientific_calc_desc">ฟังก์ชันคณิตศาสตร์ขั้นสูง</string>
 </resources>

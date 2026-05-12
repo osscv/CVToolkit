@@ -138,6 +138,25 @@
     <string name="slides_to_pdf_title">Slide sang PDF</string>
     <string name="slides_to_pdf_desc">Chuyển đổi slide/PPT sang PDF</string>
 
+    <string name="gif_maker_title">Tạo GIF</string>
+    <string name="gif_maker_desc">Ảnh sang GIF &amp; Video sang GIF</string>
+    <string name="photo_collage_title">Ghép Ảnh</string>
+    <string name="photo_collage_desc">Sắp xếp ảnh theo bố cục</string>
+    <string name="image_watermark_title">Hình Mờ</string>
+    <string name="image_watermark_desc">Thêm hình mờ chữ/ảnh</string>
+    <string name="battery_info_title">Thông tin pin</string>
+    <string name="battery_info_desc">Sức khỏe, Nhiệt độ, Điện áp &amp; Chu kỳ</string>
+    <string name="display_info_title">Thông tin màn hình</string>
+    <string name="display_info_desc">Độ phân giải, DPI, HDR &amp; Tần số quét</string>
+    <string name="storage_analyzer_title">Phân tích bộ nhớ</string>
+    <string name="storage_analyzer_desc">Chi tiết bộ nhớ &amp; RAM</string>
+    <string name="bluetooth_scanner_title">Quét Bluetooth</string>
+    <string name="bluetooth_scanner_desc">Khám phá thiết bị BT &amp; BLE</string>
+    <string name="gps_location_title">GPS / Vị trí</string>
+    <string name="gps_location_desc">Tọa độ, Tốc độ &amp; Vệ tinh</string>
+    <string name="nfc_reader_title">Đọc NFC</string>
+    <string name="nfc_reader_desc">Đọc &amp; hiển thị thẻ NFC</string>
+
     <!-- Settings -->
     <string name="settings_title">C\u00E0i \u0111\u1EB7t</string>
     <string name="language_title">Ng\u00F4n ng\u1EEF</string>
@@ -153,4 +172,34 @@
     <string name="back">Quay l\u1EA1i</string>
     <string name="coming_soon">S\u1EAFp ra m\u1EAFt</string>
     <string name="feature_in_development">T\u00EDnh n\u0103ng n\u00E0y \u0111ang \u0111\u01B0\u1EE3c ph\u00E1t tri\u1EC3n</string>
+
+    <!-- Text & Productivity -->
+    <string name="pomodoro_timer_title">Đồng hồ Pomodoro</string>
+    <string name="pomodoro_timer_desc">Hẹn giờ tập trung theo chu kỳ</string>
+    <string name="random_generator_title">Tạo Ngẫu Nhiên</string>
+    <string name="random_generator_desc">Số, chuỗi, màu, UUID</string>
+    <string name="note_pad_title">Sổ Ghi Chú</string>
+    <string name="note_pad_desc">Ghi chú nhanh lưu cục bộ</string>
+    <string name="text_case_converter_title">Chuyển Đổi Chữ</string>
+    <string name="text_case_converter_desc">HOA, thường, lạcĐà, gạch_dưới</string>
+    <string name="image_bg_remover_title">Xóa Nền Ảnh</string>
+    <string name="image_bg_remover_desc">Xóa nền của hình ảnh</string>
+    <string name="image_filters_title">Bộ Lọc Ảnh</string>
+    <string name="image_filters_desc">Xám, nâu đỏ, mờ &amp; khác</string>
+    <string name="meme_generator_title">Tạo Meme</string>
+    <string name="meme_generator_desc">Thêm chữ vào hình ảnh</string>
+    <string name="screenshot_stitcher_title">Ghép Ảnh Chụp Màn Hình</string>
+    <string name="screenshot_stitcher_desc">Ghép nhiều ảnh chụp thành một</string>
+    <string name="image_rotate_flip_title">Xoay &amp; Lật</string>
+    <string name="image_rotate_flip_desc">Xoay 90/180/270 &amp; lật</string>
+    <string name="currency_converter_title">Chuyển Đổi Tiền Tệ</string>
+    <string name="currency_converter_desc">Tỷ giá hối đoái thời gian thực</string>
+    <string name="date_calculator_title">Tính Ngày Tháng</string>
+    <string name="date_calculator_desc">Số ngày, tuổi, cộng/trừ ngày</string>
+    <string name="aspect_ratio_calc_title">Tỷ Lệ Khung Hình</string>
+    <string name="aspect_ratio_calc_desc">Tính &amp; co giãn tỷ lệ</string>
+    <string name="number_base_converter_title">Cơ Số</string>
+    <string name="number_base_converter_desc">Chuyển đổi cơ số 2-36</string>
+    <string name="scientific_calc_title">Máy Tính Khoa Học</string>
+    <string name="scientific_calc_desc">Hàm toán học nâng cao</string>
 </resources>

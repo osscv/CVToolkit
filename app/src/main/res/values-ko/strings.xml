@@ -137,6 +137,25 @@
     <string name="slides_to_pdf_title">슬라이드를 PDF로</string>
     <string name="slides_to_pdf_desc">슬라이드/PPT를 PDF로 변환</string>
 
+    <string name="gif_maker_title">GIF 메이커</string>
+    <string name="gif_maker_desc">이미지를 GIF로 &amp; 동영상을 GIF로</string>
+    <string name="photo_collage_title">사진 콜라주</string>
+    <string name="photo_collage_desc">사진을 레이아웃으로 배열</string>
+    <string name="image_watermark_title">이미지 워터마크</string>
+    <string name="image_watermark_desc">텍스트/이미지 워터마크 추가</string>
+    <string name="battery_info_title">배터리 정보</string>
+    <string name="battery_info_desc">상태, 온도, 전압 &amp; 충전 횟수</string>
+    <string name="display_info_title">디스플레이 정보</string>
+    <string name="display_info_desc">해상도, DPI, HDR &amp; 주사율</string>
+    <string name="storage_analyzer_title">저장소 분석기</string>
+    <string name="storage_analyzer_desc">저장소 &amp; RAM 분석</string>
+    <string name="bluetooth_scanner_title">블루투스 스캐너</string>
+    <string name="bluetooth_scanner_desc">BT &amp; BLE 기기 검색</string>
+    <string name="gps_location_title">GPS / 위치</string>
+    <string name="gps_location_desc">좌표, 속도 &amp; 위성</string>
+    <string name="nfc_reader_title">NFC 리더</string>
+    <string name="nfc_reader_desc">NFC 태그 읽기 &amp; 표시</string>
+
     <!-- Settings -->
     <string name="settings_title">설정</string>
     <string name="language_title">언어</string>
@@ -152,4 +171,38 @@
     <string name="back">뒤로</string>
     <string name="coming_soon">곧 출시</string>
     <string name="feature_in_development">이 기능은 개발 중입니다</string>
+
+    <!-- Text & Productivity -->
+    <string name="pomodoro_timer_title">포모도로 타이머</string>
+    <string name="pomodoro_timer_desc">집중 타이머</string>
+    <string name="random_generator_title">랜덤 생성기</string>
+    <string name="random_generator_desc">숫자, 문자열, 색상, UUID</string>
+    <string name="note_pad_title">메모장</string>
+    <string name="note_pad_desc">로컬 저장 빠른 메모</string>
+    <string name="text_case_converter_title">대소문자 변환</string>
+    <string name="text_case_converter_desc">대문자, 소문자, 카멜, 스네이크</string>
+
+    <!-- Media & Image (new) -->
+    <string name="image_bg_remover_title">배경 제거</string>
+    <string name="image_bg_remover_desc">이미지 배경 제거</string>
+    <string name="image_filters_title">이미지 필터</string>
+    <string name="image_filters_desc">흑백, 세피아, 블러 등</string>
+    <string name="meme_generator_title">밈 생성기</string>
+    <string name="meme_generator_desc">이미지에 텍스트 추가</string>
+    <string name="screenshot_stitcher_title">스크린샷 합치기</string>
+    <string name="screenshot_stitcher_desc">여러 스크린샷을 하나로 결합</string>
+    <string name="image_rotate_flip_title">회전 및 뒤집기</string>
+    <string name="image_rotate_flip_desc">90/180/270° 회전 및 뒤집기</string>
+
+    <!-- Converters & Calculators (new) -->
+    <string name="currency_converter_title">환율 변환</string>
+    <string name="currency_converter_desc">실시간 환율</string>
+    <string name="date_calculator_title">날짜 계산기</string>
+    <string name="date_calculator_desc">날짜 차이, 나이, 날짜 가감</string>
+    <string name="aspect_ratio_calc_title">화면 비율</string>
+    <string name="aspect_ratio_calc_desc">비율 계산 및 스케일링</string>
+    <string name="number_base_converter_title">진법 변환</string>
+    <string name="number_base_converter_desc">2-36진법 변환</string>
+    <string name="scientific_calc_title">공학 계산기</string>
+    <string name="scientific_calc_desc">고급 수학 함수</string>
 </resources>

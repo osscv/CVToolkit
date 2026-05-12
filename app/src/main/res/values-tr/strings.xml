@@ -138,6 +138,25 @@
     <string name="slides_to_pdf_title">Slaytlardan PDF\'ye</string>
     <string name="slides_to_pdf_desc">Slaytları/PPT\'yi PDF\'ye Dönüştür</string>
 
+    <string name="gif_maker_title">GIF Oluşturucu</string>
+    <string name="gif_maker_desc">Görsellerden GIF &amp; Videodan GIF</string>
+    <string name="photo_collage_title">Fotoğraf Kolajı</string>
+    <string name="photo_collage_desc">Fotoğrafları düzenlere yerleştir</string>
+    <string name="image_watermark_title">Görsel Filigran</string>
+    <string name="image_watermark_desc">Metin/görsel filigran ekle</string>
+    <string name="battery_info_title">Pil Bilgisi</string>
+    <string name="battery_info_desc">Sağlık, Sıcaklık, Gerilim &amp; Döngüler</string>
+    <string name="display_info_title">Ekran Bilgisi</string>
+    <string name="display_info_desc">Çözünürlük, DPI, HDR &amp; Yenileme Hızı</string>
+    <string name="storage_analyzer_title">Depolama Analizörü</string>
+    <string name="storage_analyzer_desc">Depolama &amp; RAM Dökümü</string>
+    <string name="bluetooth_scanner_title">Bluetooth Tarayıcı</string>
+    <string name="bluetooth_scanner_desc">BT &amp; BLE Cihazlarını Keşfet</string>
+    <string name="gps_location_title">GPS / Konum</string>
+    <string name="gps_location_desc">Koordinatlar, Hız &amp; Uydular</string>
+    <string name="nfc_reader_title">NFC Okuyucu</string>
+    <string name="nfc_reader_desc">NFC Etiketlerini Oku &amp; Görüntüle</string>
+
     <!-- Settings -->
     <string name="settings_title">Ayarlar</string>
     <string name="language_title">Dil</string>

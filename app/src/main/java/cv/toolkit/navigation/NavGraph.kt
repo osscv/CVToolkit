@@ -84,6 +84,82 @@ sealed class Screen(val route: String) {
     object ImageCropper : Screen("image_cropper")
     object ColorPicker : Screen("color_picker")
     object FaviconGenerator : Screen("favicon_generator")
+    object BatteryInfo : Screen("battery_info")
+    object DisplayInfo : Screen("display_info")
+    object StorageAnalyzer : Screen("storage_analyzer")
+    object BluetoothScanner : Screen("bluetooth_scanner")
+    object GpsLocation : Screen("gps_location")
+    object GifMaker : Screen("gif_maker")
+    object PhotoCollage : Screen("photo_collage")
+    object ImageWatermark : Screen("image_watermark")
+    object NfcReader : Screen("nfc_reader")
+    object PomodoroTimer : Screen("pomodoro_timer")
+    object RandomGenerator : Screen("random_generator")
+    object NotePad : Screen("note_pad")
+    object TextCaseConverter : Screen("text_case_converter")
+    object ImageBackgroundRemover : Screen("image_background_remover")
+    object ImageFilters : Screen("image_filters")
+    object MemeGenerator : Screen("meme_generator")
+    object ScreenshotStitcher : Screen("screenshot_stitcher")
+    object ImageRotateFlip : Screen("image_rotate_flip")
+    object CurrencyConverter : Screen("currency_converter")
+    object DateCalculator : Screen("date_calculator")
+    object AspectRatioCalculator : Screen("aspect_ratio_calculator")
+    object NumberBaseConverter : Screen("number_base_converter")
+    object ScientificCalculator : Screen("scientific_calculator")
+    object Weather : Screen("weather")
+    object BirthdayExplorer : Screen("birthday_explorer")
+    object Immigration : Screen("immigration")
+    object DataCatalogue : Screen("data_catalogue")
+    object FuelPrice : Screen("fuel_price")
+    object Population : Screen("population")
+    object ExchangeRate : Screen("exchange_rate")
+    object CpiInflation : Screen("cpi_inflation")
+    object Covid : Screen("covid")
+    object Crime : Screen("crime")
+    object TransportRidership : Screen("transport_ridership")
+    object BirthsDeaths : Screen("births_deaths")
+    object Marriage : Screen("marriage")
+    object HouseholdIncome : Screen("household_income")
+    object Gdp : Screen("gdp")
+    object LabourMarket : Screen("labour_market")
+    object BloodDonation : Screen("blood_donation")
+    object InterestRate : Screen("interest_rate")
+    object Electricity : Screen("electricity")
+    object EpfDividend : Screen("epf_dividend")
+    object VehicleRegistration : Screen("vehicle_registration")
+    object TransitRealtime : Screen("transit_realtime")
+    object SgWeather : Screen("sg_weather")
+    object SgAirQuality : Screen("sg_air_quality")
+    object SgTaxi : Screen("sg_taxi")
+    object SgEnvironment : Screen("sg_environment")
+    object SgFloodAlert : Screen("sg_flood_alert")
+    object SgDataCatalogue : Screen("sg_data_catalogue")
+    object SgCarpark : Screen("sg_carpark")
+    object SgTraffic : Screen("sg_traffic")
+    object SgWbgt : Screen("sg_wbgt")
+    object SgLightning : Screen("sg_lightning")
+    object SgDesignPatent : Screen("sg_design_patent")
+    object SgDatasetViewer : Screen("sg_dataset_viewer/{datasetId}/{datasetName}") {
+        fun createRoute(datasetId: String, datasetName: String): String {
+            val encoded = java.net.URLEncoder.encode(datasetName, "UTF-8")
+            return "sg_dataset_viewer/$datasetId/$encoded"
+        }
+    }
+    object IeDataCatalogue : Screen("ie_data_catalogue")
+    object IeDatasetViewer : Screen("ie_dataset_viewer/{resourceId}/{datasetName}") {
+        fun createRoute(resourceId: String, datasetName: String): String {
+            val encoded = java.net.URLEncoder.encode(datasetName, "UTF-8")
+            return "ie_dataset_viewer/$resourceId/$encoded"
+        }
+    }
+    object SwkDataCatalogue : Screen("swk_data_catalogue")
+    object SwkDatasetViewer : Screen("swk_dataset_viewer/{resourceId}/{datasetName}") {
+        fun createRoute(resourceId: String, datasetName: String): String {
+            val encoded = java.net.URLEncoder.encode(datasetName, "UTF-8")
+            return "swk_dataset_viewer/$resourceId/$encoded"
+        }
+    }
 }
 
 @Composable
@@ -398,6 +474,292 @@ fun NavGraph(navController: NavHostController) {
 
         composable(Screen.FaviconGenerator.route) {
             FaviconGeneratorScreen(navController = navController)
+        }
+
+        composable(Screen.BatteryInfo.route) {
+            BatteryInfoScreen(navController = navController)
+        }
+
+        composable(Screen.DisplayInfo.route) {
+            DisplayInfoScreen(navController = navController)
+        }
+
+        composable(Screen.StorageAnalyzer.route) {
+            StorageAnalyzerScreen(navController = navController)
+        }
+
+        composable(Screen.BluetoothScanner.route) {
+            BluetoothScannerScreen(navController = navController)
+        }
+
+        composable(Screen.GpsLocation.route) {
+            GpsLocationScreen(navController = navController)
+        }
+
+        composable(Screen.GifMaker.route) {
+            GifMakerScreen(navController = navController)
+        }
+
+        composable(Screen.PhotoCollage.route) {
+            PhotoCollageScreen(navController = navController)
+        }
+
+        composable(Screen.ImageWatermark.route) {
+            ImageWatermarkScreen(navController = navController)
+        }
+
+        composable(Screen.NfcReader.route) {
+            NfcReaderScreen(navController = navController)
+        }
+
+        composable(Screen.PomodoroTimer.route) {
+            PomodoroTimerScreen(navController = navController)
+        }
+
+        composable(Screen.RandomGenerator.route) {
+            RandomGeneratorScreen(navController = navController)
+        }
+
+        composable(Screen.NotePad.route) {
+            NotePadScreen(navController = navController)
+        }
+
+        composable(Screen.TextCaseConverter.route) {
+            TextCaseConverterScreen(navController = navController)
+        }
+
+        composable(Screen.ImageBackgroundRemover.route) {
+            ImageBackgroundRemoverScreen(navController = navController)
+        }
+
+        composable(Screen.ImageFilters.route) {
+            ImageFiltersScreen(navController = navController)
+        }
+
+        composable(Screen.MemeGenerator.route) {
+            MemeGeneratorScreen(navController = navController)
+        }
+
+        composable(Screen.ScreenshotStitcher.route) {
+            ScreenshotStitcherScreen(navController = navController)
+        }
+
+        composable(Screen.ImageRotateFlip.route) {
+            ImageRotateFlipScreen(navController = navController)
+        }
+
+        composable(Screen.CurrencyConverter.route) {
+            CurrencyConverterScreen(navController = navController)
+        }
+
+        composable(Screen.DateCalculator.route) {
+            DateCalculatorScreen(navController = navController)
+        }
+
+        composable(Screen.AspectRatioCalculator.route) {
+            AspectRatioCalculatorScreen(navController = navController)
+        }
+
+        composable(Screen.NumberBaseConverter.route) {
+            NumberBaseConverterScreen(navController = navController)
+        }
+
+        composable(Screen.ScientificCalculator.route) {
+            ScientificCalculatorScreen(navController = navController)
+        }
+
+        composable(Screen.Weather.route) {
+            WeatherScreen(navController = navController)
+        }
+
+        composable(Screen.BirthdayExplorer.route) {
+            BirthdayExplorerScreen(navController = navController)
+        }
+
+        composable(Screen.Immigration.route) {
+            ImmigrationScreen(navController = navController)
+        }
+
+        composable(Screen.DataCatalogue.route) {
+            DataCatalogueScreen(navController = navController)
+        }
+
+        composable(Screen.FuelPrice.route) {
+            FuelPriceScreen(navController = navController)
+        }
+
+        composable(Screen.Population.route) {
+            PopulationScreen(navController = navController)
+        }
+
+        composable(Screen.ExchangeRate.route) {
+            ExchangeRateScreen(navController = navController)
+        }
+
+        composable(Screen.CpiInflation.route) {
+            CpiInflationScreen(navController = navController)
+        }
+
+        composable(Screen.Covid.route) {
+            CovidScreen(navController = navController)
+        }
+
+        composable(Screen.Crime.route) {
+            CrimeScreen(navController = navController)
+        }
+
+        composable(Screen.TransportRidership.route) {
+            TransportRidershipScreen(navController = navController)
+        }
+
+        composable(Screen.BirthsDeaths.route) {
+            BirthsDeathsScreen(navController = navController)
+        }
+
+        composable(Screen.Marriage.route) {
+            MarriageScreen(navController = navController)
+        }
+
+        composable(Screen.HouseholdIncome.route) {
+            HouseholdIncomeScreen(navController = navController)
+        }
+
+        composable(Screen.Gdp.route) {
+            GdpScreen(navController = navController)
+        }
+
+        composable(Screen.LabourMarket.route) {
+            LabourMarketScreen(navController = navController)
+        }
+
+        composable(Screen.BloodDonation.route) {
+            BloodDonationScreen(navController = navController)
+        }
+
+        composable(Screen.InterestRate.route) {
+            InterestRateScreen(navController = navController)
+        }
+
+        composable(Screen.Electricity.route) {
+            ElectricityScreen(navController = navController)
+        }
+
+        composable(Screen.EpfDividend.route) {
+            EpfDividendScreen(navController = navController)
+        }
+
+        composable(Screen.VehicleRegistration.route) {
+            VehicleRegistrationScreen(navController = navController)
+        }
+
+        composable(Screen.TransitRealtime.route) {
+            TransitRealtimeScreen(navController = navController)
+        }
+
+        composable(Screen.SgWeather.route) {
+            SgWeatherScreen(navController = navController)
+        }
+
+        composable(Screen.SgAirQuality.route) {
+            SgAirQualityScreen(navController = navController)
+        }
+
+        composable(Screen.SgTaxi.route) {
+            SgTaxiScreen(navController = navController)
+        }
+
+        composable(Screen.SgEnvironment.route) {
+            SgEnvironmentScreen(navController = navController)
+        }
+
+        composable(Screen.SgFloodAlert.route) {
+            SgFloodAlertScreen(navController = navController)
+        }
+
+        composable(Screen.SgDataCatalogue.route) {
+            SgDataCatalogueScreen(navController = navController)
+        }
+
+        composable(Screen.SgCarpark.route) {
+            SgCarparkScreen(navController = navController)
+        }
+
+        composable(Screen.SgTraffic.route) {
+            SgTrafficScreen(navController = navController)
+        }
+
+        composable(Screen.SgWbgt.route) {
+            SgWbgtScreen(navController = navController)
+        }
+
+        composable(Screen.SgLightning.route) {
+            SgLightningScreen(navController = navController)
+        }
+
+        composable(Screen.SgDesignPatent.route) {
+            SgDesignPatentScreen(navController = navController)
+        }
+
+        composable(Screen.IeDataCatalogue.route) {
+            IeDataCatalogueScreen(navController = navController)
+        }
+
+        composable(Screen.SwkDataCatalogue.route) {
+            SwkDataCatalogueScreen(navController = navController)
+        }
+
+        composable(
+            Screen.SwkDatasetViewer.route,
+            arguments = listOf(
+                androidx.navigation.navArgument("resourceId") { type = androidx.navigation.NavType.StringType },
+                androidx.navigation.navArgument("datasetName") { type = androidx.navigation.NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val resourceId = backStackEntry.arguments?.getString("resourceId") ?: ""
+            val datasetName = java.net.URLDecoder.decode(
+                backStackEntry.arguments?.getString("datasetName") ?: "Dataset", "UTF-8"
+            )
+            SwkDatasetViewerScreen(
+                navController = navController,
+                resourceId = resourceId,
+                datasetName = datasetName
+            )
+        }
+
+        composable(
+            Screen.IeDatasetViewer.route,
+            arguments = listOf(
+                androidx.navigation.navArgument("resourceId") { type = androidx.navigation.NavType.StringType },
+                androidx.navigation.navArgument("datasetName") { type = androidx.navigation.NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val resourceId = backStackEntry.arguments?.getString("resourceId") ?: ""
+            val datasetName = java.net.URLDecoder.decode(
+                backStackEntry.arguments?.getString("datasetName") ?: "Dataset", "UTF-8"
+            )
+            IeDatasetViewerScreen(
+                navController = navController,
+                resourceId = resourceId,
+                datasetName = datasetName
+            )
+        }
+
+        composable(
+            Screen.SgDatasetViewer.route,
+            arguments = listOf(
+                androidx.navigation.navArgument("datasetId") { type = androidx.navigation.NavType.StringType },
+                androidx.navigation.navArgument("datasetName") { type = androidx.navigation.NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val datasetId = backStackEntry.arguments?.getString("datasetId") ?: ""
+            val datasetName = java.net.URLDecoder.decode(
+                backStackEntry.arguments?.getString("datasetName") ?: "Dataset", "UTF-8"
+            )
+            SgDatasetViewerScreen(
+                navController = navController,
+                datasetId = datasetId,
+                datasetName = datasetName
+            )
         }
     }
 }

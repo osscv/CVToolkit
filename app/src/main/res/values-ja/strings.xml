@@ -137,6 +137,25 @@
     <string name="slides_to_pdf_title">スライドを PDF に</string>
     <string name="slides_to_pdf_desc">スライド/PPT を PDF に変換</string>
 
+    <string name="gif_maker_title">GIF メーカー</string>
+    <string name="gif_maker_desc">画像からGIF &amp; 動画からGIF</string>
+    <string name="photo_collage_title">フォトコラージュ</string>
+    <string name="photo_collage_desc">写真をレイアウトに配置</string>
+    <string name="image_watermark_title">画像透かし</string>
+    <string name="image_watermark_desc">テキスト/画像の透かしを追加</string>
+    <string name="battery_info_title">バッテリー情報</string>
+    <string name="battery_info_desc">状態、温度、電圧 &amp; サイクル</string>
+    <string name="display_info_title">ディスプレイ情報</string>
+    <string name="display_info_desc">解像度、DPI、HDR &amp; リフレッシュレート</string>
+    <string name="storage_analyzer_title">ストレージ解析</string>
+    <string name="storage_analyzer_desc">ストレージ &amp; RAM の内訳</string>
+    <string name="bluetooth_scanner_title">Bluetoothスキャナー</string>
+    <string name="bluetooth_scanner_desc">BT &amp; BLE デバイスを検出</string>
+    <string name="gps_location_title">GPS / 位置情報</string>
+    <string name="gps_location_desc">座標、速度 &amp; 衛星</string>
+    <string name="nfc_reader_title">NFCリーダー</string>
+    <string name="nfc_reader_desc">NFCタグの読み取り &amp; 表示</string>
+
     <!-- Settings -->
     <string name="settings_title">設定</string>
     <string name="language_title">言語</string>
@@ -152,4 +171,38 @@
     <string name="back">戻る</string>
     <string name="coming_soon">近日公開</string>
     <string name="feature_in_development">この機能は開発中です</string>
+
+    <!-- Text & Productivity -->
+    <string name="pomodoro_timer_title">ポモドーロタイマー</string>
+    <string name="pomodoro_timer_desc">集中タイマー</string>
+    <string name="random_generator_title">ランダム生成</string>
+    <string name="random_generator_desc">数値、文字列、色、UUID</string>
+    <string name="note_pad_title">メモ帳</string>
+    <string name="note_pad_desc">ローカル保存メモ</string>
+    <string name="text_case_converter_title">文字ケース変換</string>
+    <string name="text_case_converter_desc">大文字、小文字、キャメル、スネーク</string>
+
+    <!-- Media & Image (new) -->
+    <string name="image_bg_remover_title">背景除去</string>
+    <string name="image_bg_remover_desc">画像の背景を除去</string>
+    <string name="image_filters_title">画像フィルター</string>
+    <string name="image_filters_desc">グレー、セピア、ぼかし等</string>
+    <string name="meme_generator_title">ミーム作成</string>
+    <string name="meme_generator_desc">画像にテキストを追加</string>
+    <string name="screenshot_stitcher_title">スクショ結合</string>
+    <string name="screenshot_stitcher_desc">複数のスクショを1枚に結合</string>
+    <string name="image_rotate_flip_title">回転・反転</string>
+    <string name="image_rotate_flip_desc">90/180/270°回転・反転</string>
+
+    <!-- Converters & Calculators (new) -->
+    <string name="currency_converter_title">通貨換算</string>
+    <string name="currency_converter_desc">リアルタイム為替レート</string>
+    <string name="date_calculator_title">日付計算</string>
+    <string name="date_calculator_desc">日数差、年齢、日付加減算</string>
+    <string name="aspect_ratio_calc_title">アスペクト比</string>
+    <string name="aspect_ratio_calc_desc">比率の計算とスケーリング</string>
+    <string name="number_base_converter_title">基数変換</string>
+    <string name="number_base_converter_desc">2-36進数間の変換</string>
+    <string name="scientific_calc_title">関数電卓</string>
+    <string name="scientific_calc_desc">高度な数学関数</string>
 </resources>

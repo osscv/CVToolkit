@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import cv.toolkit.R
+import cv.toolkit.data.SpeedTestTargetsManager
 import cv.toolkit.service.SpeedTestService
 import kotlinx.coroutines.*
 import java.net.HttpURLConnection
@@ -66,7 +67,12 @@ fun SpeedTestScreen(navController: NavController) {
         TestTarget("OneAsiaHost 100MB", "http://speedtest.oneasiahost.com/100mb.bin", defaultUA)
     )
 
-    var targets by remember { mutableStateOf(defaultTargets) }
+    // Persisted custom targets (built-in defaults are not stored — they're
+    // appended at read time). Survives navigation away and app restart.
+    var customTargets by remember {
+        mutableStateOf(SpeedTestTargetsManager.load(context))
+    }
+    val targets = defaultTargets + customTargets
     var selectedTarget by remember { mutableStateOf(targets[0]) }
     var expanded by remember { mutableStateOf(false) }
     var showAddDialog by remember { mutableStateOf(false) }
@@ -231,9 +237,29 @@ fun SpeedTestScreen(navController: NavController) {
                     )
                     ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
                         targets.forEach { target ->
+                            val isCustom = target in customTargets
                             DropdownMenuItem(
                                 text = { Text(target.name) },
-                                onClick = { selectedTarget = target; expanded = false }
+                                onClick = { selectedTarget = target; expanded = false },
+                                trailingIcon = if (isCustom) {
+                                    {
+                                        IconButton(onClick = {
+                                            val newCustom = customTargets - target
+                                            customTargets = newCustom
+                                            SpeedTestTargetsManager.save(context, newCustom)
+                                            if (selectedTarget == target) {
+                                                selectedTarget = defaultTargets[0]
+                                            }
+                                            if (newCustom.isEmpty()) expanded = false
+                                        }) {
+                                            Icon(
+                                                Icons.Filled.Delete,
+                                                contentDescription = "Delete target",
+                                                tint = MaterialTheme.colorScheme.error,
+                                            )
+                                        }
+                                    }
+                                } else null
                             )
                         }
                     }
@@ -347,7 +373,9 @@ fun SpeedTestScreen(navController: NavController) {
         AddTargetDialog(
             onDismiss = { showAddDialog = false },
             onAdd = { newTarget ->
-                targets = targets + newTarget
+                val newCustom = customTargets + newTarget
+                customTargets = newCustom
+                SpeedTestTargetsManager.save(context, newCustom)
                 selectedTarget = newTarget
                 showAddDialog = false
             }

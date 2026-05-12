@@ -136,6 +136,25 @@
     <string name="markdown_editor_desc">編輯 Markdown 並預覽</string>
     <string name="slides_to_pdf_title">簡報轉 PDF</string>
     <string name="slides_to_pdf_desc">將簡報/PPT 轉為 PDF</string>
+    <string name="gif_maker_title">GIF 製作器</string>
+    <string name="gif_maker_desc">圖片轉 GIF &amp; 影片轉 GIF</string>
+    <string name="photo_collage_title">照片拼貼</string>
+    <string name="photo_collage_desc">將照片排列成版面</string>
+    <string name="image_watermark_title">圖片浮水印</string>
+    <string name="image_watermark_desc">添加文字/圖片浮水印</string>
+
+    <string name="battery_info_title">電池資訊</string>
+    <string name="battery_info_desc">健康、溫度、電壓 &amp; 充電次數</string>
+    <string name="display_info_title">顯示資訊</string>
+    <string name="display_info_desc">解析度、DPI、HDR &amp; 更新率</string>
+    <string name="storage_analyzer_title">儲存分析</string>
+    <string name="storage_analyzer_desc">儲存 &amp; 記憶體詳情</string>
+    <string name="bluetooth_scanner_title">藍牙掃描</string>
+    <string name="bluetooth_scanner_desc">探索 BT &amp; BLE 裝置</string>
+    <string name="gps_location_title">GPS / 位置</string>
+    <string name="gps_location_desc">座標、速度 &amp; 衛星</string>
+    <string name="nfc_reader_title">NFC 讀取器</string>
+    <string name="nfc_reader_desc">讀取 &amp; 顯示 NFC 標籤</string>
 
     <!-- Settings -->
     <string name="settings_title">設定</string>
@@ -152,4 +171,38 @@
     <string name="back">返回</string>
     <string name="coming_soon">即將推出</string>
     <string name="feature_in_development">此功能正在開發中</string>
+
+    <!-- Text & Productivity -->
+    <string name="pomodoro_timer_title">番茄鐘</string>
+    <string name="pomodoro_timer_desc">專注計時器</string>
+    <string name="random_generator_title">隨機產生器</string>
+    <string name="random_generator_desc">數字、字串、顏色、UUID</string>
+    <string name="note_pad_title">記事本</string>
+    <string name="note_pad_desc">快速筆記本地儲存</string>
+    <string name="text_case_converter_title">大小寫轉換</string>
+    <string name="text_case_converter_desc">大寫、小寫、駝峰、底線</string>
+
+    <!-- Media & Image (new) -->
+    <string name="image_bg_remover_title">背景移除</string>
+    <string name="image_bg_remover_desc">移除圖片背景</string>
+    <string name="image_filters_title">圖片濾鏡</string>
+    <string name="image_filters_desc">灰階、復古、模糊等</string>
+    <string name="meme_generator_title">迷因產生器</string>
+    <string name="meme_generator_desc">在圖片上加入文字</string>
+    <string name="screenshot_stitcher_title">截圖拼接</string>
+    <string name="screenshot_stitcher_desc">合併多張截圖為一張</string>
+    <string name="image_rotate_flip_title">旋轉翻轉</string>
+    <string name="image_rotate_flip_desc">旋轉90/180/270°及翻轉</string>
+
+    <!-- Converters & Calculators (new) -->
+    <string name="currency_converter_title">匯率轉換</string>
+    <string name="currency_converter_desc">即時匯率換算</string>
+    <string name="date_calculator_title">日期計算器</string>
+    <string name="date_calculator_desc">天數差、年齡、加減日期</string>
+    <string name="aspect_ratio_calc_title">寬高比</string>
+    <string name="aspect_ratio_calc_desc">計算和縮放比例</string>
+    <string name="number_base_converter_title">進制轉換</string>
+    <string name="number_base_converter_desc">2-36進制互轉</string>
+    <string name="scientific_calc_title">科學計算器</string>
+    <string name="scientific_calc_desc">進階數學函數</string>
 </resources>

@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import cv.toolkit.data.UpdateInfo
+import cv.toolkit.ui.theme.MonoText
 
 @Composable
 fun UpdateDialog(
@@ -82,12 +83,12 @@ fun UpdateDialog(
                 ) {
                     Text(
                         text = "v${updateInfo.version}",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        style = MonoText.Label,
+                        color = MaterialTheme.colorScheme.primary
                     )
                     Text(
                         text = updateInfo.fileSize,
-                        style = MaterialTheme.typography.labelMedium,
+                        style = MonoText.Label,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
