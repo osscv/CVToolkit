@@ -6,7 +6,7 @@
 <data-extraction-rules>
     <cloud-backup>
         <!-- IP lookup history is privacy-sensitive, exclude from cloud backup -->
-        <exclude domain="database" path="/" />
+        <exclude domain="database" path="ip_history.db" />
         <!-- Ad usage tracking is device-specific, exclude from backup -->
         <exclude domain="sharedpref" path="ad_usage_prefs.xml" />
     </cloud-backup>
